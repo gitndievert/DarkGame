@@ -1,0 +1,184 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1701615073216790280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7159332000185722240}
+  m_Layer: 0
+  m_Name: MuzzlePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7159332000185722240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701615073216790280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3621, z: 1.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5089305341808306536}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4088293505546719736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5089305341808306536}
+  - component: {fileID: 9174048511794079327}
+  - component: {fileID: 1022277009489124533}
+  m_Layer: 0
+  m_Name: A_ArcDisruptor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5089305341808306536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4088293505546719736}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9124881094889996184}
+  - {fileID: 7159332000185722240}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9174048511794079327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4088293505546719736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93035135491adfb42b22f38896609fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 1000000
+  BulletHolePrefab: {fileID: 8677958376700839265, guid: f9a76444844e09048a3ee0f0a0db3b76, type: 3}
+  BulletHoleSecondaryPrefab: {fileID: 0}
+  WallContactPrefab: {fileID: 1000011396044746, guid: 96b2ec0239d11fa4b9792311efceb8ed, type: 3}
+  FloatInfrontOfWall: 0.02
+  _ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &1022277009489124533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4088293505546719736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f72a622f3f4124e9fb747dba6f3ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Arc Disruptor
+  Description: 
+  RoundDelay: 1
+  StartingAmmo: 200
+  FoundPickup: 0
+  AttackDistance: 0
+  AmmoIcon: {fileID: 21300000, guid: 16da50d46e8aca349a03b5a70bc70c05, type: 3}
+  PrimaryFireSound: {fileID: 8300000, guid: a9a8a93b9b3f4d24ba67d6ca1de5c839, type: 3}
+  SecondaryFireSound: {fileID: 0}
+  PrimaryFireDamage: 30
+  SecondaryFireDamage: 0
+  RecoilForce: 0.2
+  RecoilSmoothness: 6
+  SwayAmount: 0.02
+  SwaySmoothness: 4
+  DisplayCrossHairs: 1
+  MuzzelFlashPrefabs: []
+  MuzzelSpawn: {fileID: 7159332000185722240}
+  EmptyClipSound: {fileID: 8300000, guid: 31bb43b730be9104984d51fcad588f4f, type: 3}
+  Projectile: {fileID: 0}
+  GunShakeDuration: 0.2
+  GunShakeIntensity: 8
+--- !u!1001 &2869172941623375173
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5089305341808306536}
+    m_Modifications:
+    - target: {fileID: 5924659276595826791, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_Name
+      value: ArcDisruptor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445581890702789341, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445581890702789341, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445581890702789341, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445581890702789341, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445581890702789341, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445581890702789341, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445581890702789341, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445581890702789341, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445581890702789341, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445581890702789341, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+--- !u!4 &9124881094889996184 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6445581890702789341, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+  m_PrefabInstance: {fileID: 2869172941623375173}
+  m_PrefabAsset: {fileID: 0}
