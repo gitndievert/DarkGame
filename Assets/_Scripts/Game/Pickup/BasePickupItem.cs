@@ -30,9 +30,8 @@ abstract public class BasePickupItem<T> : BaseEntity, IPickupable where T : Enum
 
     private void Awake()
     {
-        boxCollider= GetComponent<BoxCollider>();
-        boxCollider.isTrigger = true;
-        boxCollider.size = new Vector3(2, 2, 2);
+        boxCollider = GetComponent<BoxCollider>();
+        boxCollider.isTrigger = true;        
     }
     protected override void Start()
     {

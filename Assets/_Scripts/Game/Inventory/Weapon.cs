@@ -76,8 +76,6 @@ abstract public class Weapon : BaseEntity
     public float SwaySmoothness = 4f;
 
     protected Vector3 initialPosition;
-    
-
 
     protected override void Start()
     {
@@ -85,7 +83,7 @@ abstract public class Weapon : BaseEntity
         initialPosition = transform.localPosition;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         // Check if the player is moving        
         // Get input for horizontal and vertical movement

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 758752575153218045}
   - component: {fileID: 5677543649402308505}
   - component: {fileID: 8385124948407402889}
-  - component: {fileID: 4663813223434353771}
   - component: {fileID: 3044821122567038693}
   - component: {fileID: 5624341763425198342}
+  - component: {fileID: 7078037206773084772}
   m_Layer: 0
   m_Name: W_AMDD
   m_TagString: Weapon
@@ -86,27 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4663813223434353771
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3220643225566425310}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3044821122567038693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +103,7 @@ MonoBehaviour:
   BobSpeed: 0.75
   AutoStartBob: 0
   Rotate: 0
+  rotationAxis: 1
 --- !u!114 &5624341763425198342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,5 +120,26 @@ MonoBehaviour:
   Description: Astral Matrix Disintegration Device
   EnableBobber: 1
   Amount: 1
-  PickupType: 8
+  PickupType: 0
   PickupSound: {fileID: 8300000, guid: 08250a5d2d3da8441a3df730022e402c, type: 3}
+--- !u!135 &7078037206773084772
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3220643225566425310}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

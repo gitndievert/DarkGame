@@ -208,8 +208,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4180881254672375602}
   - component: {fileID: -594369743779979915}
-  - component: {fileID: 5658812948967458350}
   - component: {fileID: -3673107259301091714}
+  - component: {fileID: 7989984575598277099}
   m_Layer: 0
   m_Name: box_ammo
   m_TagString: Ammo
@@ -251,27 +251,7 @@ MonoBehaviour:
   BobSpeed: 0.75
   AutoStartBob: 0
   Rotate: 1
---- !u!65 &5658812948967458350
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8861775346582279456}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  rotationAxis: 1
 --- !u!114 &-3673107259301091714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,3 +270,24 @@ MonoBehaviour:
   Amount: 1
   PickupType: 1
   PickupSound: {fileID: 8300000, guid: bc3ec5fb8a01eb543b956eaeef0fd589, type: 3}
+--- !u!135 &7989984575598277099
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861775346582279456}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

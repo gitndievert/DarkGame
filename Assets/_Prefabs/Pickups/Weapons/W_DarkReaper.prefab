@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1861313660310526298}
   - component: {fileID: 953841003143126972}
   - component: {fileID: 636085318949249715}
-  - component: {fileID: 5931621919889989372}
   - component: {fileID: 1338405116877671047}
   - component: {fileID: 960223713387747401}
+  - component: {fileID: 1412520059595553638}
   m_Layer: 0
   m_Name: W_DarkReaper
   m_TagString: Weapon
@@ -86,27 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5931621919889989372
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5596388523205256755}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1338405116877671047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +103,7 @@ MonoBehaviour:
   BobSpeed: 0.75
   AutoStartBob: 0
   Rotate: 0
+  rotationAxis: 1
 --- !u!114 &960223713387747401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,5 +120,26 @@ MonoBehaviour:
   Description: Rocket attack weapon of intense power
   EnableBobber: 1
   Amount: 1
-  PickupType: 7
+  PickupType: 0
   PickupSound: {fileID: 8300000, guid: 08250a5d2d3da8441a3df730022e402c, type: 3}
+--- !u!135 &1412520059595553638
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5596388523205256755}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

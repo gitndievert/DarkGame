@@ -16,7 +16,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
-public class Projectile : BaseEntity
+abstract public class Projectile : BaseEntity
 {
     public int DirectDamage = 25;
     public int SplashDamage = 15;
@@ -25,7 +25,7 @@ public class Projectile : BaseEntity
     public float TimeToLive = 5f;    
     public GameObject ExplosionPrefab;    
     
-    private bool _targetHit;    
+    protected bool targetHit;    
 
     protected override void Start()
     {
@@ -35,14 +35,13 @@ public class Projectile : BaseEntity
         Destroy(gameObject, TimeToLive);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        if (_targetHit) return;
+        if (targetHit) return;
         transform.position += transform.forward * (Speed * Time.deltaTime);
-
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {   
         if(!enabled) return;        
         Explode();       
@@ -58,12 +57,12 @@ public class Projectile : BaseEntity
         foreach (Collider col in GetComponents<Collider>())
         {
             col.enabled = false;
-        }    
-        _targetHit = true;
+        }
+        targetHit = true;
         Destroy(gameObject);
     }
 
-    private void Explode()
+    protected virtual void Explode()
     {
         if (ExplosionPrefab == null) return;
         GameObject newExplosion = Instantiate(ExplosionPrefab, transform.position, ExplosionPrefab.transform.rotation, null);

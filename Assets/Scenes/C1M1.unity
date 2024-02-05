@@ -245,6 +245,7 @@ MonoBehaviour:
   BobSpeed: 0.75
   AutoStartBob: 1
   Rotate: 0
+  rotationAxis: 1
 --- !u!1 &53066754 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8603339840771121511, guid: ffa8c62a33cc32c428a808e3d7f63960, type: 3}
@@ -4615,6 +4616,7 @@ MonoBehaviour:
   BobSpeed: 0.75
   AutoStartBob: 1
   Rotate: 0
+  rotationAxis: 1
 --- !u!1 &1213787659 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8603339840771121511, guid: ffa8c62a33cc32c428a808e3d7f63960, type: 3}
@@ -5119,6 +5121,7 @@ MonoBehaviour:
   BobSpeed: 0.75
   AutoStartBob: 1
   Rotate: 0
+  rotationAxis: 1
 --- !u!1 &1309086714 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8603339840771121511, guid: ffa8c62a33cc32c428a808e3d7f63960, type: 3}
@@ -5268,6 +5271,7 @@ MonoBehaviour:
   BobSpeed: 0.7
   AutoStartBob: 1
   Rotate: 0
+  rotationAxis: 1
 --- !u!1 &1387174132 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8603339840771121511, guid: ffa8c62a33cc32c428a808e3d7f63960, type: 3}
@@ -6699,7 +6703,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: W_Pistol
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

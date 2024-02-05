@@ -13,6 +13,11 @@
 // ********************************************************************
 
 using UnityEngine;
+
+public enum AxisToRotate
+{
+    X, Y, Z
+}
 public class Bobber : MonoBehaviour
 {
     [Range(0, 3f)]
@@ -20,10 +25,11 @@ public class Bobber : MonoBehaviour
     [Range(1f, 60f)]
     public float RotateSpeed = 15f;
     [Range(0, 10f)]
-    public float BobSpeed = 0.75f;
+    public float BobSpeed = 2.5f;
 
     public bool AutoStartBob = false;
     public bool Rotate = false;
+    public AxisToRotate rotationAxis = AxisToRotate.Y;
 
     //private Rigidbody _rb;
     private bool _isBobbing;    
@@ -42,7 +48,23 @@ public class Bobber : MonoBehaviour
         {
             if (Rotate)
             {
-                transform.Rotate(Vector3.up, Time.deltaTime * RotateSpeed);
+                float rotationAmount = Time.deltaTime * RotateSpeed;
+                Vector3 rotationVector = Vector3.zero;
+
+                switch (rotationAxis)
+                {
+                    case AxisToRotate.X:
+                        rotationVector = Vector3.right;
+                        break;
+                    case AxisToRotate.Y:
+                        rotationVector = Vector3.up;
+                        break;
+                    case AxisToRotate.Z:
+                        rotationVector = Vector3.forward;
+                        break;
+                }
+
+                transform.Rotate(rotationVector, rotationAmount);                
             }
             float sinY = _originY + Mathf.Sin(Time.time * BobSpeed) * BobHeight;
             transform.position = new Vector3(transform.position.x, sinY, transform.position.z);

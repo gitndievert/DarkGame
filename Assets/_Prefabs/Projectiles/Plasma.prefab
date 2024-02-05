@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 640506605450662179}
   - component: {fileID: 8230398755745069230}
-  - component: {fileID: 4042019200331126544}
   - component: {fileID: -2879525161301768517}
+  - component: {fileID: 7540315958498488729}
   m_Layer: 0
   m_Name: Plasma
   m_TagString: Untagged
@@ -57,25 +57,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4042019200331126544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020296883934537456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f4e6af3c80ed8346a1d9833faccbe4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Plasma Ball
-  Description: 
-  DirectDamage: 25
-  SplashDamage: 15
-  Speed: 25
-  TimeToLive: 5
-  ExplosionPrefab: {fileID: 1764654978243476, guid: a98b15aa948478849b54661e4d9a317e, type: 3}
 --- !u!54 &-2879525161301768517
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103,6 +84,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7540315958498488729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020296883934537456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3934f1cd9a0464281d0727962b21a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Plasma Ball
+  Description: 
+  DirectDamage: 25
+  SplashDamage: 15
+  Speed: 100
+  TimeToLive: 5
+  ExplosionPrefab: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
 --- !u!1001 &4158965336886410309
 PrefabInstance:
   m_ObjectHideFlags: 0
