@@ -107,7 +107,7 @@ MonoBehaviour:
   RotateSpeed: 15
   BobSpeed: 2.5
   AutoStartBob: 1
-  Rotate: 0
+  Rotate: 1
   rotationAxis: 1
 --- !u!114 &9198556668287423414
 MonoBehaviour:

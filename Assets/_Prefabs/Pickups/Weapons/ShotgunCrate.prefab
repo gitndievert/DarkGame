@@ -198,7 +198,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3650638188812647480, guid: a2a060732547fe64581bb0cb3c2bdf1d, type: 3}
   m_PrefabInstance: {fileID: 4822700348814374539}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &7453984571013073023
+--- !u!1001 &6835944469617489260
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -206,140 +206,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1127776531595366717}
     m_Modifications:
-    - target: {fileID: 297246544261085407, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
-      propertyPath: m_Name
-      value: ShotgunMine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.2610763
-      objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.26107633
-      objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.26107636
-      objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
+    - target: {fileID: 3946315161022111606, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.391
       objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
+    - target: {fileID: 3946315161022111606, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.06
       objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
+    - target: {fileID: 3946315161022111606, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.388
       objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
+    - target: {fileID: 3946315161022111606, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.98531306
       objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
+    - target: {fileID: 3946315161022111606, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.016056472
       objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
+    - target: {fileID: 3946315161022111606, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0.13014235
       objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
+    - target: {fileID: 3946315161022111606, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.10937745
       objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
+    - target: {fileID: 3946315161022111606, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -0.182
       objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
+    - target: {fileID: 3946315161022111606, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 15.069
       objectReference: {fileID: 0}
-    - target: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
+    - target: {fileID: 3946315161022111606, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -12.693
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436028142154827212, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
+      propertyPath: m_Name
+      value: ShotgunMine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 297246544261085407, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1796669939100672211}
-    - targetCorrespondingSourceObject: {fileID: 297246544261085407, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6487891641072705016}
-    - targetCorrespondingSourceObject: {fileID: 297246544261085407, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5914237911106238521}
-  m_SourcePrefab: {fileID: 100100000, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
---- !u!1 &7156738027054624928 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 297246544261085407, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
-  m_PrefabInstance: {fileID: 7453984571013073023}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1796669939100672211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7156738027054624928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fbb0ddcfd0b07545bce7a7a126a8d86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BobHeight: 0.3
-  RotateSpeed: 15
-  BobSpeed: 2.5
-  AutoStartBob: 1
-  Rotate: 0
-  rotationAxis: 1
---- !u!114 &6487891641072705016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7156738027054624928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3a6b005b0e59f2418c68ed769b490c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Double Shotgun
-  Description: 
-  EnableBobber: 1
-  Amount: 1
-  PickupType: 2
-  PickupSound: {fileID: 8300000, guid: 08250a5d2d3da8441a3df730022e402c, type: 3}
---- !u!65 &5914237911106238521
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7156738027054624928}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 11.863001, y: 7.5334315, z: 14.637822}
-  m_Center: {x: -3.6807535, y: 2.0340636, z: 4.3547587}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
 --- !u!4 &7501316916165650970 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1111219797272863333, guid: e73390d4ce4affd41b673fda29e6dbdb, type: 3}
-  m_PrefabInstance: {fileID: 7453984571013073023}
+  m_CorrespondingSourceObject: {fileID: 3946315161022111606, guid: ae183ffdc489b3048a67aff09d32a5bc, type: 3}
+  m_PrefabInstance: {fileID: 6835944469617489260}
   m_PrefabAsset: {fileID: 0}
