@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 4180881254672375602}
   - component: {fileID: -594369743779979915}
   - component: {fileID: -3673107259301091714}
-  - component: {fileID: 7989984575598277099}
+  - component: {fileID: 9058868104380813429}
   m_Layer: 0
   m_Name: box_ammo
   m_TagString: Ammo
@@ -270,8 +270,8 @@ MonoBehaviour:
   Amount: 1
   PickupType: 1
   PickupSound: {fileID: 8300000, guid: bc3ec5fb8a01eb543b956eaeef0fd589, type: 3}
---- !u!135 &7989984575598277099
-SphereCollider:
+--- !u!65 &9058868104380813429
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -289,5 +289,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
