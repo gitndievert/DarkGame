@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="MeshParts">
+        <uie:Vector2Field label="Seperation" name="seperationDirection" />
+        <ui:Slider picking-mode="Ignore" value="42" high-value="1" name="seperationSlider" show-input-field="false" />
+        <ui:VisualElement name="ShowMeshParts" style="flex-direction: row-reverse; margin-top: 20px;">
+            <uie:ToolbarToggle focusable="false" label="Show Mesh Parts" name="showMeshParts" style="width: 135px; -unity-text-align: middle-center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center; justify-content: center; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; height: 21px;" />
+        </ui:VisualElement>
+        <ui:ListView focusable="true" name="meshPartsListView" header-title="Mesh Parts" style="display: none;" />
+    </ui:VisualElement>
+</ui:UXML>

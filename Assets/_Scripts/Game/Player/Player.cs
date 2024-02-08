@@ -18,6 +18,7 @@ using Dark.Utility;
 using Dark.Utility.Sound;
 using System.Net.Sockets;
 using UnityEngine.SceneManagement;
+using PampelGames.GoreSimulator;
 
 [RequireComponent(typeof(PlayerInventory))]
 [RequireComponent(typeof(PlayerController))]
@@ -325,12 +326,13 @@ public class Player : BaseEntity, IAttackable
         Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red, 0.1f);
 
         if (Physics.Raycast(ray, out RaycastHit hit, raycastDistance))
-        {
-            if (hit.collider.TryGetComponent<Enemy>(out var enemyScript))
+        {            
+            if (hit.collider.TryGetComponent<IGoreObject>(out var goreObject))
             {
-                enemyScript.TakeDamage(damage);
+                var enemyScript = hit.collider.GetComponentInParent<Enemy>();
+                enemyScript.TakeDamage(damage, goreObject, hit);                
             }
-        }      
+        }
     }
 
     /// <summary>

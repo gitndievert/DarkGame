@@ -13,17 +13,17 @@
 // ********************************************************************
 
 
+using PampelGames.GoreSimulator;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(AudioSource))]
 public class Enemy : BaseEntity, IAttackable
 {
-
     public int Health;
     public EnemyType EnemyType = EnemyType.Land;
 
@@ -64,20 +64,22 @@ public class Enemy : BaseEntity, IAttackable
     private Animator _animator;
     private bool _isAggro = false;
     //private float FieldOfView = 85f;
-    private bool isAttackCooldown = false;
-    private BoxCollider _collider;
+    private bool isAttackCooldown = false;    
     private AudioSource _audioSource;
+    private List<GameObject> _gibPool;
+    private bool _hasGibs { get { return _gibPool.Count > 0; } }
 
 
     protected override void Start()
     {
         _player = GameManager.Instance.MyPlayer;
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
-        _collider = GetComponent<BoxCollider>();
+        _animator = GetComponent<Animator>();        
         _audioSource = GetComponent<AudioSource>();
         gameObject.layer = Tags.enemyLayer;
         gameObject.tag = Tags.ENEMY_TAG;                
+        _gibPool = new List<GameObject>();
+        InvokeRepeating("ClearGibs", 1f, 10f);
     }
 
     void Update()
@@ -117,7 +119,7 @@ public class Enemy : BaseEntity, IAttackable
             _isAggro = false;
             Idle();
         }
-    }
+    }    
 
     public void TakeDamage(int amount)
     {
@@ -133,6 +135,35 @@ public class Enemy : BaseEntity, IAttackable
             if (PainSounds != null)
             {
                 PlaySound(PainSounds);                
+            }
+            Health -= amount;
+            Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");
+        }
+    }
+
+    public void TakeDamage(int amount, IGoreObject goreObject, RaycastHit hit)
+    {
+        if (IsDead) return;
+        Vector3 hitPoint = hit.point;        
+       
+        int totalDamage = Health - amount;
+        if (totalDamage <= 0)
+        {
+            Debug.Log($"A {Name} took {amount} damage!");
+            Dead();
+        }
+        else
+        {
+            //Gore Simulator Cut Randomizer
+            int rndRoll = Random.Range(1, 100);
+            if(amount >= 30 || rndRoll >= 85)
+            {
+                goreObject.ExecuteCut(hitPoint, out GameObject gib);
+                _gibPool.Add(gib);
+            }
+            if (PainSounds != null)
+            {
+                PlaySound(PainSounds);
             }
             Health -= amount;
             Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");
@@ -221,6 +252,18 @@ public class Enemy : BaseEntity, IAttackable
     private void Attack()
     {
         if (IsDead) return;
+        //If enemy has no arms, dont attack
+        if(_hasGibs)
+        {
+            foreach(GameObject gib in _gibPool)
+            {
+                if(gib.name.Contains("arm"))
+                {
+                    Debug.Log($"A {Name} cannot attack, he has no arms!");
+                    return;
+                }
+            }
+        }
         if (_player.Health > 0 && SeePlayer())
         {            
             int dmgRange = Random.Range(MinAttackDamage, MaxAtackDamage);
@@ -239,7 +282,17 @@ public class Enemy : BaseEntity, IAttackable
         isAttackCooldown = true;        
         Attack();        
         yield return new WaitForSeconds(AttackCoolDown);
-        isAttackCooldown = false;
+        isAttackCooldown = false;        
+    }
+
+    private void ClearGibs()
+    {
+        if (!_hasGibs) return;
+        foreach(GameObject gibs in _gibPool)
+        {
+            _gibPool.Remove(gibs);
+            Destroy(gibs);
+        }
     }
 
     protected void Dead()
@@ -249,12 +302,23 @@ public class Enemy : BaseEntity, IAttackable
             PlaySound(DeathSounds);
         }        
         Health = 0;
-        IsDead = true;
-        _collider.enabled = false;
+        IsDead = true;        
         Debug.Log($"A {Name} died!");
-        //Destroy(gameObject); //TODO: THIS IS TEMP WE NEED BODIES TO STAY
-        //Add death animations
-        _animator.Play("Dead");
+        
+        //If there has been a limb split, then destory limbs and drop the torso
+        //else play regular death animation
+        if(_hasGibs)
+        {
+            _animator.StopPlayback();
+            ClearGibs();
+        }
+        else
+        {
+            _animator.Play("Dead");
+        }
+
+        CancelInvoke();
+        StopAllCoroutines();
     }
 
     protected void Wander()

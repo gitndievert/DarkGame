@@ -30,19 +30,20 @@ public class DoorBasic : BaseAction
     public AudioClip DoorCloseSound;
 
     private Vector3 originalPosition;
-    private Vector3 targetPosition;    
+    private Vector3 targetPosition;
+    private bool _openingState = false;
 
     //Setup Coroutines to open and close
 
     public override void DoAction()
     {
+        if (_openingState) return;
         Debug.Log("Opening Door");
         // Store the original position of the door
         originalPosition = transform.position;
 
         // Calculate the target position for sliding up        
         targetPosition = originalPosition + SlideDirection(DoorDirection) * SlideDistance;        
-
         // Start the sliding coroutine        
         StartCoroutine(SlideDoor());
     }   
@@ -66,9 +67,10 @@ public class DoorBasic : BaseAction
 
     protected virtual IEnumerator SlideDoor()
     {        
-        boxCollider.enabled = false;
+        //boxCollider.enabled = false; Removed for now
         // Slide the door up
         SoundManager.PlaySound(DoorOpenSound);
+        _openingState = true;
 
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
@@ -89,7 +91,8 @@ public class DoorBasic : BaseAction
                 yield return null;
             }
         }
-        boxCollider.enabled = true;
+        _openingState = false;
+        //boxCollider.enabled = true; removed for now
     }
 
 

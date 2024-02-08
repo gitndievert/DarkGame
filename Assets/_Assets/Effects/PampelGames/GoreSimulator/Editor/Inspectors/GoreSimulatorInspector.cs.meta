@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e2881af6186b97d4ea434bba895df970
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _visualTree: {fileID: 9197481963319205126, guid: cf4b8e6414545174eaf5284178b6f4cd, type: 3}
+  - _ModuleIconList: {fileID: 11400000, guid: b7282ee5e1745434c831b45db4d52f5a, type: 2}
+  - _DefaultReferences: {fileID: 11400000, guid: 65ea7cf5d3469c649a316ea43f61c87f, type: 2}
+  - _ColorKeywords: {fileID: 11400000, guid: 62d39e58da018bb40b734d72e3a5335e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
