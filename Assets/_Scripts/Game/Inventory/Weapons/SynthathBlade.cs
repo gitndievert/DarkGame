@@ -17,13 +17,28 @@ public class SynthathBlade : Weapon
     public override WeaponType WeaponType => WeaponType.SynthathBlade;
     public override AmmoType AmmoType => AmmoType.None;
 
+    private int _maxSwings = 3;
+    private int _trackSwings = 1;
+
     public override void PrimaryAttack()
     {
         PlayPrimaryFireSound();
+        Swing();
     }
 
     public override void SecondaryAttack()
     {
         PlaySecondaryFireSound();
+    }
+
+    public void Swing()
+    {
+        string swingAnim = $"Swing{_trackSwings}";
+        animator.Play(swingAnim);
+        _trackSwings++;
+        if (_trackSwings > _maxSwings)
+        {
+            _trackSwings = 1;
+        }
     }
 }

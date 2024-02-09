@@ -47,7 +47,7 @@ Arc Disruptor(laser) (Orbs)
 Dark Reaper(rockets)
 A.M.D.D. (Orbs) Astral Matrix Disintegration Device
 */
-
+[RequireComponent(typeof(Animator))]
 abstract public class Weapon : BaseEntity
 {
     public float RoundDelay = 3f;
@@ -75,7 +75,16 @@ abstract public class Weapon : BaseEntity
     public float SwayAmount = 0.02f;
     public float SwaySmoothness = 4f;
 
+    public float ShakeIntensity = 8f;
+    public float ShakeDuration = 0.2f;
+
     protected Vector3 initialPosition;
+    protected Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     protected override void Start()
     {
@@ -104,14 +113,36 @@ abstract public class Weapon : BaseEntity
             //transform.localPosition = _initialPosition;
             transform.localPosition = Vector3.Lerp(transform.localPosition, initialPosition, Time.deltaTime * RecoilSmoothness);
         }
-
+        
         //transform.localPosition = Vector3.Lerp(transform.localPosition, _initialPosition, Time.deltaTime * RecoilSmoothness);
 
     }
-       
-    private void OnEnable()
+
+    protected virtual void OnEnable()
     {
         Debug.Log($"Switched to {Name}");
+        AnimPullOut();  
+    }
+
+    protected virtual void OnDisable()
+    {
+        AnimPutAway();      
+    }    
+
+    public void AnimPullOut()
+    {
+        if (animator != null)
+        {
+            animator.Play("PullOut");
+        }
+    }
+
+    public void AnimPutAway()
+    {
+        if (animator != null)
+        {
+            animator.Play("PutAway");
+        }
     }
 
     public abstract void PrimaryAttack();   

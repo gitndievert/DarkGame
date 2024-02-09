@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -488,6 +488,92 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d95072c0010eabe4db44060e0c86d7aa, type: 3}
+--- !u!1001 &1725029598
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 94452995160845404, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.338
+      objectReference: {fileID: 0}
+    - target: {fileID: 94452995160845404, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 94452995160845404, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 94452995160845404, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 94452995160845404, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94452995160845404, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94452995160845404, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94452995160845404, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94452995160845404, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94452995160845404, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3090335821614312914, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      propertyPath: m_Name
+      value: A_Shotgun
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3090335821614312914, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1725029600}
+  m_SourcePrefab: {fileID: 100100000, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+--- !u!1 &1725029599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3090335821614312914, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
+  m_PrefabInstance: {fileID: 1725029598}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1725029600
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725029599}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 070ecf43f325b1a4c84dbac8495bb7c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &775588577072007540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -499,6 +585,10 @@ PrefabInstance:
     - target: {fileID: 1315118714536062300, guid: 6814c6f4ed8093c49abc814d7eda188f, type: 3}
       propertyPath: m_Name
       value: AMDD-Mine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1315118714536062300, guid: 6814c6f4ed8093c49abc814d7eda188f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1804796850332743654, guid: 6814c6f4ed8093c49abc814d7eda188f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -673,6 +763,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShatterCasterNEW
       objectReference: {fileID: 0}
+    - target: {fileID: 6232826825712511367, guid: 48e3bad3edf7c0e4c9ce19bb0bb499d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6716171430401078077, guid: 48e3bad3edf7c0e4c9ce19bb0bb499d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.45101
@@ -738,7 +832,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &5769395348871778378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -791,6 +885,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinigunFinal
       objectReference: {fileID: 0}
+    - target: {fileID: 9105059607446065838, guid: 6bc04c9250eebe74dadad9d40b75be22, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -832,6 +930,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1756112470578474113, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5924659276595826791, guid: 0bb18041e867ad94c92d81d9a801ba9a, type: 3}
       propertyPath: m_Name
       value: ArcDisruptor
@@ -894,3 +996,4 @@ SceneRoots:
   - {fileID: 3230027767390513398}
   - {fileID: 8376370920692061149}
   - {fileID: 775588577072007540}
+  - {fileID: 1725029598}

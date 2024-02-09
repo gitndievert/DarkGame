@@ -19,6 +19,7 @@ using UnityEngine;
 abstract public class FiringWeapon : Weapon
 {
     public bool DisplayCrossHairs = true;
+    public bool DisableDefaultFireAnimation = false;
 
     public GameObject[] MuzzelFlashPrefabs;
     public Transform MuzzelSpawn;    
@@ -29,10 +30,7 @@ abstract public class FiringWeapon : Weapon
     public bool UsesProjectile
     {
         get { return Projectile != null; }
-    }
-
-    public float GunShakeDuration = 0.2f;
-    public float GunShakeIntensity = 8f;
+    }    
 
     private float _crosshairSize = 10f;
     private BulletHoleGenerator _bulletHoleGenerator;
@@ -48,7 +46,7 @@ abstract public class FiringWeapon : Weapon
     {
         PlayPrimaryFireSound();
         DoMuzzleFlash();
-        Recoil();
+        if(!DisableDefaultFireAnimation) Recoil();
         _bulletHoleGenerator.Generate(WeaponFireType.Primary, WeaponType);
     }
 
@@ -56,7 +54,7 @@ abstract public class FiringWeapon : Weapon
     {
         PlaySecondaryFireSound();
         DoMuzzleFlash();
-        Recoil();
+        if (!DisableDefaultFireAnimation) Recoil();
         _bulletHoleGenerator.Generate(WeaponFireType.Secondary, WeaponType);
     } 
 
