@@ -32,22 +32,22 @@ abstract public class FiringWeapon : Weapon
         get { return Projectile != null; }
     }    
 
-    private float _crosshairSize = 10f;
-    private BulletHoleGenerator _bulletHoleGenerator;
+    protected float crosshairSize = 10f;
+    protected BulletHoleGenerator bulletHoleGenerator;
 
     protected override void Start()
     {
         base.Start();
         AttackDistance = 1000000;
-        _bulletHoleGenerator = GetComponent<BulletHoleGenerator>();
+        bulletHoleGenerator = GetComponent<BulletHoleGenerator>();
     }
 
     public override void PrimaryAttack()
-    {
+    {        
         PlayPrimaryFireSound();
         DoMuzzleFlash();
         if(!DisableDefaultFireAnimation) Recoil();
-        _bulletHoleGenerator.Generate(WeaponFireType.Primary, WeaponType);
+        bulletHoleGenerator.Generate(WeaponFireType.Primary, WeaponType);
     }
 
     public override void SecondaryAttack()
@@ -55,7 +55,7 @@ abstract public class FiringWeapon : Weapon
         PlaySecondaryFireSound();
         DoMuzzleFlash();
         if (!DisableDefaultFireAnimation) Recoil();
-        _bulletHoleGenerator.Generate(WeaponFireType.Secondary, WeaponType);
+        bulletHoleGenerator.Generate(WeaponFireType.Secondary, WeaponType);
     } 
 
     public void PlayEmptyClipSound()
@@ -63,7 +63,7 @@ abstract public class FiringWeapon : Weapon
         SoundManager.PlaySound(EmptyClipSound);
     }
 
-    private void DoMuzzleFlash()
+    protected void DoMuzzleFlash()
     {
         if (MuzzelFlashPrefabs.Length == 0 && MuzzelSpawn != null) return;
         int randomIndex = Random.Range(0, MuzzelFlashPrefabs.Length - 1);
@@ -72,25 +72,25 @@ abstract public class FiringWeapon : Weapon
         flash.transform.parent = transform.parent;
     }
 
-    private void Recoil()
+    protected void Recoil()
     {
         transform.localPosition -= Vector3.forward * RecoilForce;
         transform.localPosition = new Vector3(initialPosition.x, initialPosition.y, Mathf.Max(transform.localPosition.z, initialPosition.z - RecoilForce));
     }
 
-    private void BulletHole()
+    protected void BulletHole()
     {
         //var pSpotTransform = GameManager.Instance.MyPlayer.ProjectileSpot.transform;
         //Instantiate(_bulletHoleGenerator.BulletHolePrefab, pSpotTransform.position, pSpotTransform.rotation);        
     }
 
-    private void OnGUI()
+    protected void OnGUI()
     {
         if (DisplayCrossHairs)
         {            
             Vector2 center = new Vector2(Screen.width / 2, Screen.height / 2);            
-            GUI.DrawTexture(new Rect(center.x - (_crosshairSize / 2), center.y - 1, _crosshairSize, 2), Texture2D.grayTexture);            
-            GUI.DrawTexture(new Rect(center.x - 1, center.y - (_crosshairSize / 2), 2, _crosshairSize), Texture2D.grayTexture);
+            GUI.DrawTexture(new Rect(center.x - (crosshairSize / 2), center.y - 1, crosshairSize, 2), Texture2D.grayTexture);            
+            GUI.DrawTexture(new Rect(center.x - 1, center.y - (crosshairSize / 2), 2, crosshairSize), Texture2D.grayTexture);
         }
     }
 }

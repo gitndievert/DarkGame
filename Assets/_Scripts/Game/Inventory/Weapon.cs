@@ -56,6 +56,10 @@ abstract public class Weapon : BaseEntity
     public bool FoundPickup = false;
     [HideInInspector]
     public float AttackDistance;
+    /// <summary>
+    /// This Controls the firing settings on this weapon
+    /// </summary>
+    public bool IsFiring { get; set; }
 
     public abstract WeaponType WeaponType { get; }
     public abstract AmmoType AmmoType { get; }
@@ -121,12 +125,14 @@ abstract public class Weapon : BaseEntity
     protected virtual void OnEnable()
     {
         Debug.Log($"Switched to {Name}");
+        IsFiring = false;
         AnimPullOut();  
     }
 
     protected virtual void OnDisable()
     {
-        AnimPutAway();      
+        IsFiring = false;
+        AnimPutAway();
     }    
 
     public void AnimPullOut()
@@ -148,12 +154,12 @@ abstract public class Weapon : BaseEntity
     public abstract void PrimaryAttack();   
     public abstract void SecondaryAttack();
 
-    public void PlayPrimaryFireSound()
+    public virtual void PlayPrimaryFireSound()
     {
         SoundManager.PlaySound(PrimaryFireSound);
     }
 
-    public void PlaySecondaryFireSound()
+    public virtual void PlaySecondaryFireSound()
     {
         SoundManager.PlaySound(SecondaryFireSound);
     }

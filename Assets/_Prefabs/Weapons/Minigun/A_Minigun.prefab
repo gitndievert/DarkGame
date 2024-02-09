@@ -76,10 +76,11 @@ MonoBehaviour:
   FoundPickup: 0
   AttackDistance: 0
   AmmoIcon: {fileID: 21300000, guid: 007d747dc94f44045a872e28c5228977, type: 3}
-  PrimaryFireSound: {fileID: 8300000, guid: 4d904b44abb912e48acc19f6c996c6a7, type: 3}
+  PrimaryFireSound: {fileID: 8300000, guid: 7d6d452eb5a9168438397d9b02cf16c2, type: 3}
   SecondaryFireSound: {fileID: 0}
   PrimaryFireDamage: 10
   SecondaryFireDamage: 0
+  NextShotTime: 0.2
   RecoilForce: 0.2
   RecoilSmoothness: 6
   SwayAmount: 0.02

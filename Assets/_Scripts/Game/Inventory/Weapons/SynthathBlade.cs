@@ -12,6 +12,8 @@
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
 
+using UnityEngine;
+
 public class SynthathBlade : Weapon
 {
     public override WeaponType WeaponType => WeaponType.SynthathBlade;
@@ -21,7 +23,7 @@ public class SynthathBlade : Weapon
     private int _trackSwings = 1;
 
     public override void PrimaryAttack()
-    {
+    {        
         PlayPrimaryFireSound();
         Swing();
     }

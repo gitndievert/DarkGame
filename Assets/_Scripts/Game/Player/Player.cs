@@ -71,18 +71,27 @@ public class Player : BaseEntity, IAttackable
 
     private void Update()
     {
-        if (Input.GetMouseButton(LEFT_MOUSE) && Time.time > _nextShotTime)
+
+        if (PlayerInventory.CurrentWeapon != null)
         {
-            PrimaryAttack();
-        }
-        else if (Input.GetMouseButtonDown(LEFT_MOUSE))
-        {
-            PrimaryAttack();
-        }
-        else if (Input.GetMouseButton(RIGHT_MOUSE))
-        {
-            //Fire Secondary Weapon
-            SecondaryAttack();
+            if (Input.GetMouseButton(LEFT_MOUSE) && Time.time > _nextShotTime)
+            {
+                PrimaryAttack();
+                PlayerInventory.CurrentWeapon.IsFiring = true;
+            }
+            else if (Input.GetMouseButtonDown(LEFT_MOUSE))
+            {
+                PrimaryAttack();
+            }
+            else if (Input.GetMouseButton(RIGHT_MOUSE))
+            {
+                //Fire Secondary Weapon
+                SecondaryAttack();
+            }
+            else
+            {
+                PlayerInventory.CurrentWeapon.IsFiring = false;
+            }            
         }
 
         // Check for continuous fire (mouse button held down)

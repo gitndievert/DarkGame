@@ -76,6 +76,14 @@ namespace Dark.Utility.Sound
             audio.PlayDelayed(delaySec);
         }
 
+        public static void PlaySoundOnLoop(AudioClip clip, int channel = 1)
+        {
+            var audio = AudioChan(channel);
+            audio.clip = clip;
+            audio.loop = true;
+            audio.Play();
+        }
+
         public static void QueueSounds(AudioClip[] clips, float delayBetween = 0.0f, int channel = 1)
         {
             Instance.Queue(clips, delayBetween);
@@ -86,11 +94,19 @@ namespace Dark.Utility.Sound
             StartCoroutine(PlayQueue(clips, delay, channel));
         }
 
-        public void StopAllSounds()
-        {
-            StopCoroutine("playQueue");
+        public static void StopAllSound()
+        {            
             _audio.Stop();
             _audio2.Stop();
+            _audio.loop = false;
+            _audio2.loop = false;
+        }
+
+        public static void StopAllSound(int channel)
+        {            
+            var audio = AudioChan(channel);
+            audio.Stop();
+            audio.loop = false;
         }
 
         public void Volume(float percent)
