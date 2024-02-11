@@ -24,16 +24,7 @@ public class Minigun : FiringWeapon
     public override AmmoType AmmoType => AmmoType.Bullet;    
 
     private bool _soundPlaying;
-
-    //Need to move all firing logic to weapons, where it should be anyways
-
-    //So, need to have mouse button do continuous fire and record that as such on weapon
-    //Need audio if able to, loop during fire and stop when firing is done
-    protected override void Start()
-    {
-        base.Start();        
-    }
-
+   
     protected override void Update()
     {
         base.Update();
@@ -50,6 +41,7 @@ public class Minigun : FiringWeapon
         {
             SoundManager.PlaySoundOnLoop(PrimaryFireSound, 2);
             _soundPlaying = true;
+            animator.Play("SpinBarrel");
         }
     }
 
@@ -57,6 +49,8 @@ public class Minigun : FiringWeapon
     {
         _soundPlaying = false;
         SoundManager.StopAllSound(2);
+        //Maybe a cooldown sound???
+        animator.Play("SpinDown");
     }    
 
 

@@ -15,9 +15,10 @@
 using Dark.Utility;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : DSingle<UIManager>
-{
+{   
     public Canvas Canvas;
 
     public TMP_Text HealthLabel;
@@ -25,8 +26,11 @@ public class UIManager : DSingle<UIManager>
     public TMP_Text AmmoLabel;    
     public TMP_Text PowerupLabel;
     public TMP_Text LevelNameLabel;
+    public Transform GunSlotLabels;
 
     public ScreenEffects ScreenEffects { get; private set; }
+
+    private GunSlot[] GunSlotImages;
 
     protected override void DAwake()
     {
@@ -34,6 +38,8 @@ public class UIManager : DSingle<UIManager>
             throw new System.Exception("Missing canvas in this scene");
 
         Canvas.gameObject.SetActive(true);
+        GunSlotImages = GunSlotLabels.GetComponentsInChildren<GunSlot>();
+        DontDestroyOnLoad(GunSlotLabels.gameObject);
     }
 
     private void Start()
@@ -63,7 +69,31 @@ public class UIManager : DSingle<UIManager>
                         break;
                 }
             }
-        } 
-    }     
+        }
+        //Get active image slots
+        //GunSlotImages = GunSlotLabels.GetComponentsInChildren<GunSlot>();       
+        
+    }       
+
+    public void ActivateGunSlot(int slotNumber)
+    {
+        foreach (GunSlot slot in GunSlotImages)
+        {
+            if (slotNumber == slot.SlotIndex)
+            {
+                slot.ActivateGunSlot();
+                return;
+            }
+        }
+    }
+
+    public void SelectGunSlot(int slotNumber)
+    {
+        foreach (GunSlot slot in GunSlotImages)
+        {
+            bool isSelected = slot.name == slotNumber.ToString();
+            slot.SelectSlotState(isSelected);
+        }
+    }
 
 }

@@ -19,5 +19,10 @@ public class Shotgun : FiringWeapon
 
     //Need to add split attack here
 
+    public override void PrimaryAttack()
+    {
+        base.PrimaryAttack();
+        //animator.Play("Cock");
+    }
 
 }

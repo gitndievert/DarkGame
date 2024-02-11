@@ -14,6 +14,7 @@
 
 using UnityEngine;
 using Dark.Utility.Sound;
+using System.ComponentModel;
 
 public enum WeaponType
 {    
@@ -50,6 +51,10 @@ A.M.D.D. (Orbs) Astral Matrix Disintegration Device
 [RequireComponent(typeof(Animator))]
 abstract public class Weapon : BaseEntity
 {
+
+    [HideInInspector]
+    public int WeaponSlot;
+    
     public float RoundDelay = 3f;
     public int StartingAmmo = 30;
     [HideInInspector]
@@ -59,7 +64,7 @@ abstract public class Weapon : BaseEntity
     /// <summary>
     /// This Controls the firing settings on this weapon
     /// </summary>
-    public bool IsFiring { get; set; }
+    public bool IsFiring = false;
 
     public abstract WeaponType WeaponType { get; }
     public abstract AmmoType AmmoType { get; }
@@ -117,7 +122,9 @@ abstract public class Weapon : BaseEntity
             //transform.localPosition = _initialPosition;
             transform.localPosition = Vector3.Lerp(transform.localPosition, initialPosition, Time.deltaTime * RecoilSmoothness);
         }
-        
+
+        IsFiring = Input.GetMouseButton(LEFT_MOUSE) | Input.GetMouseButtonDown(LEFT_MOUSE);
+
         //transform.localPosition = Vector3.Lerp(transform.localPosition, _initialPosition, Time.deltaTime * RecoilSmoothness);
 
     }

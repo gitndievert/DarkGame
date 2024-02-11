@@ -47,11 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4155d6da7b62bb148ad3928bc8f69b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Canvas: {fileID: 0}
   HealthLabel: {fileID: 0}
   ArmorLabel: {fileID: 0}
   AmmoLabel: {fileID: 0}
   PowerupLabel: {fileID: 0}
   LevelNameLabel: {fileID: 0}
+  GunSlotLabels: {fileID: 0}
 --- !u!114 &9177885557140356403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34d3c83d65319d45958d2a22e64c042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FlashImage: {fileID: 2788281751569386855, guid: 26579d87f028a9543b6767e162afa6dd, type: 3}
+  FlashImage: {fileID: 0}
   DamageFlashColor: {r: 1, g: 0, b: 0, a: 0.2509804}
   FlashColor: {r: 1, g: 1, b: 1, a: 0.05882353}
   HealFlashColor: {r: 0.17142844, g: 1, b: 0, a: 0.05882353}

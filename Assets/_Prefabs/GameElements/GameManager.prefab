@@ -45,5 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentPlayer: {fileID: 4085209783222569685, guid: 2350c147420f68746a35142a26cbb154, type: 3}
-  EntryPoint: {x: 0, y: 0, z: 0}
   MyPlayer: {fileID: 0}

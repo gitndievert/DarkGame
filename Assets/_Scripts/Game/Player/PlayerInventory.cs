@@ -64,7 +64,7 @@ public class PlayerInventory : BaseEntity
         _ammoIconImage = GameObject.Find("AmmoIcon").GetComponent<UnityEngine.UI.Image>();
         _ammoIconImage.enabled = false;
         UIManager.Instance.AmmoLabel.text = "";
-        UIManager.Instance.PowerupLabel.text = "";
+        UIManager.Instance.PowerupLabel.text = "";     
     }
 
     private void Update()
@@ -73,7 +73,7 @@ public class PlayerInventory : BaseEntity
         float mouseWheel = Input.GetAxis("Mouse ScrollWheel");
         if (mouseWheel != 0f)
         {
-            int wScroll = (mouseWheel > 0f ? 1 : -1) + _currentWeaponIndex;
+            int wScroll = (mouseWheel < 0f ? 1 : -1) + _currentWeaponIndex;
             int idxStop = CountWeapons - 1;
             wScroll = wScroll > idxStop ? 0 : wScroll;
             wScroll = wScroll < 0 ? idxStop : wScroll;
@@ -106,7 +106,7 @@ public class PlayerInventory : BaseEntity
                     _ammoIconImage.enabled = true;
                     _ammoIconImage.sprite = CurrentWeapon.AmmoIcon;
                 }
-            }
+            }            
         }
         else
         {
@@ -121,7 +121,7 @@ public class PlayerInventory : BaseEntity
         {
             ammo.Amount -= amount;            
             return ammo.Amount;
-        }
+        }        
         return 0;        
     }
 
@@ -141,7 +141,7 @@ public class PlayerInventory : BaseEntity
 
     public Weapon EquipWeapon(Weapon weapon, int weaponslot)
     {
-        ChangeWeapon(weaponslot);
+        ChangeWeapon(weaponslot);        
         CurrentWeapon = weapon;
         //Load up the gun with starting ammo
         var ammo = GetAmmo(weapon.AmmoType);
@@ -216,7 +216,9 @@ public class PlayerInventory : BaseEntity
             {                
                 if(!item.gameObject.activeSelf)
                 {
-                    item.FoundPickup = true;
+                    item.FoundPickup = true;                    
+                    item.WeaponSlot = i + 1;
+                    UIManager.Instance.ActivateGunSlot(item.WeaponSlot);
                     EquipWeapon(item, i);
                 }               
                 break;
@@ -244,8 +246,7 @@ public class PlayerInventory : BaseEntity
                 {
                     consumeResource = item.Amount < 300;
                     item.Amount = ammoLimit;
-                }
-
+                }                
                 Debug.Log($"Total {ammo.PickupType} " + item.Amount);
                 break;
             }
@@ -253,7 +254,7 @@ public class PlayerInventory : BaseEntity
         }
 
         if (consumeResource)
-        {            
+        {   
             ammo.Consume();
         }
         
@@ -351,6 +352,7 @@ public class PlayerInventory : BaseEntity
             Weapons[_currentWeaponIndex].gameObject.SetActive(true);
         }
         CurrentWeapon = Weapons[_currentWeaponIndex].gameObject.activeSelf ? Weapons[_currentWeaponIndex] : null;
+        UIManager.Instance.SelectGunSlot(_currentWeaponIndex + 1);
     }
 
 

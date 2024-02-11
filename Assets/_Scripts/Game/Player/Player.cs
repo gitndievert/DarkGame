@@ -76,8 +76,7 @@ public class Player : BaseEntity, IAttackable
         {
             if (Input.GetMouseButton(LEFT_MOUSE) && Time.time > _nextShotTime)
             {
-                PrimaryAttack();
-                PlayerInventory.CurrentWeapon.IsFiring = true;
+                PrimaryAttack();                
             }
             else if (Input.GetMouseButtonDown(LEFT_MOUSE))
             {
@@ -91,7 +90,8 @@ public class Player : BaseEntity, IAttackable
             else
             {
                 PlayerInventory.CurrentWeapon.IsFiring = false;
-            }            
+            }
+            
         }
 
         // Check for continuous fire (mouse button held down)
@@ -318,11 +318,12 @@ public class Player : BaseEntity, IAttackable
                 }
             }
             else
-            {
+            {                
                 fireWeapon.PlayEmptyClipSound();
                 Debug.Log("Out of Ammo");
             }
         }
+
     }
 
     public void SecondaryAttack()
