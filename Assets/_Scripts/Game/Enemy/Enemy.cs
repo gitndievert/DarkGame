@@ -66,6 +66,7 @@ public class Enemy : BaseEntity, IAttackable
     //private float FieldOfView = 85f;
     private bool isAttackCooldown = false;    
     private AudioSource _audioSource;
+    private GoreSimulator _goreSimulator;
     private List<GameObject> _gibPool;
     private bool _hasGibs { get { return _gibPool.Count > 0; } }
 
@@ -77,7 +78,8 @@ public class Enemy : BaseEntity, IAttackable
         _animator = GetComponent<Animator>();        
         _audioSource = GetComponent<AudioSource>();
         gameObject.layer = Tags.enemyLayer;
-        gameObject.tag = Tags.ENEMY_TAG;                
+        gameObject.tag = Tags.ENEMY_TAG;
+        _goreSimulator = GetComponent<GoreSimulator>();
         _gibPool = new List<GameObject>();
         InvokeRepeating("ClearGibs", 1f, 10f);
     }
@@ -119,6 +121,18 @@ public class Enemy : BaseEntity, IAttackable
             _isAggro = false;
             Idle();
         }
+
+
+        //Test Keys for Gore Simulator
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            _goreSimulator.ExecuteRagdoll();
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            _goreSimulator.ExecuteExplosion();
+        }
+
     }    
 
     public void TakeDamage(int amount)

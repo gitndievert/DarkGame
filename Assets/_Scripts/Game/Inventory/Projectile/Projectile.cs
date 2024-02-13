@@ -35,12 +35,6 @@ abstract public class Projectile : BaseEntity
         Destroy(gameObject, TimeToLive);
     }
 
-    protected virtual void Update()
-    {
-        if (targetHit) return;
-        transform.position += transform.forward * (Speed * Time.deltaTime);
-    }
-
     protected virtual void OnCollisionEnter(Collision collision)
     {   
         if(!enabled) return;        

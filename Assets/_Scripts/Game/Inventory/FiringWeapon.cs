@@ -26,7 +26,7 @@ abstract public class FiringWeapon : Weapon
     
     public AudioClip EmptyClipSound;
 
-    public GameObject Projectile = null;
+    public Projectile Projectile = null;
     public bool UsesProjectile
     {
         get { return Projectile != null; }
@@ -47,7 +47,8 @@ abstract public class FiringWeapon : Weapon
         PlayPrimaryFireSound();
         DoMuzzleFlash();
         if(!DisableDefaultFireAnimation) Recoil();
-        bulletHoleGenerator.Generate(WeaponFireType.Primary, WeaponType);
+        if(Projectile != null)
+            bulletHoleGenerator.Generate(WeaponFireType.Primary, WeaponType);
     }
 
     public override void SecondaryAttack()
@@ -55,7 +56,8 @@ abstract public class FiringWeapon : Weapon
         PlaySecondaryFireSound();
         DoMuzzleFlash();
         if (!DisableDefaultFireAnimation) Recoil();
-        bulletHoleGenerator.Generate(WeaponFireType.Secondary, WeaponType);
+        if (Projectile != null) 
+            bulletHoleGenerator.Generate(WeaponFireType.Secondary, WeaponType);
     } 
 
     public void PlayEmptyClipSound()
@@ -76,12 +78,6 @@ abstract public class FiringWeapon : Weapon
     {
         transform.localPosition -= Vector3.forward * RecoilForce;
         transform.localPosition = new Vector3(initialPosition.x, initialPosition.y, Mathf.Max(transform.localPosition.z, initialPosition.z - RecoilForce));
-    }
-
-    protected void BulletHole()
-    {
-        //var pSpotTransform = GameManager.Instance.MyPlayer.ProjectileSpot.transform;
-        //Instantiate(_bulletHoleGenerator.BulletHolePrefab, pSpotTransform.position, pSpotTransform.rotation);        
     }
 
     protected void OnGUI()

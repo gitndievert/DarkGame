@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Shatter Caster
   Description: 
+  WeaponSlot: 0
   RoundDelay: 2
   StartingAmmo: 50
   FoundPickup: 0
@@ -127,7 +128,7 @@ MonoBehaviour:
   - {fileID: 199458, guid: 4aa4c63f0f9d6a84dbaeed6b9caeca80, type: 3}
   MuzzelSpawn: {fileID: 7976729262930574663}
   EmptyClipSound: {fileID: 8300000, guid: 08250a5d2d3da8441a3df730022e402c, type: 3}
-  Projectile: {fileID: 4974168021068062498, guid: 7211b3747671e8e48b76bf971daf1ed5, type: 3}
+  Projectile: {fileID: 8491912753058066255, guid: 7211b3747671e8e48b76bf971daf1ed5, type: 3}
 --- !u!95 &6316373513049311490
 Animator:
   serializedVersion: 5

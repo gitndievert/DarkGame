@@ -21,10 +21,13 @@ public class Minigun : FiringWeapon
 {
     public override WeaponType WeaponType => WeaponType.Minigun;
 
-    public override AmmoType AmmoType => AmmoType.Bullet;    
+    public override AmmoType AmmoType => AmmoType.Bullet;
 
-    private bool _soundPlaying;
-   
+    //Notes for me. I pulled out the loop sound in exchange for a 
+    //short easy sfx on burst
+
+    /*private bool _soundPlaying;   
+    
     protected override void Update()
     {
         base.Update();
@@ -52,6 +55,6 @@ public class Minigun : FiringWeapon
         //Maybe a cooldown sound???
         animator.Play("SpinDown");
     }    
-
+    */
 
 }

@@ -32,8 +32,7 @@ public class Player : BaseEntity, IAttackable
 
     public PlayerInventory PlayerInventory;
     public float DetectionRadius = 5f;
-    public float FallDistance = -25f;
-    public GameObject ProjectileSpot;
+    public float FallDistance = -25f;    
     public PlayerController PlayerController { get; private set; }
 
     public Transform AttackTarget { get { return transform; } }
@@ -301,7 +300,7 @@ public class Player : BaseEntity, IAttackable
             {   
                 if (fireWeapon.UsesProjectile)
                 {                    
-                    TargetEnemy(fireWeapon.Projectile);
+                    TargetEnemy(fireWeapon, true);
                 }
                 else
                 {
@@ -351,12 +350,33 @@ public class Player : BaseEntity, IAttackable
     /// Note for later, the projectiles will have their own damage
     /// </summary>
     /// <param name="projectile"></param>
-    private void TargetEnemy(GameObject projectile)
+    /*private void TargetEnemy(GameObject projectile)
     {
         Ray ray = PlayerController.PlayerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));        
         Vector3 direction = ray.direction.normalized;        
-        GameObject genP = Instantiate(projectile, ProjectileSpot.transform.position, transform.rotation);
-        genP.transform.rotation = Quaternion.LookRotation(direction);       
+        GameObject genP = Instantiate(projectile, ProjectileSpot.transform.position, Quaternion.identity);
+        //genP.transform.rotation = Quaternion.LookRotation(direction);       
+    }*/
+
+    private void TargetEnemy(FiringWeapon weapon, bool hasProjectile = false)
+    {
+        float raycastDistance = weapon.AttackDistance;        
+        if (hasProjectile)
+        {
+            var projectile = weapon.Projectile;
+            Quaternion projectileRotation = Quaternion.Euler(Vector3.zero) * projectile.transform.rotation;
+            GameObject project = Instantiate(projectile.gameObject, weapon.MuzzelSpawn.transform.position, projectileRotation);
+            //var direction = (hit.transform.position - transform.position).normalized;
+            //project.transform.rotation = Quaternion.LookRotation(direction);
+            Vector3 direction = transform.forward;
+            var rb = project.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.velocity = direction * projectile.Speed;
+            }
+
+        }
+        
     }
 
     public void SmashPowerUp()

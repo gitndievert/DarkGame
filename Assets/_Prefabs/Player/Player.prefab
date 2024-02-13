@@ -35,7 +35,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7803412214751081659}
-  - {fileID: 8172520007173477142}
   m_Father: {fileID: 3212532140431798485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4046563090526761240
@@ -186,37 +185,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!1 &1657578551657034168
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8172520007173477142}
-  m_Layer: 7
-  m_Name: Projectile
-  m_TagString: Untagged
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8172520007173477142
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657578551657034168}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.144, y: -0.152, z: 1.789}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1288491452489276550}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4085209783222569685
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +307,6 @@ MonoBehaviour:
   PlayerInventory: {fileID: 0}
   DetectionRadius: 3
   FallDistance: -25
-  ProjectileSpot: {fileID: 1657578551657034168}
   TakingDamageSounds:
   - {fileID: 8300000, guid: e9f173dfc75c58241aa22da8ddff9e7a, type: 3}
   DeathSounds:
@@ -374,6 +341,7 @@ MonoBehaviour:
     Amount: 0
   - AmmoType: 0
     Amount: 0
+  GunSlotManager: {fileID: 0}
   CurrentWeapon: {fileID: 0}
 --- !u!143 &6404809771022900652
 CharacterController:
@@ -932,7 +900,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9165949569287645233, guid: 506a793d23c77894fa02513d370942d2, type: 3}
+    - {fileID: 4288204915456284965, guid: 506a793d23c77894fa02513d370942d2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 506a793d23c77894fa02513d370942d2, type: 3}

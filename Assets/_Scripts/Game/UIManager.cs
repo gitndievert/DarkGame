@@ -25,27 +25,22 @@ public class UIManager : DSingle<UIManager>
     public TMP_Text ArmorLabel;
     public TMP_Text AmmoLabel;    
     public TMP_Text PowerupLabel;
-    public TMP_Text LevelNameLabel;
-    public Transform GunSlotLabels;
+    public TMP_Text LevelNameLabel;    
 
-    public ScreenEffects ScreenEffects { get; private set; }
-
-    private GunSlot[] GunSlotImages;
+    public ScreenEffects ScreenEffects { get; private set; }    
 
     protected override void DAwake()
     {
         if (Canvas == null)
             throw new System.Exception("Missing canvas in this scene");
 
-        Canvas.gameObject.SetActive(true);
-        GunSlotImages = GunSlotLabels.GetComponentsInChildren<GunSlot>();
-        DontDestroyOnLoad(GunSlotLabels.gameObject);
+        Canvas.gameObject.SetActive(true);       
     }
 
     private void Start()
     {   
-        ScreenEffects = GetComponent<ScreenEffects>();        
-        var labels = Canvas.GetComponentsInChildren<TMP_Text>();
+        ScreenEffects = GetComponent<ScreenEffects>();             
+        var labels = Canvas.GetComponentsInChildren<TMP_Text>();      
         if (labels.Length > 0)
         {
             foreach (TMP_Text label in labels)
@@ -69,31 +64,8 @@ public class UIManager : DSingle<UIManager>
                         break;
                 }
             }
-        }
-        //Get active image slots
-        //GunSlotImages = GunSlotLabels.GetComponentsInChildren<GunSlot>();       
+        }    
         
-    }       
-
-    public void ActivateGunSlot(int slotNumber)
-    {
-        foreach (GunSlot slot in GunSlotImages)
-        {
-            if (slotNumber == slot.SlotIndex)
-            {
-                slot.ActivateGunSlot();
-                return;
-            }
-        }
-    }
-
-    public void SelectGunSlot(int slotNumber)
-    {
-        foreach (GunSlot slot in GunSlotImages)
-        {
-            bool isSelected = slot.name == slotNumber.ToString();
-            slot.SelectSlotState(isSelected);
-        }
-    }
+    }    
 
 }

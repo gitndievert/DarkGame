@@ -21,7 +21,9 @@ using UnityEngine.SceneManagement;
 public class PlayerInventory : BaseEntity
 {
     public Weapon[] Weapons;
-    public Ammo[] PlayerAmmo;    
+    public Ammo[] PlayerAmmo;
+    [HideInInspector]
+    public GunSlotManager GunSlotManager;
 
     public int CountWeapons
     {
@@ -38,7 +40,7 @@ public class PlayerInventory : BaseEntity
     private const int _healRepeatLimit = 4;
     private int _healRepeatAmount;
     private int _healRepeatCount = 0;
-    private UnityEngine.UI.Image _ammoIconImage;
+    private UnityEngine.UI.Image _ammoIconImage;    
 
     private void Awake()
     {
@@ -56,7 +58,7 @@ public class PlayerInventory : BaseEntity
                 weapon.gameObject.SetActive(false);
             }
         }
-        _player = GetComponent<Player>();
+        _player = GetComponent<Player>();       
     }
       
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -64,7 +66,20 @@ public class PlayerInventory : BaseEntity
         _ammoIconImage = GameObject.Find("AmmoIcon").GetComponent<UnityEngine.UI.Image>();
         _ammoIconImage.enabled = false;
         UIManager.Instance.AmmoLabel.text = "";
-        UIManager.Instance.PowerupLabel.text = "";     
+        UIManager.Instance.PowerupLabel.text = "";
+        //Refresh UI Gunslots        
+        LoadGunSlotManager();
+        for (int i = 0; i < CountWeapons; i++)
+        {
+            if (Weapons[i].FoundPickup)
+            {
+                GunSlotManager.ActivateGunSlot(i + 1);                
+            }
+        }
+        if(CurrentWeapon != null)
+        {
+            GunSlotManager.SelectGunSlot(_currentWeaponIndex + 1);
+        }
     }
 
     private void Update()
@@ -157,6 +172,14 @@ public class PlayerInventory : BaseEntity
         return CurrentWeapon;
     }
 
+    private void LoadGunSlotManager()
+    {
+        if (GunSlotManager == null)
+        {
+            GunSlotManager = FindFirstObjectByType<GunSlotManager>();
+        }
+    }
+
     /// <summary>
     /// Collision with a pickupable item
     /// </summary>
@@ -218,7 +241,7 @@ public class PlayerInventory : BaseEntity
                 {
                     item.FoundPickup = true;                    
                     item.WeaponSlot = i + 1;
-                    UIManager.Instance.ActivateGunSlot(item.WeaponSlot);
+                    GunSlotManager.ActivateGunSlot(item.WeaponSlot);
                     EquipWeapon(item, i);
                 }               
                 break;
@@ -352,7 +375,7 @@ public class PlayerInventory : BaseEntity
             Weapons[_currentWeaponIndex].gameObject.SetActive(true);
         }
         CurrentWeapon = Weapons[_currentWeaponIndex].gameObject.activeSelf ? Weapons[_currentWeaponIndex] : null;
-        UIManager.Instance.SelectGunSlot(_currentWeaponIndex + 1);
+        GunSlotManager.SelectGunSlot(_currentWeaponIndex + 1);
     }
 
 

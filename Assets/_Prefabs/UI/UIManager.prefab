@@ -53,7 +53,7 @@ MonoBehaviour:
   AmmoLabel: {fileID: 0}
   PowerupLabel: {fileID: 0}
   LevelNameLabel: {fileID: 0}
-  GunSlotLabels: {fileID: 0}
+  GunSlotManager: {fileID: 0}
 --- !u!114 &9177885557140356403
 MonoBehaviour:
   m_ObjectHideFlags: 0
