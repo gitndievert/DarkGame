@@ -26,35 +26,32 @@ public class Minigun : FiringWeapon
     //Notes for me. I pulled out the loop sound in exchange for a 
     //short easy sfx on burst
 
-    /*private bool _soundPlaying;   
+    private bool _spinning;   
     
     protected override void Update()
     {
         base.Update();
-        if(_soundPlaying && !IsFiring)
+        if(_spinning && !IsFiring)
         {
-            _soundPlaying = false;
-            StopSound();            
-        }
-    }
-    
-    public override void PlayPrimaryFireSound()
-    {
-        if (IsFiring && !_soundPlaying)
-        {
-            SoundManager.PlaySoundOnLoop(PrimaryFireSound, 2);
-            _soundPlaying = true;
-            animator.Play("SpinBarrel");
+            _spinning = false;
+            StopBarrel();            
         }
     }
 
-    public void StopSound()
+    public override void PrimaryAttack()
     {
-        _soundPlaying = false;
-        SoundManager.StopAllSound(2);
-        //Maybe a cooldown sound???
-        animator.Play("SpinDown");
+        base.PrimaryAttack();
+        if (IsFiring && !_spinning)
+        {
+            _spinning = true;
+            animator.Play("SpinBarrel");
+        }
     }    
-    */
+
+    public void StopBarrel()
+    {
+        _spinning = false;        
+        animator.Play("SpinDown");
+    }        
 
 }

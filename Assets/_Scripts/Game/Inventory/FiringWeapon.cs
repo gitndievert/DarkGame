@@ -47,7 +47,7 @@ abstract public class FiringWeapon : Weapon
         PlayPrimaryFireSound();
         DoMuzzleFlash();
         if(!DisableDefaultFireAnimation) Recoil();
-        if(Projectile != null)
+        if(Projectile == null)
             bulletHoleGenerator.Generate(WeaponFireType.Primary, WeaponType);
     }
 
@@ -56,7 +56,7 @@ abstract public class FiringWeapon : Weapon
         PlaySecondaryFireSound();
         DoMuzzleFlash();
         if (!DisableDefaultFireAnimation) Recoil();
-        if (Projectile != null) 
+        if (Projectile == null) 
             bulletHoleGenerator.Generate(WeaponFireType.Secondary, WeaponType);
     } 
 

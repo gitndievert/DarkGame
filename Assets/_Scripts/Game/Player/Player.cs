@@ -364,17 +364,11 @@ public class Player : BaseEntity, IAttackable
         if (hasProjectile)
         {
             var projectile = weapon.Projectile;
-            Quaternion projectileRotation = Quaternion.Euler(Vector3.zero) * projectile.transform.rotation;
-            GameObject project = Instantiate(projectile.gameObject, weapon.MuzzelSpawn.transform.position, projectileRotation);
-            //var direction = (hit.transform.position - transform.position).normalized;
-            //project.transform.rotation = Quaternion.LookRotation(direction);
-            Vector3 direction = transform.forward;
-            var rb = project.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.velocity = direction * projectile.Speed;
-            }
-
+            GameObject project = Instantiate(projectile.gameObject, weapon.MuzzelSpawn.transform.position, weapon.transform.rotation);
+            Ray ray = PlayerController.PlayerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+            Vector3 direction = ray.direction.normalized;
+            //Vector3 direction = weapon.transform.forward;
+            projectile.SetMovement(direction);            
         }
         
     }

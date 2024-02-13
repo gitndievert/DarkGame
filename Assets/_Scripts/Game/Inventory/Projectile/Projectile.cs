@@ -20,32 +20,50 @@ abstract public class Projectile : BaseEntity
 {
     public int DirectDamage = 25;
     public int SplashDamage = 15;
+    public bool ApplySplashDamage = true;
     
     public float Speed = 100f;
     public float TimeToLive = 5f;    
     public GameObject ExplosionPrefab;    
     
-    protected bool targetHit;    
+    protected bool targetHit;
+
+    protected Vector3 _direction;
 
     protected override void Start()
     {
         base.Start();
         gameObject.tag = Tags.PROJECTILE_TAG;
+        _direction = Vector3.forward;
         // Destroy the projectile after a specified lifetime        
         Destroy(gameObject, TimeToLive);
     }
 
+    public void SetMovement(Vector3 direction)
+    {
+        _direction = direction;
+    }
+
+    protected virtual void Update()
+    {
+        transform.Translate(Speed * Time.deltaTime * _direction);
+    }
+
     protected virtual void OnCollisionEnter(Collision collision)
     {   
-        if(!enabled) return;        
-        Explode();       
+        if(!enabled) return;                      
+        if(collision.gameObject.tag == Tags.DEFAULT_TAG || collision.gameObject.tag == Tags.ENEMY_TAG)
+        {
+            Explode();
+        }
         if (collision.transform.TryGetComponent<IAttackable>(out var attackTarget))
         {
-            if (attackTarget.GetTag == Tags.PLAYER_TAG) return;
+            if (attackTarget.GetTag == Tags.PLAYER_TAG) return;            
             Debug.Log($"Looks like I hit {collision.transform.name}");
             attackTarget.TakeDamage(DirectDamage);
             //Need to do a bounding sphere to check all surrouding for enemie,
             //loop and apply splash damage
+            //use the splashdamage to refactor player
 
         }
         foreach (Collider col in GetComponents<Collider>())
@@ -60,6 +78,7 @@ abstract public class Projectile : BaseEntity
     {
         if (ExplosionPrefab == null) return;
         GameObject newExplosion = Instantiate(ExplosionPrefab, transform.position, ExplosionPrefab.transform.rotation, null);
+        Destroy(newExplosion, 1f);
     }
 
     /*private void Explode()
