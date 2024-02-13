@@ -11,7 +11,24 @@
 // proprietary and are protected by trade secret and/or copyright law.
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
+
+using UnityEngine;
 public class PlasmaBall : Projectile
 {
-    
+    public GameObject[] Effects;
+
+    protected override void Start()
+    {
+        base.Start();
+        if (Effects.Length > 0)
+        {
+            foreach (var effect in Effects)
+            {
+                effect.SetActive(true);
+            }
+        }
+    }
+
+
+
 }

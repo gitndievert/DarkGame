@@ -364,13 +364,12 @@ public class Player : BaseEntity, IAttackable
         if (hasProjectile)
         {
             var projectile = weapon.Projectile;
-            GameObject project = Instantiate(projectile.gameObject, weapon.MuzzelSpawn.transform.position, weapon.transform.rotation);
+            Instantiate(projectile.gameObject, weapon.MuzzelSpawn.transform.position, weapon.transform.rotation);
             Ray ray = PlayerController.PlayerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             Vector3 direction = ray.direction.normalized;
             //Vector3 direction = weapon.transform.forward;
             projectile.SetMovement(direction);            
-        }
-        
+        }        
     }
 
     public void SmashPowerUp()
