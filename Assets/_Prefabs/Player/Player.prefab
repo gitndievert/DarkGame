@@ -553,10 +553,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: A_Shotgun
       objectReference: {fileID: 0}
-    - target: {fileID: 3090335821614312914, guid: ec64036eef6ce3b4a8838b83d1690581, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

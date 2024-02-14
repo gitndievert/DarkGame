@@ -12,7 +12,7 @@
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
 
-public class Beam : Projectile
+public class Beam : BaseProjectile
 {
     
 }

@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 1994019431562881136}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000059604645, y: -0.15168312, z: -0.000000026077032, w: 0.9884292}
-  m_LocalPosition: {x: 0.15965217, y: -0.10434338, z: 0.053450808}
+  m_LocalPosition: {x: 0.23517, y: -0.057, z: 0.05851}
   m_LocalScale: {x: 0.06650609, y: 0.06650609, z: 0.06650609}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -230,7 +230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3090335821614312914}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.042587474, y: 0.08034924, z: 0.0034361228, w: 0.9958507}
+  m_LocalRotation: {x: 0.0425873, y: 0.0803497, z: 0.0034356322, w: 0.9958506}
   m_LocalPosition: {x: 0.179, y: -0.531, z: 0.029718041}
   m_LocalScale: {x: 1.5132, y: 2.0166135, z: 2.0307145}
   m_ConstrainProportionsScale: 0
@@ -253,6 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Shotgun
   Description: 
+  WeaponSlot: 0
   RoundDelay: 3
   StartingAmmo: 30
   FoundPickup: 0

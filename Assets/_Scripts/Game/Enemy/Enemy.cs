@@ -58,6 +58,8 @@ public class Enemy : BaseEntity, IAttackable
 
     public Transform AttackTarget { get { return transform; } }
 
+    public bool KittenMode = false;
+
     private Player _player;
     //private float _fieldOfView = 85f;
     private NavMeshAgent _navMeshAgent;
@@ -94,8 +96,9 @@ public class Enemy : BaseEntity, IAttackable
             Wander();
         }
 
-        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);        
-        if (distanceToPlayer < AggroRange)        
+        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);   
+
+        if (distanceToPlayer < AggroRange && !KittenMode)        
         {
             if (AgroSounds != null && !_isAggro)
             {                

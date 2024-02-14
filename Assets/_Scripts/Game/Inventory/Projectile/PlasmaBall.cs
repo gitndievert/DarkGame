@@ -13,7 +13,7 @@
 // ********************************************************************
 
 using UnityEngine;
-public class PlasmaBall : Projectile
+public class PlasmaBall : BaseProjectile
 {
     public GameObject[] Effects;
 

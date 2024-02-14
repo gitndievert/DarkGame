@@ -18,11 +18,12 @@ public class Shotgun : FiringWeapon
     public override AmmoType AmmoType => AmmoType.Shell;
 
     //Need to add split attack here
+    //NOTE: All animations here need to return to idle
 
     public override void PrimaryAttack()
     {
         base.PrimaryAttack();
-        //animator.Play("Cock");
+        animator.Play("Cock");
     }
 
 }

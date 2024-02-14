@@ -230,8 +230,7 @@ public class PlayerInventory : BaseEntity
     }
 
     private void SortWeapon(PickupWeapon weapon)
-    {
-        Debug.Log(weapon.PickupType.ToString() + " " + weapon.Amount);        
+    {             
         for (int i = 0; i < CountWeapons; i++)
         {
             Weapon item = Weapons[i];
@@ -242,12 +241,12 @@ public class PlayerInventory : BaseEntity
                     item.FoundPickup = true;                    
                     item.WeaponSlot = i + 1;
                     GunSlotManager.ActivateGunSlot(item.WeaponSlot);
-                    EquipWeapon(item, i);
+                    Debug.Log($"You found a {item.Name}!");
+                    EquipWeapon(item, i);                    
                 }               
                 break;
             }
-        }        
-
+        }
         weapon.Consume();
     }
     private void SortAmmo(PickupAmmo ammo)

@@ -26,7 +26,7 @@ abstract public class FiringWeapon : Weapon
     
     public AudioClip EmptyClipSound;
 
-    public Projectile Projectile = null;
+    public BaseProjectile Projectile = null;
     public bool UsesProjectile
     {
         get { return Projectile != null; }

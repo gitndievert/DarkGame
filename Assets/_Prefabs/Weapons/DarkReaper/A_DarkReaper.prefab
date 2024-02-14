@@ -102,7 +102,7 @@ MonoBehaviour:
   Name: Dark Reaper
   Description: 
   WeaponSlot: 0
-  RoundDelay: 0.4
+  RoundDelay: 0.15
   StartingAmmo: 100
   FoundPickup: 0
   AttackDistance: 0
@@ -112,8 +112,8 @@ MonoBehaviour:
   SecondaryFireSound: {fileID: 0}
   PrimaryFireDamage: 10
   SecondaryFireDamage: 0
-  RecoilForce: 0.2
-  RecoilSmoothness: 6
+  RecoilForce: 0.05
+  RecoilSmoothness: 2
   SwayAmount: 0.02
   SwaySmoothness: 4
   ShakeIntensity: 8
@@ -123,7 +123,7 @@ MonoBehaviour:
   MuzzelFlashPrefabs: []
   MuzzelSpawn: {fileID: 4000371292483984833}
   EmptyClipSound: {fileID: 8300000, guid: 08250a5d2d3da8441a3df730022e402c, type: 3}
-  Projectile: {fileID: 6837634715034820471, guid: 86ae48fae4b358c45972189dcec82094, type: 3}
+  Projectile: {fileID: 8197400973998037613, guid: 08f9e6accb25d364aaceb997ae04ce79, type: 3}
 --- !u!95 &6931001346427090209
 Animator:
   serializedVersion: 5
