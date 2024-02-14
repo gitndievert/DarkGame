@@ -22,6 +22,12 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
+/*
+ * NOTES: 
+ * Do not attach a parent rigid body or collider!
+ * Gore Simulator will break that out on each limb
+ *  
+ */
 public class Enemy : BaseEntity, IAttackable
 {
     public int Health;
@@ -52,8 +58,7 @@ public class Enemy : BaseEntity, IAttackable
     public AudioClip[] AttackSounds;
     public AudioClip[] PainSounds;
     public AudioClip[] DeathSounds;
-
-    [HideInInspector]
+        
     public bool IsDead = false;
 
     public Transform AttackTarget { get { return transform; } }
@@ -173,7 +178,15 @@ public class Enemy : BaseEntity, IAttackable
         {
             //Gore Simulator Cut Randomizer
             int rndRoll = Random.Range(1, 100);
-            if(amount >= 30 || rndRoll >= 85)
+            if(amount >= 50)
+            {
+                _goreSimulator.ExecuteRagdoll();
+                _goreSimulator.ExecuteExplosion();
+                CamShake.Instance.Shake(3f, .4f);
+                Debug.Log($"A {Name} exploded to bits!");
+                Dead();
+            }
+            else if(amount >= 30 || rndRoll >= 85)
             {
                 goreObject.ExecuteCut(hitPoint, out GameObject gib);
                 _gibPool.Add(gib);
@@ -274,6 +287,7 @@ public class Enemy : BaseEntity, IAttackable
         {
             foreach(GameObject gib in _gibPool)
             {
+                //revisit this logic
                 if(gib.name.Contains("arm"))
                 {
                     Debug.Log($"A {Name} cannot attack, he has no arms!");

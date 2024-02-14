@@ -337,12 +337,13 @@ public class Player : BaseEntity, IAttackable
         Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red, 0.1f);
 
         if (Physics.Raycast(ray, out RaycastHit hit, raycastDistance))
-        {            
+        {    
+            //Use this later to split the meshes on IGoreObject
             if (hit.collider.TryGetComponent<IGoreObject>(out var goreObject))
-            {
+            {                
                 var enemyScript = hit.collider.GetComponentInParent<Enemy>();
                 enemyScript.TakeDamage(damage, goreObject, hit);                
-            }
+            }            
         }
     }
 

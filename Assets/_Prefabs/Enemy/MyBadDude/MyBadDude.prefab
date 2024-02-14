@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.68
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1262,13 +1262,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 113040d800e439646a389c5f5aa74f2a, type: 2}
     - target: {fileID: 5866666021909216657, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'root'\n\tTransform 'c_thumb1.r'\n\tTransform
-        'root'\n\tTransform 'arm_stretch.l'\n\tTransform 'spine_02.x'\n\tTransform
-        'spine_01.x'\n\tTransform 'thigh_stretch.r'\n\tTransform 'c_index2.r'\n\tTransform
-        'c_middle2.r'\n\tTransform 'c_index1.r'\n\tand more ...\n\tFrom animation
-        clip 'BadDudeIdle'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -1538,138 +1532,135 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2630631845081992798}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3453441075761096329}
     - targetCorrespondingSourceObject: {fileID: 5692363959232306509, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6571457021614613968}
+      addedObject: {fileID: 112315818835563255}
     - targetCorrespondingSourceObject: {fileID: 5692363959232306509, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5167652693115007960}
+      addedObject: {fileID: 5701480777908065054}
     - targetCorrespondingSourceObject: {fileID: 5692363959232306509, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8701689191165123994}
+      addedObject: {fileID: 3832006936976073785}
     - targetCorrespondingSourceObject: {fileID: 239605998403756391, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4579078681070086358}
+      addedObject: {fileID: 3257156537262976326}
     - targetCorrespondingSourceObject: {fileID: 239605998403756391, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5435909836382114763}
+      addedObject: {fileID: 5205524438235001527}
     - targetCorrespondingSourceObject: {fileID: 239605998403756391, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5978361188647443651}
+      addedObject: {fileID: 3669082598562309289}
     - targetCorrespondingSourceObject: {fileID: 239605998403756391, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5058404195026520342}
+      addedObject: {fileID: 3432001867298569674}
     - targetCorrespondingSourceObject: {fileID: -5429246048605795705, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9171279267378249929}
+      addedObject: {fileID: 2582776690792652680}
     - targetCorrespondingSourceObject: {fileID: -5429246048605795705, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3274007981034917419}
+      addedObject: {fileID: 8975351227257800853}
     - targetCorrespondingSourceObject: {fileID: -5429246048605795705, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5008191610994512333}
+      addedObject: {fileID: 6788647735782452724}
     - targetCorrespondingSourceObject: {fileID: -5429246048605795705, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 410398751679906294}
+      addedObject: {fileID: 6216420798011905658}
     - targetCorrespondingSourceObject: {fileID: 480980873393957984, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4807741336068506598}
+      addedObject: {fileID: 8212451991768302421}
     - targetCorrespondingSourceObject: {fileID: 480980873393957984, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6435429458245561488}
+      addedObject: {fileID: 5132026091267013201}
     - targetCorrespondingSourceObject: {fileID: 480980873393957984, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8452023963664629311}
+      addedObject: {fileID: 2785275880365957133}
     - targetCorrespondingSourceObject: {fileID: 480980873393957984, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 277479794071591328}
+      addedObject: {fileID: 8782649415407555395}
     - targetCorrespondingSourceObject: {fileID: -7334741821555347875, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2658932045306699390}
+      addedObject: {fileID: 8961675695648456286}
     - targetCorrespondingSourceObject: {fileID: -7334741821555347875, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5156572791777108906}
+      addedObject: {fileID: 505076553866419483}
     - targetCorrespondingSourceObject: {fileID: -7334741821555347875, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4558927668557476471}
+      addedObject: {fileID: 3450504420991336081}
     - targetCorrespondingSourceObject: {fileID: -7334741821555347875, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5240691557083057018}
+      addedObject: {fileID: 5850083272448547398}
     - targetCorrespondingSourceObject: {fileID: -6854873025339420101, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8505099260011772107}
+      addedObject: {fileID: 8801041290207400783}
     - targetCorrespondingSourceObject: {fileID: -6854873025339420101, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1278643499067209450}
+      addedObject: {fileID: 4613286059115519830}
     - targetCorrespondingSourceObject: {fileID: -6854873025339420101, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6019484505422699993}
+      addedObject: {fileID: 7399972554301037990}
     - targetCorrespondingSourceObject: {fileID: -6854873025339420101, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4094269542104699298}
+      addedObject: {fileID: 4310442078329950520}
     - targetCorrespondingSourceObject: {fileID: 945743962379790649, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6360792979288130439}
+      addedObject: {fileID: 7946308315392981196}
     - targetCorrespondingSourceObject: {fileID: 945743962379790649, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3602885333223495164}
+      addedObject: {fileID: 828314044127939194}
     - targetCorrespondingSourceObject: {fileID: 945743962379790649, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5580664572484418126}
+      addedObject: {fileID: 5981883038875370778}
     - targetCorrespondingSourceObject: {fileID: 945743962379790649, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6886182077706335142}
+      addedObject: {fileID: 5261197803443990918}
     - targetCorrespondingSourceObject: {fileID: -4595115013925403845, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2411088335760244347}
+      addedObject: {fileID: 4269659945337344638}
     - targetCorrespondingSourceObject: {fileID: -4595115013925403845, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4992653390614063362}
+      addedObject: {fileID: 1504574452208469349}
     - targetCorrespondingSourceObject: {fileID: -4595115013925403845, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8397017809953663929}
+      addedObject: {fileID: 2231498523364346263}
     - targetCorrespondingSourceObject: {fileID: -4595115013925403845, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8688382308065560772}
+      addedObject: {fileID: 2277705912368668494}
     - targetCorrespondingSourceObject: {fileID: 3834132971535382864, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3219441838909358084}
+      addedObject: {fileID: 25953020771035599}
     - targetCorrespondingSourceObject: {fileID: 3834132971535382864, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7882727011108071539}
+      addedObject: {fileID: 8669306030243057487}
     - targetCorrespondingSourceObject: {fileID: 3834132971535382864, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8943024533005277129}
+      addedObject: {fileID: 7806664433446937124}
     - targetCorrespondingSourceObject: {fileID: 3834132971535382864, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9102175466585651541}
+      addedObject: {fileID: 5833146662903526106}
     - targetCorrespondingSourceObject: {fileID: 8174140538269110592, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1555868778948988749}
+      addedObject: {fileID: 6281692303401714653}
     - targetCorrespondingSourceObject: {fileID: 8174140538269110592, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5415217161110960433}
+      addedObject: {fileID: 8599367491487523710}
     - targetCorrespondingSourceObject: {fileID: 8174140538269110592, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 924116629677634461}
+      addedObject: {fileID: 3520509483508674324}
     - targetCorrespondingSourceObject: {fileID: 8174140538269110592, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5482506568137587119}
+      addedObject: {fileID: 5137542102250426582}
     - targetCorrespondingSourceObject: {fileID: -3766071625777145376, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 912093166474794612}
+      addedObject: {fileID: 2095497722359721386}
     - targetCorrespondingSourceObject: {fileID: -3766071625777145376, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7460240059245661905}
+      addedObject: {fileID: 6788177270650773235}
     - targetCorrespondingSourceObject: {fileID: -3766071625777145376, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 117902447821357264}
+      addedObject: {fileID: 1263686292170433818}
     - targetCorrespondingSourceObject: {fileID: -3766071625777145376, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8638955664719292620}
+      addedObject: {fileID: 3822070889121926125}
   m_SourcePrefab: {fileID: 100100000, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
 --- !u!4 &308610831370876692 stripped
 Transform:
@@ -1706,7 +1697,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8174140538269110592, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
   m_PrefabInstance: {fileID: 7693755386249030537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1555868778948988749
+--- !u!114 &6281692303401714653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1719,11 +1710,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goreSimulator: {fileID: 2630631845081992798}
-  _collider: {fileID: 5415217161110960433}
-  _rigidbody: {fileID: 924116629677634461}
-  _joint: {fileID: 5482506568137587119}
+  _collider: {fileID: 8599367491487523710}
+  _rigidbody: {fileID: 3520509483508674324}
+  _joint: {fileID: 5137542102250426582}
   onDeath: 0
---- !u!136 &5415217161110960433
+--- !u!136 &8599367491487523710
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1742,11 +1733,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.19255954
-  m_Height: 1.0548822
+  m_Radius: 0.19331789
+  m_Height: 1.054883
   m_Direction: 1
-  m_Center: {x: -0.000000028288927, y: 0.17581365, z: -0.0000003585591}
---- !u!54 &924116629677634461
+  m_Center: {x: 0.00000009965153, y: 0.17581384, z: 0.0000001043081}
+--- !u!54 &3520509483508674324
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1773,19 +1764,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!144 &5482506568137587119
+--- !u!144 &5137542102250426582
 CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996735382858349257}
-  m_ConnectedBody: {fileID: 8701689191165123994}
+  m_ConnectedBody: {fileID: 3832006936976073785}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.08999225, y: -3.5077949e-15, z: 0.00000071310717}
+  m_ConnectedAnchor: {x: 0.08999296, y: -0.000000060957085, z: 0.00000043863196}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1834,7 +1825,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -3766071625777145376, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
   m_PrefabInstance: {fileID: 7693755386249030537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &912093166474794612
+--- !u!114 &2095497722359721386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1847,11 +1838,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goreSimulator: {fileID: 2630631845081992798}
-  _collider: {fileID: 7460240059245661905}
-  _rigidbody: {fileID: 117902447821357264}
-  _joint: {fileID: 8638955664719292620}
+  _collider: {fileID: 6788177270650773235}
+  _rigidbody: {fileID: 1263686292170433818}
+  _joint: {fileID: 3822070889121926125}
   onDeath: 0
---- !u!136 &7460240059245661905
+--- !u!136 &6788177270650773235
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1870,11 +1861,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.19255954
-  m_Height: 1.1643522
+  m_Radius: 0.19331789
+  m_Height: 1.1643511
   m_Direction: 1
-  m_Center: {x: 0.026615167, y: 0.19220147, z: -0.0030015951}
---- !u!54 &117902447821357264
+  m_Center: {x: 0.02661395, y: 0.19220135, z: -0.0030098385}
+--- !u!54 &1263686292170433818
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1901,19 +1892,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!144 &8638955664719292620
+--- !u!144 &3822070889121926125
 CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2412113066670895721}
-  m_ConnectedBody: {fileID: 924116629677634461}
+  m_ConnectedBody: {fileID: 3520509483508674324}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000061001636, y: 0.35162738, z: -0.000000089406946}
+  m_ConnectedAnchor: {x: 0.00000033900145, y: 0.3516278, z: 0.000000089406946}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1952,7 +1943,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5692363959232306509, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
   m_PrefabInstance: {fileID: 7693755386249030537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6571457021614613968
+--- !u!114 &112315818835563255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1965,11 +1956,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goreSimulator: {fileID: 2630631845081992798}
-  _collider: {fileID: 5167652693115007960}
-  _rigidbody: {fileID: 8701689191165123994}
+  _collider: {fileID: 5701480777908065054}
+  _rigidbody: {fileID: 3832006936976073785}
   _joint: {fileID: 0}
   onDeath: 0
---- !u!136 &5167652693115007960
+--- !u!136 &5701480777908065054
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1988,11 +1979,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.38511908
-  m_Height: 0.9878517
+  m_Radius: 0.38663578
+  m_Height: 0.9878518
   m_Direction: 1
-  m_Center: {x: -0.000000694816, y: 0.1641854, z: -0.012252228}
---- !u!54 &8701689191165123994
+  m_Center: {x: 0.00000064527586, y: 0.16418539, z: -0.012253219}
+--- !u!54 &3832006936976073785
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2034,7 +2025,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -4595115013925403845, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
   m_PrefabInstance: {fileID: 7693755386249030537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2411088335760244347
+--- !u!114 &4269659945337344638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2047,11 +2038,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goreSimulator: {fileID: 2630631845081992798}
-  _collider: {fileID: 4992653390614063362}
-  _rigidbody: {fileID: 8397017809953663929}
-  _joint: {fileID: 8688382308065560772}
+  _collider: {fileID: 1504574452208469349}
+  _rigidbody: {fileID: 2231498523364346263}
+  _joint: {fileID: 2277705912368668494}
   onDeath: 0
---- !u!136 &4992653390614063362
+--- !u!136 &1504574452208469349
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2070,11 +2061,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.19255954
-  m_Height: 1.054883
+  m_Radius: 0.19331789
+  m_Height: 1.0548831
   m_Direction: 1
-  m_Center: {x: -0.0000003431924, y: 0.17581376, z: -0.0000002365559}
---- !u!54 &8397017809953663929
+  m_Center: {x: -0.00000025611374, y: 0.17581402, z: 0.000000014901159}
+--- !u!54 &2231498523364346263
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2101,19 +2092,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!144 &8688382308065560772
+--- !u!144 &2277705912368668494
 CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3098312712488659122}
-  m_ConnectedBody: {fileID: 8701689191165123994}
+  m_ConnectedBody: {fileID: 3832006936976073785}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.089992605, y: 0.000000059604627, z: -0.00000023813516}
+  m_ConnectedAnchor: {x: -0.08999296, y: -0.000000028449879, z: -0.00000044328857}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2182,7 +2173,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -6854873025339420101, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
   m_PrefabInstance: {fileID: 7693755386249030537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8505099260011772107
+--- !u!114 &8801041290207400783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2195,11 +2186,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goreSimulator: {fileID: 2630631845081992798}
-  _collider: {fileID: 1278643499067209450}
-  _rigidbody: {fileID: 6019484505422699993}
-  _joint: {fileID: 4094269542104699298}
+  _collider: {fileID: 4613286059115519830}
+  _rigidbody: {fileID: 7399972554301037990}
+  _joint: {fileID: 4310442078329950520}
   onDeath: 0
---- !u!136 &1278643499067209450
+--- !u!136 &4613286059115519830
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2218,11 +2209,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.19255954
-  m_Height: 0.7851889
+  m_Radius: 0.19331789
+  m_Height: 0.7851865
   m_Direction: 2
-  m_Center: {x: 0.00000025331977, y: 0.1308648, z: -0.0000003352762}
---- !u!54 &6019484505422699993
+  m_Center: {x: 0.000000085681684, y: 0.13086474, z: -0.00000012293461}
+--- !u!54 &7399972554301037990
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2249,19 +2240,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!144 &4094269542104699298
+--- !u!144 &4310442078329950520
 CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5339910779798010290}
-  m_ConnectedBody: {fileID: 5978361188647443651}
+  m_ConnectedBody: {fileID: 3669082598562309289}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.19254355, y: 0.27089518, z: -0.028128583}
+  m_ConnectedAnchor: {x: 0.19422382, y: 0.2705494, z: -0.023496311}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2325,7 +2316,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -5429246048605795705, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
   m_PrefabInstance: {fileID: 7693755386249030537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9171279267378249929
+--- !u!114 &2582776690792652680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2338,11 +2329,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goreSimulator: {fileID: 2630631845081992798}
-  _collider: {fileID: 3274007981034917419}
-  _rigidbody: {fileID: 5008191610994512333}
-  _joint: {fileID: 410398751679906294}
+  _collider: {fileID: 8975351227257800853}
+  _rigidbody: {fileID: 6788647735782452724}
+  _joint: {fileID: 6216420798011905658}
   onDeath: 1
---- !u!136 &3274007981034917419
+--- !u!136 &8975351227257800853
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2361,11 +2352,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.19255954
-  m_Height: 0.8689699
+  m_Radius: 0.19331789
+  m_Height: 0.86896825
   m_Direction: 1
-  m_Center: {x: -0.0000005141068, y: 0.00000004516347, z: -0.00000005283136}
---- !u!54 &5008191610994512333
+  m_Center: {x: 0.00000014035245, y: 0.00000005942919, z: 0.00000002048166}
+--- !u!54 &6788647735782452724
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2392,19 +2383,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!144 &410398751679906294
+--- !u!144 &6216420798011905658
 CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6801214687216640270}
-  m_ConnectedBody: {fileID: 5978361188647443651}
+  m_ConnectedBody: {fileID: 3669082598562309289}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000051260946, y: 0.40121955, z: 0.0059965868}
+  m_ConnectedAnchor: {x: 0.00000014148829, y: 0.40121952, z: 0.0059966445}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2443,7 +2434,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3834132971535382864, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
   m_PrefabInstance: {fileID: 7693755386249030537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3219441838909358084
+--- !u!114 &25953020771035599
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2456,11 +2447,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goreSimulator: {fileID: 2630631845081992798}
-  _collider: {fileID: 7882727011108071539}
-  _rigidbody: {fileID: 8943024533005277129}
-  _joint: {fileID: 9102175466585651541}
+  _collider: {fileID: 8669306030243057487}
+  _rigidbody: {fileID: 7806664433446937124}
+  _joint: {fileID: 5833146662903526106}
   onDeath: 0
---- !u!136 &7882727011108071539
+--- !u!136 &8669306030243057487
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2479,11 +2470,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.19255954
-  m_Height: 1.1643527
+  m_Radius: 0.19331789
+  m_Height: 1.1643567
   m_Direction: 1
-  m_Center: {x: -0.026614666, y: 0.19220167, z: -0.0030009071}
---- !u!54 &8943024533005277129
+  m_Center: {x: -0.026613666, y: 0.19220176, z: -0.0030091242}
+--- !u!54 &7806664433446937124
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2510,19 +2501,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!144 &9102175466585651541
+--- !u!144 &5833146662903526106
 CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6913067609691099865}
-  m_ConnectedBody: {fileID: 8397017809953663929}
+  m_ConnectedBody: {fileID: 2231498523364346263}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000032456595, y: 0.35162768, z: -0.00000015459953}
+  m_ConnectedAnchor: {x: -0.00000035203996, y: 0.35162786, z: -0.000000044703476}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2585,7 +2576,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!82 &1748001326647589804
@@ -2719,6 +2710,7 @@ MonoBehaviour:
   DeathSounds:
   - {fileID: 8300000, guid: 5d869b6bf3cad1d4a8af1c29e5bb3646, type: 3}
   IsDead: 0
+  KittenMode: 1
 --- !u!114 &2630631845081992798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2806,7 +2798,7 @@ MonoBehaviour:
   center: {fileID: 3904927079645921984}
   centerBonesClass:
     bone: {fileID: 3904927079645921984}
-    goreBone: {fileID: 6571457021614613968}
+    goreBone: {fileID: 112315818835563255}
     centralBone: 1
     firstParent: {fileID: 0}
     parentExists: 0
@@ -2847,7 +2839,7 @@ MonoBehaviour:
   - {fileID: 9196920637489440607}
   bonesClasses:
   - bone: {fileID: 9020851501298276687}
-    goreBone: {fileID: 912093166474794612}
+    goreBone: {fileID: 2095497722359721386}
     centralBone: 0
     firstParent: {fileID: 394790532153938406}
     parentExists: 1
@@ -2861,7 +2853,7 @@ MonoBehaviour:
       cutMeshes:
       - {fileID: 0}
   - bone: {fileID: 394790532153938406}
-    goreBone: {fileID: 1555868778948988749}
+    goreBone: {fileID: 6281692303401714653}
     centralBone: 0
     firstParent: {fileID: 3904927079645921984}
     parentExists: 1
@@ -2877,7 +2869,7 @@ MonoBehaviour:
       cutMeshes:
       - {fileID: 0}
   - bone: {fileID: 2302576617912415563}
-    goreBone: {fileID: 3219441838909358084}
+    goreBone: {fileID: 25953020771035599}
     centralBone: 0
     firstParent: {fileID: 6425762083029673199}
     parentExists: 1
@@ -2891,7 +2883,7 @@ MonoBehaviour:
       cutMeshes:
       - {fileID: 0}
   - bone: {fileID: 6425762083029673199}
-    goreBone: {fileID: 2411088335760244347}
+    goreBone: {fileID: 4269659945337344638}
     centralBone: 0
     firstParent: {fileID: 3904927079645921984}
     parentExists: 1
@@ -2907,7 +2899,7 @@ MonoBehaviour:
       cutMeshes:
       - {fileID: 0}
   - bone: {fileID: 8860156825026920321}
-    goreBone: {fileID: 6360792979288130439}
+    goreBone: {fileID: 7946308315392981196}
     centralBone: 0
     firstParent: {fileID: 5861805705694845965}
     parentExists: 1
@@ -2921,7 +2913,7 @@ MonoBehaviour:
       cutMeshes:
       - {fileID: 0}
   - bone: {fileID: 5861805705694845965}
-    goreBone: {fileID: 8505099260011772107}
+    goreBone: {fileID: 8801041290207400783}
     centralBone: 0
     firstParent: {fileID: 308610831370876692}
     parentExists: 1
@@ -2937,7 +2929,7 @@ MonoBehaviour:
       cutMeshes:
       - {fileID: 0}
   - bone: {fileID: 9196920637489440607}
-    goreBone: {fileID: 2658932045306699390}
+    goreBone: {fileID: 8961675695648456286}
     centralBone: 0
     firstParent: {fileID: 7543879995078790955}
     parentExists: 1
@@ -2951,7 +2943,7 @@ MonoBehaviour:
       cutMeshes:
       - {fileID: 0}
   - bone: {fileID: 7543879995078790955}
-    goreBone: {fileID: 4807741336068506598}
+    goreBone: {fileID: 8212451991768302421}
     centralBone: 0
     firstParent: {fileID: 308610831370876692}
     parentExists: 1
@@ -2967,7 +2959,7 @@ MonoBehaviour:
       cutMeshes:
       - {fileID: 0}
   - bone: {fileID: 4568577826668433261}
-    goreBone: {fileID: 9171279267378249929}
+    goreBone: {fileID: 2582776690792652680}
     centralBone: 0
     firstParent: {fileID: 308610831370876692}
     parentExists: 1
@@ -2979,7 +2971,7 @@ MonoBehaviour:
       cutMeshes:
       - {fileID: 0}
   - bone: {fileID: 308610831370876692}
-    goreBone: {fileID: 4579078681070086358}
+    goreBone: {fileID: 3257156537262976326}
     centralBone: 1
     firstParent: {fileID: 3904927079645921984}
     parentExists: 1
@@ -2999,8 +2991,9 @@ MonoBehaviour:
     indexesStorageClass:
       cutMeshes:
       - {fileID: 0}
+      - {fileID: 0}
   - bone: {fileID: 3904927079645921984}
-    goreBone: {fileID: 6571457021614613968}
+    goreBone: {fileID: 112315818835563255}
     centralBone: 1
     firstParent: {fileID: 0}
     parentExists: 0
@@ -3143,33 +3136,6 @@ MonoBehaviour:
           rotationCut: 0
           setParent: 2
         addedType: GoreModuleExplosion
---- !u!54 &3453441075761096329
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7351242467382007512}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!137 &7389619416614964830 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 885105174898877911, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
@@ -3180,7 +3146,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 945743962379790649, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
   m_PrefabInstance: {fileID: 7693755386249030537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6360792979288130439
+--- !u!114 &7946308315392981196
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3193,11 +3159,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goreSimulator: {fileID: 2630631845081992798}
-  _collider: {fileID: 3602885333223495164}
-  _rigidbody: {fileID: 5580664572484418126}
-  _joint: {fileID: 6886182077706335142}
+  _collider: {fileID: 828314044127939194}
+  _rigidbody: {fileID: 5981883038875370778}
+  _joint: {fileID: 5261197803443990918}
   onDeath: 0
---- !u!136 &3602885333223495164
+--- !u!136 &828314044127939194
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3216,11 +3182,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.19255954
-  m_Height: 1.1204613
+  m_Radius: 0.19331789
+  m_Height: 1.0954405
   m_Direction: 1
-  m_Center: {x: 0.002205309, y: 0.18665065, z: 0.0054750424}
---- !u!54 &5580664572484418126
+  m_Center: {x: 0.00020172451, y: 0.18220419, z: 0.011602291}
+--- !u!54 &5981883038875370778
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3247,19 +3213,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!144 &6886182077706335142
+--- !u!144 &5261197803443990918
 CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7483365052184068784}
-  m_ConnectedBody: {fileID: 6019484505422699993}
+  m_ConnectedBody: {fileID: 7399972554301037990}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000027194622, y: 0.26172978, z: -0.00000056624424}
+  m_ConnectedAnchor: {x: 0.00000004470349, y: 0.26172924, z: 0.00000014156106}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3303,7 +3269,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 239605998403756391, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
   m_PrefabInstance: {fileID: 7693755386249030537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4579078681070086358
+--- !u!114 &3257156537262976326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3316,11 +3282,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goreSimulator: {fileID: 2630631845081992798}
-  _collider: {fileID: 5435909836382114763}
-  _rigidbody: {fileID: 5978361188647443651}
-  _joint: {fileID: 5058404195026520342}
+  _collider: {fileID: 5205524438235001527}
+  _rigidbody: {fileID: 3669082598562309289}
+  _joint: {fileID: 3432001867298569674}
   onDeath: 1
---- !u!136 &5435909836382114763
+--- !u!136 &5205524438235001527
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3339,11 +3305,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.38511908
-  m_Height: 1.203793
+  m_Radius: 0.38663578
+  m_Height: 1.2037928
   m_Direction: 1
-  m_Center: {x: -0.000000010419172, y: 0.20060971, z: 0.0029976522}
---- !u!54 &5978361188647443651
+  m_Center: {x: -0.00000001575245, y: 0.20060974, z: 0.0029988224}
+--- !u!54 &3669082598562309289
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3370,19 +3336,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!144 &5058404195026520342
+--- !u!144 &3432001867298569674
 CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7608538689760103150}
-  m_ConnectedBody: {fileID: 8701689191165123994}
+  m_ConnectedBody: {fileID: 3832006936976073785}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000000019543904, y: 0.3283708, z: -0.024505442}
+  m_ConnectedAnchor: {x: 0.00000062407076, y: 0.3283708, z: -0.024505356}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3421,7 +3387,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 480980873393957984, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
   m_PrefabInstance: {fileID: 7693755386249030537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4807741336068506598
+--- !u!114 &8212451991768302421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3434,11 +3400,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goreSimulator: {fileID: 2630631845081992798}
-  _collider: {fileID: 6435429458245561488}
-  _rigidbody: {fileID: 8452023963664629311}
-  _joint: {fileID: 277479794071591328}
+  _collider: {fileID: 5132026091267013201}
+  _rigidbody: {fileID: 2785275880365957133}
+  _joint: {fileID: 8782649415407555395}
   onDeath: 0
---- !u!136 &6435429458245561488
+--- !u!136 &5132026091267013201
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3457,11 +3423,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.19255954
-  m_Height: 0.78518605
+  m_Radius: 0.19331789
+  m_Height: 0.7851868
   m_Direction: 2
-  m_Center: {x: 0.00000019371512, y: 0.13086526, z: -0.00000087916874}
---- !u!54 &8452023963664629311
+  m_Center: {x: -0.0000010170044, y: 0.1308642, z: 0.00000030919918}
+--- !u!54 &2785275880365957133
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3488,19 +3454,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!144 &277479794071591328
+--- !u!144 &8782649415407555395
 CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7811911698343282665}
-  m_ConnectedBody: {fileID: 5978361188647443651}
+  m_ConnectedBody: {fileID: 3669082598562309289}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.19254416, y: 0.27089518, z: -0.028128011}
+  m_ConnectedAnchor: {x: -0.1942235, y: 0.27054945, z: -0.023497391}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3539,7 +3505,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -7334741821555347875, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
   m_PrefabInstance: {fileID: 7693755386249030537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2658932045306699390
+--- !u!114 &8961675695648456286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3552,11 +3518,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goreSimulator: {fileID: 2630631845081992798}
-  _collider: {fileID: 5156572791777108906}
-  _rigidbody: {fileID: 4558927668557476471}
-  _joint: {fileID: 5240691557083057018}
+  _collider: {fileID: 505076553866419483}
+  _rigidbody: {fileID: 3450504420991336081}
+  _joint: {fileID: 5850083272448547398}
   onDeath: 0
---- !u!136 &5156572791777108906
+--- !u!136 &505076553866419483
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3575,11 +3541,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.19255954
-  m_Height: 1.1204642
+  m_Radius: 0.19331789
+  m_Height: 1.0954368
   m_Direction: 1
-  m_Center: {x: -0.0022058787, y: 0.1866502, z: 0.005475441}
---- !u!54 &4558927668557476471
+  m_Center: {x: -0.00018703754, y: 0.18220434, z: 0.011602539}
+--- !u!54 &3450504420991336081
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3606,19 +3572,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!144 &5240691557083057018
+--- !u!144 &5850083272448547398
 CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8138135291583186388}
-  m_ConnectedBody: {fileID: 8452023963664629311}
+  m_ConnectedBody: {fileID: 2785275880365957133}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000002384186, y: 0.26172918, z: 0.0000002533198}
+  m_ConnectedAnchor: {x: 0.00000019371512, y: 0.261729, z: 0.00000055879366}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
