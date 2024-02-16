@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.75
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -855,6 +855,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       propertyPath: m_Name
       value: MyBadDude
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1139325989675019811, guid: 8cf152a0a06b3dc47a7c6d40918d95a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2710,7 +2714,7 @@ MonoBehaviour:
   DeathSounds:
   - {fileID: 8300000, guid: 5d869b6bf3cad1d4a8af1c29e5bb3646, type: 3}
   IsDead: 0
-  KittenMode: 1
+  KittenMode: 0
 --- !u!114 &2630631845081992798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2776,10 +2780,10 @@ MonoBehaviour:
     sendOnDeath: 1
   - bone: {fileID: 2302576617912415563}
     id: 0000000000000000
-    sendOnDeath: 0
+    sendOnDeath: 1
   - bone: {fileID: 9020851501298276687}
     id: 0000000001000000
-    sendOnDeath: 0
+    sendOnDeath: 1
   - bone: {fileID: 4568577826668433261}
     id: 0000000002000000
     sendOnDeath: 1

@@ -110,7 +110,7 @@ MonoBehaviour:
   AmmoIcon: {fileID: 21300000, guid: 16da50d46e8aca349a03b5a70bc70c05, type: 3}
   PrimaryFireSound: {fileID: 8300000, guid: 1b39783cf6331d842950e5a0eb5b6a3c, type: 3}
   SecondaryFireSound: {fileID: 0}
-  PrimaryFireDamage: 30
+  PrimaryFireDamage: 60
   SecondaryFireDamage: 0
   RecoilForce: 0.2
   RecoilSmoothness: 6

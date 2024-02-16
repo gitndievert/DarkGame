@@ -124,7 +124,7 @@ public class Player : BaseEntity, IAttackable
         // Check for colliders within the specified radius around the player        
         for (int i = 0; i < actions; i++)
         {
-            if (_actionBuffer[i].gameObject.tag == Tags.ACTION_TAG)
+            if (_actionBuffer[i].gameObject.CompareTag(Tags.ACTION_TAG))
             {
                 var action = _actionBuffer[i].gameObject.GetComponent<BaseAction>();
                 if (action.RequiresPlayerOpen)
@@ -346,18 +346,7 @@ public class Player : BaseEntity, IAttackable
             }            
         }
     }
-
-    /// <summary>
-    /// Note for later, the projectiles will have their own damage
-    /// </summary>
-    /// <param name="projectile"></param>
-    /*private void TargetEnemy(GameObject projectile)
-    {
-        Ray ray = PlayerController.PlayerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));        
-        Vector3 direction = ray.direction.normalized;        
-        GameObject genP = Instantiate(projectile, ProjectileSpot.transform.position, Quaternion.identity);
-        //genP.transform.rotation = Quaternion.LookRotation(direction);       
-    }*/
+       
 
     private void TargetEnemy(FiringWeapon weapon, bool hasProjectile = false)
     {
@@ -367,10 +356,14 @@ public class Player : BaseEntity, IAttackable
             var projectile = weapon.Projectile;
             Instantiate(projectile.gameObject, weapon.MuzzelSpawn.transform.position, weapon.transform.rotation);
             Ray ray = PlayerController.PlayerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-            Vector3 direction = ray.direction.normalized;
-            //Vector3 direction = weapon.transform.forward;
-            projectile.SetMovement(direction);            
-        }        
+            Vector3 direction = ray.direction.normalized;            
+            projectile.SetMovement(direction);
+            projectile.DirectDamage = weapon.PrimaryFireDamage;
+        }  
+        else
+        {
+            //Beam or electic energy, or slime
+        }
     }
 
     public void SmashPowerUp()

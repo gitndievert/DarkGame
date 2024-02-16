@@ -16,14 +16,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorSplit : DoorBasic
+public class AmdOrb : BaseProjectile
 {
-    public Transform[] Doors;
+    const float STOP_ORB_TIMER = 3f;
 
-    public override void DoAction()
+    public override bool ApplySplashDamage => true;
+
+    private bool _stopOrb;
+
+    protected override void Start()
     {
-        //need a new action here
+        base.Start();
+        _stopOrb = false;
+        StartCoroutine(StopAndExplodeOrb());
     }
+
+    protected override void Update()
+    {
+        if (_stopOrb)
+        {
+            rb.isKinematic = true;            
+        }
+        else
+        {
+            transform.Translate(Speed * Time.deltaTime * _direction);
+        }
+    }
+
+    private IEnumerator StopAndExplodeOrb()
+    {
+        yield return new WaitForSeconds(STOP_ORB_TIMER);
+        _stopOrb = true;
+        Explode();
+    }
+
+
+    protected override void Explode()
+    {
+        //base.Explode();
+        //This is the crazy explode things for the AMDD
+
+    }
+
+
 
 
 }

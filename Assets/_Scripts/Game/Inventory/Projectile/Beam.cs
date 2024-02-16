@@ -14,5 +14,5 @@
 
 public class Beam : BaseProjectile
 {
-    
+    public override bool ApplySplashDamage => false;
 }

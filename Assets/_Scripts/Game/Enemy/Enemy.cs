@@ -18,10 +18,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(BoxCollider))]
 /*
  * NOTES: 
  * Do not attach a parent rigid body or collider!
@@ -75,22 +77,30 @@ public class Enemy : BaseEntity, IAttackable
     private AudioSource _audioSource;
     private GoreSimulator _goreSimulator;
     private List<GameObject> _gibPool;
+    private BoxCollider _collider;
     private bool _hasGibs { get { return _gibPool.Count > 0; } }
 
 
-    protected override void Start()
+    protected virtual void Awake()
     {
-        _player = GameManager.Instance.MyPlayer;
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();        
+        _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        gameObject.layer = Tags.enemyLayer;
-        gameObject.tag = Tags.ENEMY_TAG;
         _goreSimulator = GetComponent<GoreSimulator>();
-        _gibPool = new List<GameObject>();
-        InvokeRepeating("ClearGibs", 1f, 10f);
+        _collider = GetComponent<BoxCollider>();
+        _collider.isTrigger = true;
     }
 
+    protected override void Start()
+    {
+        _player = GameManager.Instance.MyPlayer;       
+        gameObject.layer = Tags.enemyLayer;
+        gameObject.tag = Tags.ENEMY_TAG;        
+        _gibPool = new List<GameObject>();
+        InvokeRepeating("ClearGibs", 1f, 10f);
+        _goreSimulator.OnDeath += Dead;
+    }
+    
     void Update()
     {
         if (IsDead) return;
@@ -141,12 +151,12 @@ public class Enemy : BaseEntity, IAttackable
             _goreSimulator.ExecuteExplosion();
         }
 
-    }    
+    }
 
     public void TakeDamage(int amount)
     {
         if (IsDead) return;
-        int totalDamage = Health - amount;
+        int totalDamage = Health - amount;        
         if (totalDamage <= 0)
         {
             Debug.Log($"A {Name} took {amount} damage!");
@@ -154,12 +164,23 @@ public class Enemy : BaseEntity, IAttackable
         }
         else
         {
-            if (PainSounds != null)
+            if (amount >= 50)
             {
-                PlaySound(PainSounds);                
+                _goreSimulator.ExecuteRagdoll();
+                _goreSimulator.ExecuteExplosion();
+                CamShake.Instance.Shake(3f, .4f);
+                Debug.Log($"A {Name} exploded to bits!");
+                Dead();
             }
-            Health -= amount;
-            Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");
+            else
+            {
+                if (PainSounds != null)
+                {
+                    PlaySound(PainSounds);
+                }
+                Health -= amount;
+                Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");
+            }
         }
     }
 
@@ -181,7 +202,7 @@ public class Enemy : BaseEntity, IAttackable
             if(amount >= 50)
             {
                 _goreSimulator.ExecuteRagdoll();
-                _goreSimulator.ExecuteExplosion();
+                _goreSimulator.ExecuteExplosion(10f);
                 CamShake.Instance.Shake(3f, .4f);
                 Debug.Log($"A {Name} exploded to bits!");
                 Dead();

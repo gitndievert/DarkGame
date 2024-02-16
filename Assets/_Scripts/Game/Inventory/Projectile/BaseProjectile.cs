@@ -13,22 +13,43 @@
 // ********************************************************************
 
 using UnityEngine;
+using PampelGames.GoreSimulator;
+using Dark.Utility.Sound;
+using Unity.VisualScripting;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(AudioSource))]
 abstract public class BaseProjectile : BaseEntity
-{
+{    
+    
+    [HideInInspector]
     public int DirectDamage = 25;
+    [HideInInspector]
     public int SplashDamage = 15;
-    public bool ApplySplashDamage = true;
+    public abstract bool ApplySplashDamage { get; }
+    public float DetectionRadius = 100f;
     
     public float Speed = 100f;
     public float TimeToLive = 5f;    
     public GameObject ExplosionPrefab;    
+    public AudioClip ExplosionSound;
     
     protected bool targetHit;
-
+    protected int splashLimit = 10;
     protected Vector3 _direction;
+    protected Rigidbody rb;
+
+    private AudioSource _audioSource;
+    
+    
+    protected virtual void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.volume = 1;
+        rb = GetComponent<Rigidbody>();
+    }
 
     protected override void Start()
     {
@@ -38,15 +59,40 @@ abstract public class BaseProjectile : BaseEntity
         // Destroy the projectile after a specified lifetime        
         Destroy(gameObject, TimeToLive);
     }
+    protected virtual void Update()
+    {
+        transform.Translate(Speed * Time.deltaTime * _direction);        
+    }
 
     public void SetMovement(Vector3 direction)
     {
         _direction = direction;
-    }
-
-    protected virtual void Update()
+    }   
+    
+    protected List<Enemy> GetPoolEnemiesForSplash()
     {
-        transform.Translate(Speed * Time.deltaTime * _direction);
+        var enemyPool = new List<Enemy>();            
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, DetectionRadius,Vector3.up);        
+        foreach (RaycastHit hit in hits)
+        {   
+            if (hit.collider.CompareTag(Tags.ENEMY_TAG))
+            {
+                enemyPool.Add(hit.collider.gameObject.GetComponent<Enemy>());                
+            }
+        }
+        //int hits = Physics.OverlapSphereNonAlloc(transform.position, DetectionRadius, enemyColliderBuffer, Tags.enemyLayer.value);
+        /*if (hits > 0)
+        {            
+            for (int i = 0; i < hits; i++)
+            {
+                if (enemyColliderBuffer[i].gameObject.CompareTag(Tags.ENEMY_TAG))
+                {
+                    enemyPool.Add(enemyColliderBuffer[i].gameObject.GetComponent<Enemy>());
+                }
+            }
+        }*/
+
+        return enemyPool;
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
@@ -56,16 +102,25 @@ abstract public class BaseProjectile : BaseEntity
         {
             Explode();
         }
+        
         if (collision.transform.TryGetComponent<IAttackable>(out var attackTarget))
         {
             if (attackTarget.GetTag == Tags.PLAYER_TAG) return;            
             Debug.Log($"Looks like I hit {collision.transform.name}");
             attackTarget.TakeDamage(DirectDamage);
-            //Need to do a bounding sphere to check all surrouding for enemie,
-            //loop and apply splash damage
-            //use the splashdamage to refactor player
-
+            
+        } 
+        else if(collision.transform.TryGetComponent<IGoreObject>(out var goreObject))
+        {
+            if (goreObject != null)
+            {
+                var enemyScript = collision.transform.GetComponentInParent<Enemy>();
+                enemyScript.TakeDamage(DirectDamage);                
+            }
         }
+
+        ExplodeSplashDamage(DirectDamage);
+
         foreach (Collider col in GetComponents<Collider>())
         {
             col.enabled = false;
@@ -78,12 +133,36 @@ abstract public class BaseProjectile : BaseEntity
     {
         if (ExplosionPrefab == null) return;
         GameObject newExplosion = Instantiate(ExplosionPrefab, transform.position, ExplosionPrefab.transform.rotation, null);
+        if(ExplosionSound != null)
+        {            
+            _audioSource.PlayOneShot(ExplosionSound);
+        }
         Destroy(newExplosion, 1f);
     }
 
-    /*private void Explode()
+    protected void ExplodeSplashDamage(int damage)
     {
-        if (ExplosionPrefab == null) return;
-        Instantiate(ExplosionPrefab, transform.position, ExplosionPrefab.transform.rotation, null);
-    }*/
+        if (!ApplySplashDamage) return;
+        var enemyPool = GetPoolEnemiesForSplash();        
+        //We want to scale down damage a bit to distribute
+        if (enemyPool.Count > 0)
+        {
+            //damage = enemyPool.Count >= 5 ? Mathf.RoundToInt(damage / 2) : damage;
+            damage = Mathf.RoundToInt(damage / 2); //just half the dmg for now
+            foreach(Enemy enemy in enemyPool)
+            {
+                if (enemy == null || !enemy.gameObject.activeSelf) continue;
+                enemy.TakeDamage(damage);
+            }
+
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Draw a wire sphere around the object to visualize the detection radius
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, DetectionRadius);
+    }
+
 }

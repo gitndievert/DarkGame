@@ -249,4 +249,5 @@ MonoBehaviour:
   Speed: 100
   TimeToLive: 5
   ExplosionPrefab: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c, type: 3}
+  ExplosionSound: {fileID: 8300000, guid: a3b98146da1e7a34990a00e2656677e4, type: 3}
   Effects: []

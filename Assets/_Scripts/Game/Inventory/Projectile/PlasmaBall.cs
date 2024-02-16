@@ -15,7 +15,11 @@
 using UnityEngine;
 public class PlasmaBall : BaseProjectile
 {
+    public override bool ApplySplashDamage => false;
+
     public GameObject[] Effects;
+    
+    //Need to figure out the particles
 
     protected override void Start()
     {

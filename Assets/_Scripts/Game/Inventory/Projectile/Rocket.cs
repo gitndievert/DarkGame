@@ -18,5 +18,6 @@ using UnityEngine;
 
 public class Rocket : BaseProjectile
 {
-    
+    public override bool ApplySplashDamage => true;
+
 }

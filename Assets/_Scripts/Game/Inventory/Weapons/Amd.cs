@@ -12,8 +12,30 @@
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
 
+using UnityEngine;
+using System.Collections;
+
 public class Amd : FiringWeapon
 {
     public override WeaponType WeaponType => WeaponType.AMDD;
     public override AmmoType AmmoType => AmmoType.IonizedOrbs;
+
+    private bool _attacking = false;
+
+    public override void PrimaryAttack()
+    {
+        if(!_attacking)
+            StartCoroutine(AttackSequence());
+    }
+
+    private IEnumerator AttackSequence()
+    {
+        _attacking = true;
+        animator.Play("RaiseOrb");
+        yield return new WaitForSeconds(3f);
+        //base.PrimaryAttack();
+        yield return new WaitForSeconds(1f);
+        animator.Play("Reload");
+        _attacking = false;
+    }
 }
