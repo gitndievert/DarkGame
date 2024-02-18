@@ -109,7 +109,7 @@ MonoBehaviour:
   AttackDistance: 0
   IsFiring: 0
   AmmoIcon: {fileID: 21300000, guid: 16da50d46e8aca349a03b5a70bc70c05, type: 3}
-  PrimaryFireSound: {fileID: 8300000, guid: a9a8a93b9b3f4d24ba67d6ca1de5c839, type: 3}
+  PrimaryFireSound: {fileID: 8300000, guid: 72924f18ebda6634bbe0968ee33fb00d, type: 3}
   SecondaryFireSound: {fileID: 0}
   PrimaryFireDamage: 30
   SecondaryFireDamage: 0
@@ -117,8 +117,8 @@ MonoBehaviour:
   RecoilSmoothness: 6
   SwayAmount: 0.02
   SwaySmoothness: 4
-  ShakeIntensity: 8
-  ShakeDuration: 0.2
+  ShakeIntensity: 3
+  ShakeDuration: 2
   DisplayCrossHairs: 1
   DisableDefaultFireAnimation: 0
   MuzzelFlashPrefabs: []

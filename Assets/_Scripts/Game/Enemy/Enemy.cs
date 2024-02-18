@@ -126,13 +126,14 @@ public class Enemy : BaseEntity, IAttackable
             else
             {
                 _navMeshAgent.isStopped = true;
+                _animator.SetFloat("Speed", 0);
                 if (!isAttackCooldown)
                 {
                     StartCoroutine(AttackCooldown());
                 }
             }
         }
-        else if (distanceToPlayer <= AggroRange && !_isAggro && CanSeePlayer())        
+        else if (!_isAggro && ((distanceToPlayer <= AggroRange && NearPlayer()) || (CanSeePlayer() && distanceToPlayer <= (AggroRange * 2))))
         {   
             if (AgroSounds != null && !_isAggro)
             {                
@@ -248,8 +249,7 @@ public class Enemy : BaseEntity, IAttackable
         {
             int dmgRange = Random.Range(MinAttackDamage, MaxAtackDamage);
             _player.TakeDamage(dmgRange);
-            _animator.Play("Attack");
-            _animator.SetFloat("Speed", 0);
+            _animator.Play("Attack");            
             if (AttackSounds != null)
             {
                 PlaySound(AttackSounds);
