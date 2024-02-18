@@ -25,7 +25,8 @@ public class UIManager : DSingle<UIManager>
     public TMP_Text ArmorLabel;
     public TMP_Text AmmoLabel;    
     public TMP_Text PowerupLabel;
-    public TMP_Text LevelNameLabel;    
+    public TMP_Text LevelNameLabel;
+    public TMP_Text SecretText;
 
     public ScreenEffects ScreenEffects { get; private set; }    
 
@@ -61,6 +62,9 @@ public class UIManager : DSingle<UIManager>
                         break;
                     case "LevelName":
                         LevelNameLabel = label;
+                        break;
+                    case "SecretText":
+                        SecretText = label;
                         break;
                 }
             }

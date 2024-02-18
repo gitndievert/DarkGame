@@ -47,7 +47,8 @@ abstract public class FiringWeapon : Weapon
         PlayPrimaryFireSound();
         DoMuzzleFlash();
         if(!DisableDefaultFireAnimation) Recoil();
-        if(Projectile == null)
+        CamShake.Instance.Shake(ShakeIntensity, ShakeDuration);
+        if (Projectile == null)
             bulletHoleGenerator.Generate(WeaponFireType.Primary, WeaponType);
     }
 

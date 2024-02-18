@@ -764,6 +764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Shotgun
   Description: 
+  WeaponSlot: 0
   RoundDelay: 3
   StartingAmmo: 30
   FoundPickup: 0
@@ -832,7 +833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6232826825712511367, guid: 48e3bad3edf7c0e4c9ce19bb0bb499d3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6716171430401078077, guid: 48e3bad3edf7c0e4c9ce19bb0bb499d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -955,7 +956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9105059607446065838, guid: 6bc04c9250eebe74dadad9d40b75be22, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1011,6 +1012,63 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &7336579592912951076
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8479111971264691689, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0954076
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479111971264691689, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.257
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479111971264691689, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.7342172
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479111971264691689, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479111971264691689, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479111971264691689, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479111971264691689, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479111971264691689, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479111971264691689, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479111971264691689, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142320186367289171, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
+      propertyPath: m_Name
+      value: AcidShot
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f14d2fffeae12a4fabc715c845fdfa0, type: 3}
 --- !u!1001 &8376370920692061149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1087,3 +1145,4 @@ SceneRoots:
   - {fileID: 775588577072007540}
   - {fileID: 1725029598}
   - {fileID: 653157018}
+  - {fileID: 7336579592912951076}

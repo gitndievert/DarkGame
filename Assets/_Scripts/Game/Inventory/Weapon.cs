@@ -23,7 +23,7 @@ public enum WeaponType
     Pistol,
     Shotgun,
     Minigun,
-    Slicer,
+    AcidShot,
     Shattercaster,
     ArcDisruptor,
     DarkReaper,
@@ -42,7 +42,7 @@ Synthath Blade (basic fast beatdown blade)
 Pistol(single shots)(Bullets)
 DB Shotgun(Shells)
 Minigun(Bullets)
-Slicer(Blades)
+AcidShot(Canister)
 Shattercaster(rockets)
 Arc Disruptor(laser) (Orbs)
 Dark Reaper(rockets)

@@ -32,7 +32,7 @@ public class Amd : FiringWeapon
     {
         _attacking = true;
         animator.Play("RaiseOrb");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         //base.PrimaryAttack();
         yield return new WaitForSeconds(1f);
         animator.Play("Reload");

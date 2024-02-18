@@ -34,7 +34,7 @@ public static class InventoryLimits
                 return 50;
             case AmmoType.IonizedOrbs:
                 return 200;
-            case AmmoType.Blades:
+            case AmmoType.Acid:
                 return 100;
             default: 
                 return 50;

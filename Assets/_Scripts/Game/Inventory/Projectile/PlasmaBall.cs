@@ -17,22 +17,4 @@ public class PlasmaBall : BaseProjectile
 {
     public override bool ApplySplashDamage => false;
 
-    public GameObject[] Effects;
-    
-    //Need to figure out the particles
-
-    protected override void Start()
-    {
-        base.Start();
-        if (Effects.Length > 0)
-        {
-            foreach (var effect in Effects)
-            {
-                effect.SetActive(true);
-            }
-        }
-    }
-
-
-
 }

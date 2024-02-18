@@ -12,9 +12,11 @@
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
 
+using UnityEngine;
+
 public class DarkReaper : FiringWeapon
 {
     public override WeaponType WeaponType => WeaponType.DarkReaper;
-    public override AmmoType AmmoType => AmmoType.IonizedOrbs;
+    public override AmmoType AmmoType => AmmoType.IonizedOrbs;    
 
 }

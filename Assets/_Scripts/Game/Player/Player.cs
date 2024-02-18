@@ -283,8 +283,6 @@ public class Player : BaseEntity, IAttackable
         {            
             TargetEnemy(actualDamage, weapon.AttackDistance);
             weapon.PrimaryAttack();
-            //TODO: Come back!!!
-            CamShake.Instance.Shake(weapon.ShakeIntensity, weapon.ShakeDuration);
             Debug.Log($"Swinging for {actualDamage}");
             if (criticalStike)
             {
@@ -308,7 +306,6 @@ public class Player : BaseEntity, IAttackable
                 }
 
                 fireWeapon.PrimaryAttack();
-                CamShake.Instance.Shake(fireWeapon.ShakeIntensity, fireWeapon.ShakeDuration);
                 //Animator here?
                 Debug.Log($"Shot fired for {actualDamage} damage with {shotsLeft} shots left");
                 if (criticalStike)

@@ -20,10 +20,16 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
+public enum EnemyType
+{
+    Land = 0,
+    Fly
+}
+
+
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(BoxCollider))]
 /*
  * NOTES: 
  * Do not attach a parent rigid body or collider!
@@ -39,13 +45,11 @@ public class Enemy : BaseEntity, IAttackable
     public int MinAttackDamage = 1;
     [Range(0, 100)]
     public int MaxAtackDamage;
-
-    public GameObject[] BloodEffects;
+    public float FieldOfView = 120f;    
 
     [Header("Attack")]
     public float AggroRange = 10f;
-    public float AttackRange = 2f;
-    public float MoveSpeed = 3f;
+    public float AttackRange = 2f;    
     public float AttackCoolDown = 2f;
 
     [Space(5)]
@@ -60,26 +64,24 @@ public class Enemy : BaseEntity, IAttackable
     public AudioClip[] AttackSounds;
     public AudioClip[] PainSounds;
     public AudioClip[] DeathSounds;
+    public GameObject[] BloodEffects;
         
-    public bool IsDead = false;
-
+    public bool IsDead = false;    
     public Transform AttackTarget { get { return transform; } }
-
-    public bool KittenMode = false;
+    
 
     private Player _player;
     //private float _fieldOfView = 85f;
     private NavMeshAgent _navMeshAgent;
-    private Animator _animator;
-    private bool _isAggro = false;
+    private Animator _animator;    
     //private float FieldOfView = 85f;
     private bool isAttackCooldown = false;    
     private AudioSource _audioSource;
     private GoreSimulator _goreSimulator;
     private List<GameObject> _gibPool;
-    private BoxCollider _collider;
     private bool _hasGibs { get { return _gibPool.Count > 0; } }
-
+    [SerializeField]
+    private bool _isAggro = false;
 
     protected virtual void Awake()
     {
@@ -87,8 +89,6 @@ public class Enemy : BaseEntity, IAttackable
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         _goreSimulator = GetComponent<GoreSimulator>();
-        _collider = GetComponent<BoxCollider>();
-        _collider.isTrigger = true;
     }
 
     protected override void Start()
@@ -106,43 +106,47 @@ public class Enemy : BaseEntity, IAttackable
         if (IsDead) return;
         if (_navMeshAgent.enabled &&
             IsWandering &&
-            !_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.5f)
+            !_navMeshAgent.pathPending && 
+            _navMeshAgent.remainingDistance < 0.5f &&
+            !_isAggro)
         {
             Wander();
         }
+        
 
-        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);   
+        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
 
-        if (distanceToPlayer < AggroRange && !KittenMode)        
+        if(_isAggro)
         {
-            if (AgroSounds != null && !_isAggro)
-            {                
-                PlaySound(AgroSounds);
-            }
-            _isAggro = true;            
             if (distanceToPlayer > AttackRange)
             {
                 _navMeshAgent.isStopped = false;
                 MoveTowardsPlayer();
             }
             else
-            {                
+            {
                 _navMeshAgent.isStopped = true;
                 if (!isAttackCooldown)
                 {
                     StartCoroutine(AttackCooldown());
                 }
-            }           
+            }
+        }
+        else if (distanceToPlayer <= AggroRange && !_isAggro && CanSeePlayer())        
+        {   
+            if (AgroSounds != null && !_isAggro)
+            {                
+                PlaySound(AgroSounds);
+            }
+            _isAggro = true;
         }
         else
         {
-            _isAggro = false;
-            Idle();
+            _isAggro = false;            
         }
 
-
         //Test Keys for Gore Simulator
-        if(Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             _goreSimulator.ExecuteRagdoll();
         }
@@ -152,6 +156,117 @@ public class Enemy : BaseEntity, IAttackable
         }
 
     }
+
+    protected void Wander()
+    {
+        //_animator.SetFloat("Speed", _navMeshAgent.speed);
+        _animator.Play("Walk");
+        _animator.SetFloat("Speed", 1f);
+        _navMeshAgent.speed = 5f;
+        Vector3 randomPoint = RandomNavSphere(transform.position, wanderRadius, -1);
+        _navMeshAgent.SetDestination(randomPoint);
+    }
+
+    private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randDirection = Random.insideUnitSphere * dist;
+        randDirection += origin;
+        NavMesh.SamplePosition(randDirection, out NavMeshHit navHit, dist, layermask);
+        return navHit.position;
+    }
+
+
+
+    protected bool CanSeePlayer()
+    {
+       
+        Vector3 targetDirection = _player.transform.position - transform.position;
+        float angleToPlayer = Vector3.Angle(targetDirection, transform.forward);
+        if (angleToPlayer >= -FieldOfView && angleToPlayer <= FieldOfView)
+        {
+            Ray ray = new Ray(transform.position, targetDirection);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, AggroRange))
+            {
+                if (hitInfo.transform.CompareTag(Tags.PLAYER_TAG))
+                {
+                    return true;
+                }
+            }
+        }
+       
+
+        return false;
+    }
+
+    private bool NearPlayer()
+    {
+        Vector3 targetDirection = _player.transform.position - transform.position;
+        Ray ray = new Ray(transform.position, targetDirection);
+
+        Debug.DrawRay(ray.origin, ray.direction * AggroRange, Color.green, 0.1f);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, AggroRange))
+        {
+            if (hit.collider.CompareTag(Tags.PLAYER_TAG))
+            {
+                Debug.Log(hit.collider.name);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void MoveTowardsPlayer()
+    {
+        Vector3 direction = (_player.transform.position - transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(direction);
+        //transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime); OLD CODE
+        _navMeshAgent.SetDestination(_player.transform.position);
+
+        //if no line of site need to turn on the navmesh to move him
+        //float speed = _navMeshAgent.velocity.magnitude;
+        _animator.SetFloat("Speed", 2f);
+    }
+    private void Attack()
+    {
+        if (IsDead) return;
+        //If enemy has no arms, dont attack
+        if (_hasGibs)
+        {
+            foreach (GameObject gib in _gibPool)
+            {
+                //revisit this logic
+                if (gib.name.Contains("arm"))
+                {
+                    Debug.Log($"A {Name} cannot attack, he has no arms!");
+                    return;
+                }
+            }
+        }
+        if (_player.Health > 0 && NearPlayer())
+        {
+            int dmgRange = Random.Range(MinAttackDamage, MaxAtackDamage);
+            _player.TakeDamage(dmgRange);
+            _animator.Play("Attack");
+            _animator.SetFloat("Speed", 0);
+            if (AttackSounds != null)
+            {
+                PlaySound(AttackSounds);
+            }
+            Debug.Log($"A {Name} is moving in for the attack for {dmgRange} damage!");
+        }
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        isAttackCooldown = true;
+        Attack();
+        yield return new WaitForSeconds(AttackCoolDown);
+        isAttackCooldown = false;
+    }
+
+    #region Damage Layer
 
     public void TakeDamage(int amount)
     {
@@ -167,7 +282,11 @@ public class Enemy : BaseEntity, IAttackable
             if (amount >= 50)
             {
                 _goreSimulator.ExecuteRagdoll();
-                _goreSimulator.ExecuteExplosion();
+                _goreSimulator.ExecuteExplosion(out var gibs);
+                foreach(GameObject gib in gibs)
+                {
+                    _gibPool.Add(gib);
+                }
                 CamShake.Instance.Shake(3f, .4f);
                 Debug.Log($"A {Name} exploded to bits!");
                 Dead();
@@ -180,6 +299,7 @@ public class Enemy : BaseEntity, IAttackable
                 }
                 Health -= amount;
                 Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");
+                _isAggro = true;
             }
         }
     }
@@ -206,6 +326,7 @@ public class Enemy : BaseEntity, IAttackable
                 CamShake.Instance.Shake(3f, .4f);
                 Debug.Log($"A {Name} exploded to bits!");
                 Dead();
+                return;
             }
             else if(amount >= 30 || rndRoll >= 85)
             {
@@ -217,130 +338,15 @@ public class Enemy : BaseEntity, IAttackable
                 PlaySound(PainSounds);
             }
             Health -= amount;
+            _isAggro = true;
             Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");
         }
-    }
-
-    private bool SeePlayer()
-    {
-        Vector3 targetDirection = _player.transform.position - transform.position;
-        Ray ray = new Ray(transform.position, targetDirection);
-
-        Debug.DrawRay(ray.origin, ray.direction * AggroRange, Color.green, 0.1f);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, AggroRange))
-        {
-            if(hit.collider.CompareTag(Tags.PLAYER_TAG))
-            {
-                Debug.Log(hit.collider.name);
-                return true;
-            }           
-        }
-
-        return false;
-    }
-
-    private void PlaySound(AudioClip[] clips)
-    {
-        if(clips.Length > 1)
-        {
-            int rand = Random.Range(0, clips.Length - 1);
-            _audioSource.PlayOneShot(clips[rand]);
-        }
-        else
-        {
-            _audioSource.PlayOneShot(clips[0]);
-        }
-    }
-    
-
-    /*protected bool CanSeePlayer()
-    {
-        if (Vector3.Distance(transform.position, _player.transform.position) <= AggroRange)
-        {
-            Vector3 targetDirection = _player.transform.position - transform.position;
-            float angleToPlayer = Vector3.Angle(targetDirection, transform.forward);
-            if (angleToPlayer >= -FieldOfView && angleToPlayer <= FieldOfView)
-            {
-                Ray ray = new Ray(transform.position, targetDirection);
-                if (Physics.Raycast(ray, out RaycastHit hitInfo, AggroRange))
-                {
-                    if (hitInfo.transform.CompareTag("Player"))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
-    }*/
-
-    /*void MoveTowardsPlayer()
-    {
-        _navMeshAgent.SetDestination(player.position);
-    }*/
-
-    private void MoveTowardsPlayer()
-    {        
-        Vector3 direction = (_player.transform.position - transform.position).normalized;
-        transform.rotation = Quaternion.LookRotation(direction);
-        //transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime); OLD CODE
-        _navMeshAgent.SetDestination(_player.transform.position);
-
-        //if no line of site need to turn on the navmesh to move him
-        //float speed = _navMeshAgent.velocity.magnitude;
-        _animator.SetFloat("Speed", MoveSpeed);
-        _animator.Play("Walk");
-    }
-
-    private void Idle()
-    {        
-        _animator.SetFloat("Speed", 0);
-        _animator.Play("Idle");
-    }
-
-    private void Attack()
-    {
-        if (IsDead) return;
-        //If enemy has no arms, dont attack
-        if(_hasGibs)
-        {
-            foreach(GameObject gib in _gibPool)
-            {
-                //revisit this logic
-                if(gib.name.Contains("arm"))
-                {
-                    Debug.Log($"A {Name} cannot attack, he has no arms!");
-                    return;
-                }
-            }
-        }
-        if (_player.Health > 0 && SeePlayer())
-        {            
-            int dmgRange = Random.Range(MinAttackDamage, MaxAtackDamage);
-            _player.TakeDamage(dmgRange);            
-            _animator.Play("Attack");
-            if(AttackSounds != null)
-            {                
-                PlaySound(AttackSounds);
-            }
-            Debug.Log($"A {Name} is moving in for the attack for {dmgRange} damage!");            
-        }
-    }
-
-    private IEnumerator AttackCooldown()
-    {
-        isAttackCooldown = true;        
-        Attack();        
-        yield return new WaitForSeconds(AttackCoolDown);
-        isAttackCooldown = false;        
     }
 
     private void ClearGibs()
     {
         if (!_hasGibs) return;
-        foreach(GameObject gibs in _gibPool)
+        foreach (GameObject gibs in _gibPool)
         {
             _gibPool.Remove(gibs);
             Destroy(gibs);
@@ -352,14 +358,16 @@ public class Enemy : BaseEntity, IAttackable
         if (DeathSounds != null)
         {
             PlaySound(DeathSounds);
-        }        
+        }
+        _animator.SetFloat("Speed", 0);
         Health = 0;
-        IsDead = true;        
+        IsDead = true;
+        _isAggro = false;
         Debug.Log($"A {Name} died!");
-        
+
         //If there has been a limb split, then destory limbs and drop the torso
         //else play regular death animation
-        if(_hasGibs)
+        if (_hasGibs)
         {
             _animator.StopPlayback();
             ClearGibs();
@@ -373,27 +381,22 @@ public class Enemy : BaseEntity, IAttackable
         StopAllCoroutines();
     }
 
-    protected void Wander()
-    {        
-        _animator.SetFloat("Speed", MoveSpeed);        
-        _animator.Play("Walk");
-        Vector3 randomPoint = RandomNavSphere(transform.position, wanderRadius, -1);
-        _navMeshAgent.SetDestination(randomPoint);
-    }
+    #endregion
 
-    private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+  
+
+    private void PlaySound(AudioClip[] clips)
     {
-        Vector3 randDirection = Random.insideUnitSphere * dist;
-        randDirection += origin;
-        NavMesh.SamplePosition(randDirection, out NavMeshHit navHit, dist, layermask);
-        return navHit.position;
-    }
+        if(clips.Length > 1)
+        {
+            int rand = Random.Range(0, clips.Length - 1);
+            _audioSource.PlayOneShot(clips[rand]);
+        }
+        else
+        {
+            _audioSource.PlayOneShot(clips[0]);
+        }
+    }   
 
 
-
-}
-public enum EnemyType
-{
-    Land = 0,
-    Fly
 }

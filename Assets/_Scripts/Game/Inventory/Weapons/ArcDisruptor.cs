@@ -11,9 +11,55 @@
 // proprietary and are protected by trade secret and/or copyright law.
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
+using Dark.Utility.Sound;
+using GAP_LaserSystem;
+using UnityEngine;
+
 public class ArcDisruptor : FiringWeapon
 {
     public override WeaponType WeaponType => WeaponType.ArcDisruptor;
     public override AmmoType AmmoType => AmmoType.IonizedOrbs;
 
+    public GameObject LaserBeamPrefab;
+
+    private LaserScript _beam;    
+  
+    protected override void Start()
+    {
+        base.Start();
+        _beam = LaserBeamPrefab.GetComponent<LaserScript>();
+        //Start with beam being disabled
+        LaserBeamPrefab.SetActive(false);
+        _beam.endPoint = Camera.main.gameObject;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if(Input.GetMouseButtonDown(LEFT_MOUSE))
+        {
+            _beam.EnableLaser();
+            SoundManager.PlaySoundOnLoop(PrimaryFireSound, 2);
+        }
+        if(Input.GetMouseButton(LEFT_MOUSE))
+        {
+            _beam.UpdateLaser();
+            CamShake.Instance.Shake(ShakeIntensity, ShakeDuration);
+        }
+        if(Input.GetMouseButtonUp(LEFT_MOUSE))
+        {
+            _beam.DisableLaserCaller(_beam.disableDelay);
+            SoundManager.StopAllSound(2);
+        }
+    }
+
+    public override void PrimaryAttack()
+    {
+        
+    }
+
+    public override void SecondaryAttack()
+    {
+        
+    }
 }

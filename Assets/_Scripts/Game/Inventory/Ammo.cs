@@ -20,7 +20,7 @@ public enum AmmoType
     Bullet,
     Shell,
     Rocket,
-    Blades,
+    Acid,
     IonizedOrbs
 }
 

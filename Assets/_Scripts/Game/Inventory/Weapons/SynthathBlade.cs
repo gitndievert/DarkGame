@@ -26,6 +26,7 @@ public class SynthathBlade : Weapon
     {        
         PlayPrimaryFireSound();
         Swing();
+        CamShake.Instance.Shake(ShakeIntensity, ShakeDuration);
     }
 
     public override void SecondaryAttack()
