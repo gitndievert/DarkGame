@@ -330,7 +330,7 @@ public class Enemy : BaseEntity, IAttackable
                 }
                 CamShake.Instance.Shake(3f, .4f);
                 Debug.Log($"A {Name} exploded to bits!");
-                Dead();
+                Dead();                
             }
             else
             {
@@ -339,7 +339,16 @@ public class Enemy : BaseEntity, IAttackable
             }            
         }
         else
-        {   
+        {
+            if (amount >= 75)
+            {
+                _goreSimulator.ExecuteRagdoll();
+                _goreSimulator.ExecuteExplosion(10f);
+                CamShake.Instance.Shake(3f, .4f);
+                Debug.Log($"A {Name} exploded to bits!");
+                Dead();
+                return;
+            }
             if (PainSounds != null)
             {
                 PlaySound(PainSounds);
@@ -362,7 +371,11 @@ public class Enemy : BaseEntity, IAttackable
             if (amount >= 50)
             {
                 _goreSimulator.ExecuteRagdoll();
-                _goreSimulator.ExecuteExplosion(10f);
+                _goreSimulator.ExecuteExplosion(out var gibs);
+                foreach (GameObject gib in gibs)
+                {
+                    _gibPool.Add(gib);
+                }
                 CamShake.Instance.Shake(3f, .4f);
                 Debug.Log($"A {Name} exploded to bits!");
                 Dead();                
@@ -379,7 +392,11 @@ public class Enemy : BaseEntity, IAttackable
             if(amount >= 75)
             {
                 _goreSimulator.ExecuteRagdoll();
-                _goreSimulator.ExecuteExplosion(10f);
+                _goreSimulator.ExecuteExplosion(out var gibs);
+                foreach (GameObject gib in gibs)
+                {
+                    _gibPool.Add(gib);
+                }
                 CamShake.Instance.Shake(3f, .4f);
                 Debug.Log($"A {Name} exploded to bits!");
                 Dead();
