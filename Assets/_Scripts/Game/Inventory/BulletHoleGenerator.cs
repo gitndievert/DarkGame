@@ -12,6 +12,7 @@
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
 
+using PampelGames.GoreSimulator;
 using UnityEngine;
 
 public class BulletHoleGenerator : MonoBehaviour
@@ -58,13 +59,16 @@ public class BulletHoleGenerator : MonoBehaviour
                     if(BulletHolePrefab != null) 
                     {
                         GameObject hitPrefab = null;
-                        if (hit.transform.CompareTag(Tags.ENEMY_TAG))
+                        if (hit.transform.root.CompareTag(Tags.ENEMY_TAG))
                         {
-                            var enemy = hit.transform.GetComponent<Enemy>();
-                            if (enemy != null && enemy.BloodEffects.Length > 0)
+                            if (hit.collider.TryGetComponent<IGoreObject>(out var goreObject))
                             {
-                                int hitIndex = Random.Range(0, enemy.BloodEffects.Length - 1);
-                                hitPrefab = enemy.BloodEffects[hitIndex];
+                                var enemy = hit.collider.GetComponentInParent<Enemy>();
+                                if (enemy != null && enemy.BloodEffects.Length > 0)
+                                {
+                                    int hitIndex = Random.Range(0, enemy.BloodEffects.Length - 1);
+                                    hitPrefab = enemy.BloodEffects[hitIndex];
+                                }                                
                             }
                         }
                         else
@@ -78,7 +82,8 @@ public class BulletHoleGenerator : MonoBehaviour
 
                         if (hitPrefab != null)
                         {
-                            Instantiate(hitPrefab, hit.point + hit.normal * FloatInfrontOfWall, Quaternion.LookRotation(hit.normal));
+                            var hitEffect = Instantiate(hitPrefab, hit.point + hit.normal * FloatInfrontOfWall, Quaternion.LookRotation(hit.normal));
+                            Destroy(hitEffect, 1f);
                         }
                     }
                     break;

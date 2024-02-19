@@ -57,13 +57,15 @@ public class Enemy : BaseEntity, IAttackable
     public bool IsWandering = false;
     public float wanderRadius = 5f;
     public float wanderTimer = 5f;
-    
+
     [Space(5)]
     [Header("Sounds")]
+    public AudioClip[] IdleSounds;
     public AudioClip[] AgroSounds;
     public AudioClip[] AttackSounds;
     public AudioClip[] PainSounds;
     public AudioClip[] DeathSounds;
+    
     public GameObject[] BloodEffects;
         
     public bool IsDead = false;    
@@ -82,12 +84,17 @@ public class Enemy : BaseEntity, IAttackable
     private bool _hasGibs { get { return _gibPool.Count > 0; } }
     [SerializeField]
     private bool _isAggro = false;
+    [SerializeField]
+    private float _interestedTimer = 30f;
+    private bool _idleSounds = false;
+    
 
     protected virtual void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        _audioSource.playOnAwake = false;                
         _goreSimulator = GetComponent<GoreSimulator>();
     }
 
@@ -99,6 +106,8 @@ public class Enemy : BaseEntity, IAttackable
         _gibPool = new List<GameObject>();
         InvokeRepeating("ClearGibs", 1f, 10f);
         _goreSimulator.OnDeath += Dead;
+        _idleSounds = true;
+        InvokeRepeating("StartIdleSounds", 5f, 20f);
     }
     
     void Update()
@@ -115,9 +124,41 @@ public class Enemy : BaseEntity, IAttackable
         
 
         float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
+       
 
-        if(_isAggro)
+        /*if (_interestedTimer > 0 && _isAggro)
         {
+            _interestedTimer -= Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log($"{Name} lost intested in attacking you!");
+         
+        }*/
+
+        if (_isAggro)
+        {
+            //If player runs out of range and is aggro, enemy will stop and return to
+            //what they were doing
+            //BUGGED
+            /*if(distanceToPlayer > (AttackRange * 1.5f))
+            {
+                _isAggro = false;
+                if (IsWandering)
+                {
+                    Wander();
+                }
+                else 
+                {
+                    _navMeshAgent.isStopped = true;
+                    _animator.SetFloat("Speed", 0);
+                }
+            } */
+            //Keep enemy moving towards player
+            if (_idleSounds)
+            {
+                StopIdleSounds();
+            }
             if (distanceToPlayer > AttackRange)
             {
                 _navMeshAgent.isStopped = false;
@@ -159,8 +200,7 @@ public class Enemy : BaseEntity, IAttackable
     }
 
     protected void Wander()
-    {
-        //_animator.SetFloat("Speed", _navMeshAgent.speed);
+    {        
         _animator.Play("Walk");
         _animator.SetFloat("Speed", 1f);
         _navMeshAgent.speed = 5f;
@@ -176,8 +216,6 @@ public class Enemy : BaseEntity, IAttackable
         return navHit.position;
     }
 
-
-
     protected bool CanSeePlayer()
     {
        
@@ -185,16 +223,19 @@ public class Enemy : BaseEntity, IAttackable
         float angleToPlayer = Vector3.Angle(targetDirection, transform.forward);
         if (angleToPlayer >= -FieldOfView && angleToPlayer <= FieldOfView)
         {
-            Ray ray = new Ray(transform.position, targetDirection);
+            Ray ray = new(transform.position, targetDirection);
+            
+            Debug.DrawRay(ray.origin, ray.direction * AggroRange, Color.blue, 0.1f);
+
             if (Physics.Raycast(ray, out RaycastHit hitInfo, AggroRange))
             {
                 if (hitInfo.transform.CompareTag(Tags.PLAYER_TAG))
                 {
+                    Debug.Log("I can see player for attack!");
                     return true;
                 }
             }
-        }
-       
+        }       
 
         return false;
     }
@@ -202,7 +243,7 @@ public class Enemy : BaseEntity, IAttackable
     private bool NearPlayer()
     {
         Vector3 targetDirection = _player.transform.position - transform.position;
-        Ray ray = new Ray(transform.position, targetDirection);
+        Ray ray = new(transform.position, targetDirection);
 
         Debug.DrawRay(ray.origin, ray.direction * AggroRange, Color.green, 0.1f);
 
@@ -210,7 +251,8 @@ public class Enemy : BaseEntity, IAttackable
         {
             if (hit.collider.CompareTag(Tags.PLAYER_TAG))
             {
-                Debug.Log(hit.collider.name);
+                //Debug.Log(hit.collider.name);
+                Debug.Log("I am close for attack!");
                 return true;
             }
         }
@@ -218,17 +260,19 @@ public class Enemy : BaseEntity, IAttackable
         return false;
     }
 
+    private bool LooseInterest()
+    {
+        return false;
+    }
+
     private void MoveTowardsPlayer()
     {
         Vector3 direction = (_player.transform.position - transform.position).normalized;
-        transform.rotation = Quaternion.LookRotation(direction);
-        //transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime); OLD CODE
-        _navMeshAgent.SetDestination(_player.transform.position);
-
-        //if no line of site need to turn on the navmesh to move him
-        //float speed = _navMeshAgent.velocity.magnitude;
+        transform.rotation = Quaternion.LookRotation(direction);        
+        _navMeshAgent.SetDestination(_player.transform.position);        
         _animator.SetFloat("Speed", 2f);
     }
+
     private void Attack()
     {
         if (IsDead) return;
@@ -241,6 +285,7 @@ public class Enemy : BaseEntity, IAttackable
                 if (gib.name.Contains("arm"))
                 {
                     Debug.Log($"A {Name} cannot attack, he has no arms!");
+                    _animator.SetFloat("Speed", 0);
                     return;
                 }
             }
@@ -249,6 +294,7 @@ public class Enemy : BaseEntity, IAttackable
         {
             int dmgRange = Random.Range(MinAttackDamage, MaxAtackDamage);
             _player.TakeDamage(dmgRange);
+            _animator.SetFloat("Speed",0);
             _animator.Play("Attack");            
             if (AttackSounds != null)
             {
@@ -274,16 +320,11 @@ public class Enemy : BaseEntity, IAttackable
         int totalDamage = Health - amount;        
         if (totalDamage <= 0)
         {
-            Debug.Log($"A {Name} took {amount} damage!");
-            Dead();
-        }
-        else
-        {
             if (amount >= 50)
             {
                 _goreSimulator.ExecuteRagdoll();
                 _goreSimulator.ExecuteExplosion(out var gibs);
-                foreach(GameObject gib in gibs)
+                foreach (GameObject gib in gibs)
                 {
                     _gibPool.Add(gib);
                 }
@@ -293,14 +334,19 @@ public class Enemy : BaseEntity, IAttackable
             }
             else
             {
-                if (PainSounds != null)
-                {
-                    PlaySound(PainSounds);
-                }
-                Health -= amount;
-                Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");
-                _isAggro = true;
+                Debug.Log($"A {Name} took {amount} damage!");
+                Dead();
+            }            
+        }
+        else
+        {   
+            if (PainSounds != null)
+            {
+                PlaySound(PainSounds);
             }
+            Health -= amount;
+            Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");
+            _isAggro = true;           
         }
     }
 
@@ -313,13 +359,24 @@ public class Enemy : BaseEntity, IAttackable
         if (totalDamage <= 0)
         {
             Debug.Log($"A {Name} took {amount} damage!");
-            Dead();
+            if (amount >= 50)
+            {
+                _goreSimulator.ExecuteRagdoll();
+                _goreSimulator.ExecuteExplosion(10f);
+                CamShake.Instance.Shake(3f, .4f);
+                Debug.Log($"A {Name} exploded to bits!");
+                Dead();                
+            }
+            else
+            {
+                Dead();
+            }
         }
         else
         {
             //Gore Simulator Cut Randomizer
             int rndRoll = Random.Range(1, 100);
-            if(amount >= 50)
+            if(amount >= 75)
             {
                 _goreSimulator.ExecuteRagdoll();
                 _goreSimulator.ExecuteExplosion(10f);
@@ -384,10 +441,20 @@ public class Enemy : BaseEntity, IAttackable
     #endregion
 
   
+    private void StartIdleSounds()
+    {
+        PlaySound(IdleSounds);
+    }
+
+    private void StopIdleSounds()
+    {
+        CancelInvoke("StartIdleSounds");        
+        _idleSounds = false;
+    }
 
     private void PlaySound(AudioClip[] clips)
-    {
-        if(clips.Length > 1)
+    {        
+        if (clips.Length > 1)
         {
             int rand = Random.Range(0, clips.Length - 1);
             _audioSource.PlayOneShot(clips[rand]);
@@ -397,6 +464,8 @@ public class Enemy : BaseEntity, IAttackable
             _audioSource.PlayOneShot(clips[0]);
         }
     }   
+
+
 
 
 }

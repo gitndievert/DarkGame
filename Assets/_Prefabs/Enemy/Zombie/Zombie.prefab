@@ -2261,7 +2261,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2271,9 +2271,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 200
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2321,7 +2321,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.2
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2360,28 +2360,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Bad Dude
   Description: 
-  Health: 200
+  Health: 60
   EnemyType: 0
   MinAttackDamage: 15
   MaxAtackDamage: 20
   FieldOfView: 120
-  AggroRange: 10
-  AttackRange: 2
+  AggroRange: 100
+  AttackRange: 3
   AttackCoolDown: 2
   IsWandering: 1
-  wanderRadius: 50
-  wanderTimer: 10
+  wanderRadius: 100
+  wanderTimer: 20
+  IdleSounds:
+  - {fileID: 8300000, guid: 6deab780231aab64798a3fab32ca7bef, type: 3}
   AgroSounds:
-  - {fileID: 8300000, guid: eadffda380fb64a4cb7239c1b9bfec97, type: 3}
+  - {fileID: 8300000, guid: c6b770017641fb44dbb3fd7ce1820f75, type: 3}
+  - {fileID: 8300000, guid: 5d869b6bf3cad1d4a8af1c29e5bb3646, type: 3}
   AttackSounds:
-  - {fileID: 8300000, guid: ebccdd678a3a33145bd6cba984cba8b9, type: 3}
+  - {fileID: 8300000, guid: 44ee2f6a0937c9842954c891b8fafb4a, type: 3}
   PainSounds:
-  - {fileID: 8300000, guid: e9f173dfc75c58241aa22da8ddff9e7a, type: 3}
+  - {fileID: 8300000, guid: 8cd1e390fbffe3b45a64db48a67f16d1, type: 3}
   DeathSounds:
-  - {fileID: 8300000, guid: e49d6b9b34bb57545bbc968a4987ca23, type: 3}
-  BloodEffects: []
+  - {fileID: 8300000, guid: 3a8d4d789e839a84cac268cfe83124e2, type: 3}
+  - {fileID: 8300000, guid: a122b4ff209022a42845b00f7b5e507c, type: 3}
+  BloodEffects:
+  - {fileID: 1000013355911406, guid: 532c8be46e6660e49a9e48ce60e82441, type: 3}
   IsDead: 0
   _isAggro: 0
+  _interestedTimer: 30
 --- !u!114 &1103291250657827093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2416,9 +2422,23 @@ MonoBehaviour:
   decalMaterial: {fileID: 2100000, guid: 71cf1dbcaa9d6ed4ebac9917beea175d, type: 2}
   decalMaterialAdded: 0
   physicMaterial: {fileID: 13400000, guid: 797d54604df8dda46b8abe84ee4aeff9, type: 2}
-  destroyChildren: 1
+  destroyChildren: 0
   childrenEnum: 1
-  skinnedChildren: []
+  skinnedChildren:
+  - {fileID: 9112443595506872328}
+  - {fileID: 7702114356806712763}
+  - {fileID: 2107719462643578311}
+  - {fileID: 9001477835426184954}
+  - {fileID: 1300892706079025880}
+  - {fileID: 3174304969523434907}
+  - {fileID: 2573623063690529485}
+  - {fileID: 4338621731772027272}
+  - {fileID: 6520432600960635539}
+  - {fileID: 4329273377256864406}
+  - {fileID: 9142805567696488870}
+  - {fileID: 5531565374097014736}
+  - {fileID: 1918002283550019600}
+  - {fileID: 219326855455185936}
   smr: {fileID: 7702114356806712763}
   meshCutInitialized: 1
   ragdollInitialized: 1

@@ -307,10 +307,10 @@ public class Player : BaseEntity, IAttackable
 
                 fireWeapon.PrimaryAttack();
                 //Animator here?
-                Debug.Log($"Shot fired for {actualDamage} damage with {shotsLeft} shots left");
+                Debug.Log($"{fireWeapon.Name} shot fired for {actualDamage} damage with {shotsLeft} shots left");
                 if (criticalStike)
                 {
-                    Debug.Log($"Critical Hit!");
+                    Debug.Log($"{fireWeapon.Name} Critical Hit!");
                 }
             }
             else
