@@ -70,14 +70,18 @@ public class Enemy : BaseEntity, IAttackable
         
     public bool IsDead = false;    
     public Transform AttackTarget { get { return transform; } }
-    
+
+    [Space(5)]
+    [Header("Projectiles")]    
+    public GameObject Projectile;
+    public float FiringDistance = 30f;
+    public GameObject ProjectileFiringPoint;
 
     private Player _player;
-    //private float _fieldOfView = 85f;
     private NavMeshAgent _navMeshAgent;
-    private Animator _animator;    
-    //private float FieldOfView = 85f;
-    private bool isAttackCooldown = false;    
+    private Animator _animator;
+    private bool isAttackCooldown = false;
+    private float _distanceToPlayer;
     private AudioSource _audioSource;
     private GoreSimulator _goreSimulator;
     private List<GameObject> _gibPool;
@@ -85,7 +89,7 @@ public class Enemy : BaseEntity, IAttackable
     [SerializeField]
     private bool _isAggro = false;
     [SerializeField]
-    private float _interestedTimer = 30f;
+    private float _interestedTimer = 30f; //come back later
     private bool _idleSounds = false;
     
 
@@ -105,7 +109,7 @@ public class Enemy : BaseEntity, IAttackable
         gameObject.tag = Tags.ENEMY_TAG;        
         _gibPool = new List<GameObject>();
         InvokeRepeating("ClearGibs", 1f, 10f);
-        _goreSimulator.OnDeath += Dead;
+        //_goreSimulator.OnDeath += Dead;
         _idleSounds = true;
         InvokeRepeating("StartIdleSounds", 5f, 20f);
     }
@@ -121,10 +125,8 @@ public class Enemy : BaseEntity, IAttackable
         {
             Wander();
         }
-        
 
-        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
-       
+        _distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);       
 
         /*if (_interestedTimer > 0 && _isAggro)
         {
@@ -137,29 +139,24 @@ public class Enemy : BaseEntity, IAttackable
         }*/
 
         if (_isAggro)
-        {
-            //If player runs out of range and is aggro, enemy will stop and return to
-            //what they were doing
-            //BUGGED
-            /*if(distanceToPlayer > (AttackRange * 1.5f))
-            {
-                _isAggro = false;
-                if (IsWandering)
-                {
-                    Wander();
-                }
-                else 
-                {
-                    _navMeshAgent.isStopped = true;
-                    _animator.SetFloat("Speed", 0);
-                }
-            } */
+        {            
             //Keep enemy moving towards player
             if (_idleSounds)
             {
                 StopIdleSounds();
             }
-            if (distanceToPlayer > AttackRange)
+
+            if (_distanceToPlayer >= FiringDistance && Projectile != null)
+            {
+                _navMeshAgent.isStopped = true;
+                _animator.SetFloat("Speed", 0);
+                if (!isAttackCooldown)
+                {
+                    StartCoroutine(ProjectileAttackCooldown());
+                }
+
+            }
+            else if (_distanceToPlayer > AttackRange)
             {
                 _navMeshAgent.isStopped = false;
                 MoveTowardsPlayer();
@@ -174,7 +171,7 @@ public class Enemy : BaseEntity, IAttackable
                 }
             }
         }
-        else if (!_isAggro && ((distanceToPlayer <= AggroRange && NearPlayer()) || (CanSeePlayer() && distanceToPlayer <= (AggroRange * 2))))
+        else if (!_isAggro && ((_distanceToPlayer <= AggroRange && NearPlayer()) || (CanSeePlayer() && _distanceToPlayer <= (AggroRange * 2))))
         {   
             if (AgroSounds != null && !_isAggro)
             {                
@@ -268,9 +265,9 @@ public class Enemy : BaseEntity, IAttackable
     private void MoveTowardsPlayer()
     {
         Vector3 direction = (_player.transform.position - transform.position).normalized;
-        transform.rotation = Quaternion.LookRotation(direction);        
-        _navMeshAgent.SetDestination(_player.transform.position);        
-        _animator.SetFloat("Speed", 2f);
+        transform.rotation = Quaternion.LookRotation(direction);
+        _navMeshAgent.SetDestination(_player.transform.position);
+        _animator.SetFloat("Speed", 2f);        
     }
 
     private void Attack()
@@ -304,10 +301,34 @@ public class Enemy : BaseEntity, IAttackable
         }
     }
 
+    private void ProjectileAttack()
+    {
+        if (IsDead) return;
+        if (_player.Health > 0)
+        {
+            _animator.SetFloat("Speed", 0);
+            _animator.Play("Attack");            
+            var projectileObject = Instantiate(Projectile, ProjectileFiringPoint.transform.position, transform.rotation);
+            var projectile = projectileObject.GetComponent<IProjectile>();            
+            Vector3 direction = (_player.transform.position - transform.position).normalized;
+            transform.rotation = Quaternion.LookRotation(direction);
+            projectile.SetMovement(direction);
+            projectile.WhoFiredTag = GetTag;
+        }
+    }
+
     private IEnumerator AttackCooldown()
     {
         isAttackCooldown = true;
         Attack();
+        yield return new WaitForSeconds(AttackCoolDown);
+        isAttackCooldown = false;
+    }
+
+    private IEnumerator ProjectileAttackCooldown()
+    {
+        isAttackCooldown = true;
+        ProjectileAttack();
         yield return new WaitForSeconds(AttackCoolDown);
         isAttackCooldown = false;
     }

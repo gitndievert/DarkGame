@@ -21,16 +21,15 @@ using System.Collections.Generic;
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(AudioSource))]
-abstract public class BaseProjectile : BaseEntity
-{    
-    
-    [HideInInspector]
-    public int DirectDamage = 25;
-    [HideInInspector]
-    public int SplashDamage = 15;
+abstract public class BaseProjectile : BaseEntity, IProjectile
+{       
+    public int DirectDamage;    
+    public int SplashDamage;
     public abstract bool ApplySplashDamage { get; }
     public float DetectionRadius = 100f;
-    
+
+    public GameObject ProjectileGameObject => gameObject;
+
     public float Speed = 100f;
     public float TimeToLive = 5f;    
     public GameObject ExplosionPrefab;    
@@ -68,6 +67,13 @@ abstract public class BaseProjectile : BaseEntity
     {
         _direction = direction;
     }   
+
+    public void SetDirectDamage(int damage)
+    {
+        DirectDamage = damage;
+    }
+
+    public string WhoFiredTag { get; set; }
     
     protected List<Enemy> GetPoolEnemiesForSplash()
     {
@@ -97,15 +103,19 @@ abstract public class BaseProjectile : BaseEntity
 
     protected virtual void OnCollisionEnter(Collision collision)
     {   
-        if(!enabled) return;                      
-        if(collision.gameObject.tag == Tags.DEFAULT_TAG || collision.gameObject.tag == Tags.ENEMY_TAG)
+        if(!enabled) return;
+        //Ignore the firing source for projectiles
+        if (collision.transform.root.CompareTag(Tags.PLAYER_TAG) && WhoFiredTag == Tags.PLAYER_TAG) return;
+        if (collision.transform.root.CompareTag(Tags.ENEMY_TAG) && WhoFiredTag == Tags.ENEMY_TAG) return;
+        
+        if (collision.gameObject.tag == Tags.DEFAULT_TAG || 
+            (collision.transform.root.tag == Tags.ENEMY_TAG && WhoFiredTag != Tags.ENEMY_TAG))
         {
             Explode();
-        }
-        
+        }        
+
         if (collision.transform.TryGetComponent<IAttackable>(out var attackTarget))
-        {
-            if (attackTarget.GetTag == Tags.PLAYER_TAG) return;            
+        {            
             Debug.Log($"Looks like I hit {collision.transform.name}");
             attackTarget.TakeDamage(DirectDamage);
             

@@ -346,21 +346,17 @@ public class Player : BaseEntity, IAttackable
        
 
     private void TargetEnemy(FiringWeapon weapon, bool hasProjectile = false)
-    {
-        float raycastDistance = weapon.AttackDistance;        
+    {               
         if (hasProjectile)
-        {
-            var projectile = weapon.Projectile;
-            Instantiate(projectile.gameObject, weapon.MuzzelSpawn.transform.position, weapon.transform.rotation);
+        {            
+            var projectileObject = Instantiate(weapon.Projectile.gameObject, weapon.MuzzelSpawn.transform.position, weapon.transform.rotation);
             Ray ray = PlayerController.PlayerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-            Vector3 direction = ray.direction.normalized;            
+            Vector3 direction = ray.direction.normalized;
+            var projectile = projectileObject.GetComponent<IProjectile>();
             projectile.SetMovement(direction);
-            projectile.DirectDamage = weapon.PrimaryFireDamage;
-        }  
-        else
-        {
-            //Beam or electic energy, or slime
-        }
+            projectile.SetDirectDamage(weapon.PrimaryFireDamage);
+            projectile.WhoFiredTag = GetTag;
+        }          
     }
 
     public void SmashPowerUp()

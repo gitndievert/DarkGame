@@ -2358,7 +2358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6394ecc018a85a540a7d23f4bda92525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Bad Dude
+  Name: Zombie
   Description: 
   Health: 60
   EnemyType: 0
@@ -2386,6 +2386,8 @@ MonoBehaviour:
   BloodEffects:
   - {fileID: 1000013355911406, guid: 532c8be46e6660e49a9e48ce60e82441, type: 3}
   IsDead: 0
+  Projectile: {fileID: 0}
+  FiringDistance: 0
   _isAggro: 0
   _interestedTimer: 30
 --- !u!114 &1103291250657827093
@@ -2416,7 +2418,7 @@ MonoBehaviour:
   - rid: 3567257033475358727
   ragdollModules:
   - rid: 3567257033475358723
-  componentColor: {r: 0, g: 0, b: 0, a: 0}
+  componentColor: {r: 1, g: 1, b: 1, a: 0}
   cutMaterial: {fileID: 2100000, guid: 713df6b2f5ebf904b8c7fe1d31f2cd3a, type: 2}
   cutMaterialAdded: 0
   decalMaterial: {fileID: 2100000, guid: 71cf1dbcaa9d6ed4ebac9917beea175d, type: 2}
@@ -2470,7 +2472,7 @@ MonoBehaviour:
     sendOnDeath: 0
   - bone: {fileID: 8978137862899457049}
     id: 0000000002000000
-    sendOnDeath: 1
+    sendOnDeath: 0
   center: {fileID: 7707566758729311248}
   centerBonesClass:
     bone: {fileID: 7707566758729311248}
