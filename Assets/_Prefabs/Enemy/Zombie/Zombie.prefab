@@ -2170,6 +2170,7 @@ GameObject:
   - component: {fileID: 7254818313294185925}
   - component: {fileID: 6896709685147592437}
   - component: {fileID: 1103291250657827093}
+  - component: {fileID: 5121005154444374916}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -2388,6 +2389,7 @@ MonoBehaviour:
   IsDead: 0
   Projectile: {fileID: 0}
   FiringDistance: 0
+  ProjectileFiringPoint: {fileID: 0}
   _isAggro: 0
   _interestedTimer: 30
 --- !u!114 &1103291250657827093
@@ -2708,6 +2710,21 @@ MonoBehaviour:
           rotationCut: 0
           setParent: 2
         addedType: GoreModuleCut
+--- !u!114 &5121005154444374916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6253173842359484925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8e8897c7346a04fae2633b0318288e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AmmoTypes:
+  - {fileID: 7500851080036212505, guid: b596302609961cc40a9598af32d4d166, type: 3}
+  HealthTypes: []
 --- !u!1 &6333466743576163434
 GameObject:
   m_ObjectHideFlags: 0

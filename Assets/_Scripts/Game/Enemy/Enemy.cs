@@ -30,6 +30,7 @@ public enum EnemyType
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(EnemyLootDrop))]
 /*
  * NOTES: 
  * Do not attach a parent rigid body or collider!
@@ -66,7 +67,7 @@ public class Enemy : BaseEntity, IAttackable
     public AudioClip[] PainSounds;
     public AudioClip[] DeathSounds;
     
-    public GameObject[] BloodEffects;
+    public GameObject[] BloodEffects;    
         
     public bool IsDead = false;    
     public Transform AttackTarget { get { return transform; } }
@@ -75,7 +76,7 @@ public class Enemy : BaseEntity, IAttackable
     [Header("Projectiles")]    
     public GameObject Projectile;
     public float FiringDistance = 30f;
-    public GameObject ProjectileFiringPoint;
+    public GameObject ProjectileFiringPoint;    
 
     private Player _player;
     private NavMeshAgent _navMeshAgent;
@@ -91,6 +92,7 @@ public class Enemy : BaseEntity, IAttackable
     [SerializeField]
     private float _interestedTimer = 30f; //come back later
     private bool _idleSounds = false;
+    private EnemyLootDrop _enemyLootDrop;
     
 
     protected virtual void Awake()
@@ -100,6 +102,7 @@ public class Enemy : BaseEntity, IAttackable
         _audioSource = GetComponent<AudioSource>();
         _audioSource.playOnAwake = false;                
         _goreSimulator = GetComponent<GoreSimulator>();
+        _enemyLootDrop = GetComponent<EnemyLootDrop>();
     }
 
     protected override void Start()
@@ -440,12 +443,15 @@ public class Enemy : BaseEntity, IAttackable
 
     private void ClearGibs()
     {
-        if (!_hasGibs) return;
+        return;
+        //Fix later
+
+        /*if (!_hasGibs) return;
         foreach (GameObject gibs in _gibPool)
         {
             _gibPool.Remove(gibs);
             Destroy(gibs);
-        }
+        }*/
     }
 
     protected void Dead()
@@ -474,6 +480,12 @@ public class Enemy : BaseEntity, IAttackable
 
         CancelInvoke();
         StopAllCoroutines();
+
+        if(_enemyLootDrop != null)
+        {
+            //Just Random For Now
+            _enemyLootDrop.DropRandom();
+        }
     }
 
     #endregion

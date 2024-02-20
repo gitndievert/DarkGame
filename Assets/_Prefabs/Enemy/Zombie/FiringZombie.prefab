@@ -2525,6 +2525,7 @@ GameObject:
   - component: {fileID: 4015081554098337213}
   - component: {fileID: 572013411480185733}
   - component: {fileID: 3620524104732088410}
+  - component: {fileID: -603506876128511312}
   m_Layer: 0
   m_Name: FiringZombie
   m_TagString: Untagged
@@ -3065,6 +3066,23 @@ MonoBehaviour:
           rotationCut: 0
           setParent: 2
         addedType: GoreModuleCut
+--- !u!114 &-603506876128511312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6064499678200926020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8e8897c7346a04fae2633b0318288e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AmmoTypes:
+  - {fileID: 7500851080036212505, guid: b596302609961cc40a9598af32d4d166, type: 3}
+  - {fileID: 2753650081075528378, guid: 1e537740c974c914dbc223b503e49aba, type: 3}
+  HealthTypes:
+  - {fileID: 2755520652384015343, guid: 8e881ab8dc04d784aa92b46d1cb4a190, type: 3}
 --- !u!1 &6098282143707481224
 GameObject:
   m_ObjectHideFlags: 0

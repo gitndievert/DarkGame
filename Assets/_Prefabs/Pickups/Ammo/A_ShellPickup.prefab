@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8782154172442325483}
   - component: {fileID: 1425861154143747227}
   - component: {fileID: 4398885614621665674}
+  - component: {fileID: 4735487237422037964}
   m_Layer: 0
   m_Name: A_ShellPickup
   m_TagString: Ammo
@@ -124,6 +125,7 @@ MonoBehaviour:
   BobSpeed: 2
   AutoStartBob: 1
   Rotate: 1
+  rotationAxis: 1
 --- !u!114 &4398885614621665674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,5 +142,32 @@ MonoBehaviour:
   Description: Shells for Shotgun
   EnableBobber: 1
   Amount: 12
-  PickupType: 2
+  PickupType: 0
   PickupSound: {fileID: 8300000, guid: bc3ec5fb8a01eb543b956eaeef0fd589, type: 3}
+--- !u!54 &4735487237422037964
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753650081075528378}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
