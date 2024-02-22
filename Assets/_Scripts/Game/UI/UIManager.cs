@@ -28,6 +28,8 @@ public class UIManager : DSingle<UIManager>
     public TMP_Text LevelNameLabel;
     public TMP_Text SecretText;
 
+    public GameObject MainMenu;
+
     public ScreenEffects ScreenEffects { get; private set; }    
 
     protected override void DAwake()
@@ -35,13 +37,16 @@ public class UIManager : DSingle<UIManager>
         if (Canvas == null)
             throw new System.Exception("Missing canvas in this scene");
 
-        Canvas.gameObject.SetActive(true);       
+        Canvas.gameObject.SetActive(true);
+
+        if (MainMenu == null)
+            MainMenu = GameObject.Find("MainMenu");
     }
 
     private void Start()
     {   
         ScreenEffects = GetComponent<ScreenEffects>();             
-        var labels = Canvas.GetComponentsInChildren<TMP_Text>();      
+        var labels = Canvas.GetComponentsInChildren<TMP_Text>();
         if (labels.Length > 0)
         {
             foreach (TMP_Text label in labels)
@@ -68,8 +73,18 @@ public class UIManager : DSingle<UIManager>
                         break;
                 }
             }
-        }    
-        
-    }    
+        }
+
+        MainMenu.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))        
+        {
+            MainMenu.SetActive(!MainMenu.activeSelf);
+        }
+    }
+
 
 }

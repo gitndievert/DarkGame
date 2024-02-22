@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 202949525961958881}
   - component: {fileID: 5593662711370715257}
   - component: {fileID: 8245606908985589898}
-  - component: {fileID: -4537436823900145566}
+  - component: {fileID: -1405365566803598620}
   m_Layer: 0
   m_Name: A_AcidPickup
   m_TagString: Ammo
@@ -144,7 +144,7 @@ MonoBehaviour:
   Amount: 24
   PickupType: 4
   PickupSound: {fileID: 8300000, guid: bc3ec5fb8a01eb543b956eaeef0fd589, type: 3}
---- !u!54 &-4537436823900145566
+--- !u!54 &-1405365566803598620
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

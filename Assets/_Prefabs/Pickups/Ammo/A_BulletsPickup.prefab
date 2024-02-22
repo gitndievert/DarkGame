@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2072993611135904510}
   - component: {fileID: 2553603494722312280}
   - component: {fileID: 7702619430858529591}
-  - component: {fileID: 17947476088746595}
+  - component: {fileID: -7351211942678724454}
   m_Layer: 0
   m_Name: A_BulletsPickup
   m_TagString: Ammo
@@ -142,9 +142,9 @@ MonoBehaviour:
   Description: Pistol bullets
   EnableBobber: 1
   Amount: 30
-  PickupType: 0
+  PickupType: 1
   PickupSound: {fileID: 8300000, guid: bc3ec5fb8a01eb543b956eaeef0fd589, type: 3}
---- !u!54 &17947476088746595
+--- !u!54 &-7351211942678724454
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

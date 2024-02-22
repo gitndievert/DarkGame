@@ -70,7 +70,7 @@ public class Player : BaseEntity, IAttackable
 
     private void Update()
     {
-
+        if (GameManager.Instance.GamePaused) return;
         if (PlayerInventory.CurrentWeapon != null)
         {
             if (Input.GetMouseButton(LEFT_MOUSE) && Time.time > _nextShotTime)

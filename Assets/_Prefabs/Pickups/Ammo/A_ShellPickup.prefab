@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8782154172442325483}
   - component: {fileID: 1425861154143747227}
   - component: {fileID: 4398885614621665674}
-  - component: {fileID: 4735487237422037964}
+  - component: {fileID: -181849441477293199}
   m_Layer: 0
   m_Name: A_ShellPickup
   m_TagString: Ammo
@@ -142,9 +142,9 @@ MonoBehaviour:
   Description: Shells for Shotgun
   EnableBobber: 1
   Amount: 12
-  PickupType: 0
+  PickupType: 2
   PickupSound: {fileID: 8300000, guid: bc3ec5fb8a01eb543b956eaeef0fd589, type: 3}
---- !u!54 &4735487237422037964
+--- !u!54 &-181849441477293199
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

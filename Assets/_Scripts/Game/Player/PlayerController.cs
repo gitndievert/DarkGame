@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
         
     private void Update()
     {
+        if (GameManager.Instance.GamePaused) return;
         IsRunning = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
         HandleMovementInput();
         HandleMouseLook();

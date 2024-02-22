@@ -3083,6 +3083,7 @@ MonoBehaviour:
   - {fileID: 2753650081075528378, guid: 1e537740c974c914dbc223b503e49aba, type: 3}
   HealthTypes:
   - {fileID: 2755520652384015343, guid: 8e881ab8dc04d784aa92b46d1cb4a190, type: 3}
+  _lootDropChance: 0.9
 --- !u!1 &6098282143707481224
 GameObject:
   m_ObjectHideFlags: 0

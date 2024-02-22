@@ -2725,6 +2725,7 @@ MonoBehaviour:
   AmmoTypes:
   - {fileID: 7500851080036212505, guid: b596302609961cc40a9598af32d4d166, type: 3}
   HealthTypes: []
+  _lootDropChance: 0.9
 --- !u!1 &6333466743576163434
 GameObject:
   m_ObjectHideFlags: 0

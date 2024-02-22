@@ -20,6 +20,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : PSingle<GameManager>
 {
+    public bool GamePaused = false;
+    
     public GameObject CurrentPlayer;    
     public Player MyPlayer;    
 

@@ -18,6 +18,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Bobber))]
 [RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Rigidbody))]
 abstract public class BasePickupItem<T> : BaseEntity, IPickupable where T : Enum
 {    
     public bool EnableBobber = true;

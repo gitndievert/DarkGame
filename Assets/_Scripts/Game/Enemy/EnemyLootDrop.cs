@@ -41,7 +41,7 @@ public class EnemyLootDrop : MonoBehaviour
         {   
             if (item.GetComponent<PickupAmmo>().PickupType == type)
             {
-                Vector3 spawnPosition = transform.position + Vector3.up * 1f;
+                Vector3 spawnPosition = transform.position + Vector3.up * 2f;
                 var spawn = Instantiate(item, spawnPosition, Quaternion.identity);
                 spawn.TryGetComponent<Rigidbody>(out var rb);
                 if (rb != null)

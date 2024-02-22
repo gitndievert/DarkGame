@@ -10,6 +10,7 @@ public class OnScreenFPS : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.GamePaused) return;
         if (DisplayFramerate)
         {
             _deltaTime += (Time.deltaTime - _deltaTime) * 0.1f;

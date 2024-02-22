@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 476967865975861644}
   - component: {fileID: 5861476144746016644}
   - component: {fileID: 8778327271812736131}
-  - component: {fileID: -1925204849472478459}
+  - component: {fileID: -2277097848058542864}
   m_Layer: 0
   m_Name: A_RocketPickup
   m_TagString: Ammo
@@ -142,9 +142,9 @@ MonoBehaviour:
   Description: Rockets
   EnableBobber: 1
   Amount: 8
-  PickupType: 0
+  PickupType: 3
   PickupSound: {fileID: 8300000, guid: bc3ec5fb8a01eb543b956eaeef0fd589, type: 3}
---- !u!54 &-1925204849472478459
+--- !u!54 &-2277097848058542864
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

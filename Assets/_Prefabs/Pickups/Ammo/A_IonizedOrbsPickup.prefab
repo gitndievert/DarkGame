@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5541077098236479926}
   - component: {fileID: 8231720501441790369}
   - component: {fileID: 6402101551769602661}
-  - component: {fileID: -8914383357538020740}
+  - component: {fileID: 7314762813408720053}
   m_Layer: 0
   m_Name: A_IonizedOrbsPickup
   m_TagString: Ammo
@@ -142,9 +142,9 @@ MonoBehaviour:
   Description: Orbs for energy weapons
   EnableBobber: 1
   Amount: 10
-  PickupType: 0
+  PickupType: 5
   PickupSound: {fileID: 8300000, guid: bc3ec5fb8a01eb543b956eaeef0fd589, type: 3}
---- !u!54 &-8914383357538020740
+--- !u!54 &7314762813408720053
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
