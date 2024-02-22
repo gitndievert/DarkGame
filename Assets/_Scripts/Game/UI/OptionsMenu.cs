@@ -17,7 +17,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class OptionsMenu : BaseStorage
+public class OptionsMenu : MonoBehaviour
 {    
     [Header("Sound")]
     public Slider SoundVolume;    
@@ -41,9 +41,9 @@ public class OptionsMenu : BaseStorage
     }
 
     private void Slider()
-    {        
-        SaveToStorage(AudioStorage.SoundVol, 100f);
-        SaveToStorage(AudioStorage.MusicVol, 100f);
+    {
+        GameStorage.SaveToStorage(AudioStorage.SoundVol, 100f);
+        GameStorage.SaveToStorage(AudioStorage.MusicVol, 100f);
     }
     
 }
