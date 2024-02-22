@@ -17,7 +17,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class OptionsMenu : MonoBehaviour
+public class OptionsMenu : BaseStorage
 {    
     [Header("Sound")]
     public Slider SoundVolume;    
@@ -41,34 +41,10 @@ public class OptionsMenu : MonoBehaviour
     }
 
     private void Slider()
-    {
-        PlayerPrefs.SetFloat("SoundVolume", 100f);
-        PlayerPrefs.SetFloat("MusicVolume", 100f);
-        PlayerPrefs.Save();
+    {        
+        SaveToStorage(AudioStorage.SoundVol, 100f);
+        SaveToStorage(AudioStorage.MusicVol, 100f);
     }
-
-    //NEED TO PUT IN AN ABSTRACT
+    
 }
 
-/*
- * // Save a float value
-PlayerPrefs.SetFloat("Volume", volumeValue);
-PlayerPrefs.SetInt("GraphicsQuality", graphicsQualityValue);
-
-// Save a string value
-PlayerPrefs.SetString("ControlScheme", controlScheme);
-
-// Save the settings to disk
-PlayerPrefs.Save();
-*/
-
-/*
- * // Load a float value
-float volumeValue = PlayerPrefs.GetFloat("Volume", defaultVolume);
-
-// Load an int value
-int graphicsQualityValue = PlayerPrefs.GetInt("GraphicsQuality", defaultGraphicsQuality);
-
-// Load a string value
-string controlScheme = PlayerPrefs.GetString("ControlScheme", defaultControlScheme);
-*/
