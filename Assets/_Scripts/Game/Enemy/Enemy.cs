@@ -41,6 +41,7 @@ public class Enemy : BaseEntity, IAttackable
 {
     public int Health;
     public EnemyType EnemyType = EnemyType.Land;
+    public bool TargetLimbs = false;
 
     [Range(0, 30)]
     public int MinAttackDamage = 1;
@@ -312,8 +313,8 @@ public class Enemy : BaseEntity, IAttackable
             _animator.SetFloat("Speed", 0);
             _animator.Play("Attack");            
             var projectileObject = Instantiate(Projectile, ProjectileFiringPoint.transform.position, transform.rotation);
-            var projectile = projectileObject.GetComponent<IProjectile>();            
-            Vector3 direction = (_player.transform.position - transform.position).normalized;
+            var projectile = projectileObject.GetComponent<IProjectile>();
+            Vector3 direction = (_player.transform.position - transform.position);
             transform.rotation = Quaternion.LookRotation(direction);
             projectile.SetMovement(direction);
             projectile.WhoFiredTag = GetTag;
@@ -426,7 +427,7 @@ public class Enemy : BaseEntity, IAttackable
                 Dead();
                 return;
             }
-            else if(amount >= 30 || rndRoll >= 85)
+            else if((amount >= 30 || rndRoll >= 85) && TargetLimbs)
             {
                 goreObject.ExecuteCut(hitPoint, out GameObject gib);
                 _gibPool.Add(gib);

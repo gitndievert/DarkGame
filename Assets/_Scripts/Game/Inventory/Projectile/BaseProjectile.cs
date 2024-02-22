@@ -77,13 +77,13 @@ abstract public class BaseProjectile : BaseEntity, IProjectile
     
     protected List<Enemy> GetPoolEnemiesForSplash()
     {
-        var enemyPool = new List<Enemy>();            
+        var enemyPool = new HashSet<Enemy>();            
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, DetectionRadius,Vector3.up);        
         foreach (RaycastHit hit in hits)
         {   
-            if (hit.collider.CompareTag(Tags.ENEMY_TAG))
+            if (hit.transform.root.CompareTag(Tags.ENEMY_TAG))
             {
-                enemyPool.Add(hit.collider.gameObject.GetComponent<Enemy>());                
+                enemyPool.Add(hit.transform.root.gameObject.GetComponent<Enemy>());                
             }
         }
         //int hits = Physics.OverlapSphereNonAlloc(transform.position, DetectionRadius, enemyColliderBuffer, Tags.enemyLayer.value);
@@ -98,7 +98,7 @@ abstract public class BaseProjectile : BaseEntity, IProjectile
             }
         }*/
 
-        return enemyPool;
+        return enemyPool.ToListPooled();
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
