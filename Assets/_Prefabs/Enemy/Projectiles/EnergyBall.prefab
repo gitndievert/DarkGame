@@ -38975,7 +38975,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4555007779233668}
-  - component: {fileID: 114436878225660254}
   - component: {fileID: 54270707880095282}
   - component: {fileID: 114387130629053834}
   - component: {fileID: -7137416611222730195}
@@ -39014,34 +39013,6 @@ Transform:
   - {fileID: 4729998038812020}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114436878225660254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745751436853880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12ba759cd568c0e47a7018ab70867a0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotate: 0
-  rotateAmount: 45
-  bounce: 0
-  bounceForce: 10
-  speed: 23
-  accuracy: 100
-  fireRate: 5
-  muzzlePrefab: {fileID: 1040091274170476, guid: 4dc3813479a19d149be60c7c1cea13e9, type: 3}
-  hitPrefab: {fileID: 1282465575348918, guid: b077b8f66a284634cb92797eb3bc985b, type: 3}
-  trails:
-  - {fileID: 1841510647851222}
-  - {fileID: 1822153082252364}
-  - {fileID: 1009952155986692}
-  - {fileID: 1172467705424826}
-  - {fileID: 1038054446430336}
-  - {fileID: 1111706152486094}
 --- !u!54 &54270707880095282
 Rigidbody:
   m_ObjectHideFlags: 0

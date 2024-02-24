@@ -37,14 +37,16 @@ public class UIManager : DSingle<UIManager>
         if (Canvas == null)
             throw new System.Exception("Missing canvas in this scene");
 
-        Canvas.gameObject.SetActive(true);
-
-        if (MainMenu == null)
-            MainMenu = GameObject.Find("MainMenu");
+        Canvas.gameObject.SetActive(true);        
     }
 
     private void Start()
-    {   
+    {
+        if (MainMenu == null)
+            MainMenu = GameObject.Find("MainMenu");
+
+        MainMenu.SetActive(false);
+
         ScreenEffects = GetComponent<ScreenEffects>();             
         var labels = Canvas.GetComponentsInChildren<TMP_Text>();
         if (labels.Length > 0)
@@ -73,9 +75,7 @@ public class UIManager : DSingle<UIManager>
                         break;
                 }
             }
-        }
-
-        MainMenu.SetActive(false);
+        }        
     }
 
     private void Update()

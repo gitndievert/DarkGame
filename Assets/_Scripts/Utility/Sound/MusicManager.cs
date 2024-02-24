@@ -33,17 +33,24 @@ public class MusicManager : PSingle<MusicManager>
 
     public void StartMusic(int trackIndex, bool loopmusic = true)
     {
+        if (_audioSource.volume == 0) return;
         StartCoroutine(FadeMusic(trackIndex, loopmusic));
     }
 
     public void StartMusic(AudioClip track, bool loopmusic = true)
     {
+        if (_audioSource.volume == 0) return;
         StartCoroutine(FadeMusic(track, loopmusic));
+    }
+
+    public void Volume(float percent)
+    {
+        _audioSource.volume = percent;
     }
 
     private IEnumerator FadeMusic(int trackIndex, bool loopmusic)
     {        
-        float startVolume = _audioSource.volume;
+        float startVolume = _audioSource.volume;        
         
         while (_audioSource.volume > 0)
         {

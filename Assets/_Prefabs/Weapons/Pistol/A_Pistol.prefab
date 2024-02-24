@@ -169,7 +169,7 @@ MonoBehaviour:
   SwayAmount: 0.02
   SwaySmoothness: 4
   ShakeIntensity: 8
-  ShakeDuration: 0.2
+  ShakeDuration: 0.8
   DisplayCrossHairs: 1
   DisableDefaultFireAnimation: 0
   MuzzelFlashPrefabs:

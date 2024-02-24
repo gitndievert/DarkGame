@@ -36,6 +36,8 @@ public class GameStorage : MonoBehaviour
     public static float GetStorageFloat(string storageKey) => PlayerPrefs.GetFloat(storageKey);
     public static int GetStorageInt(string storageKey) => PlayerPrefs.GetInt(storageKey);
     public static string GetStorageString(string storageKey) => PlayerPrefs.GetString(storageKey);
+    public static bool CheckExistingKey(string storageKey) => PlayerPrefs.HasKey(storageKey);   
+
 
 }
 

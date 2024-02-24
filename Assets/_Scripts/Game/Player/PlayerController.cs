@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.GamePaused) return;
         _currentYRotation = Mathf.SmoothDamp(_currentYRotation, _wantedYRotation, ref _rotationYVelocity, _yRotationSpeed);
         _currentCameraXRotation = Mathf.SmoothDamp(_currentCameraXRotation, _wantedCameraXRotation, ref _cameraXVelocity, _xCameraSpeed);
         PlayerCamera.transform.rotation = Quaternion.Euler(0, _currentYRotation, 0);

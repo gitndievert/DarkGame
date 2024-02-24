@@ -84,6 +84,7 @@ public class PlayerInventory : BaseEntity
 
     private void Update()
     {
+        if (GameManager.Instance.GamePaused) return;
         // Switch weapons using the mouse wheel
         float mouseWheel = Input.GetAxis("Mouse ScrollWheel");
         if (mouseWheel != 0f)

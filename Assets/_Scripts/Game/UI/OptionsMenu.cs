@@ -16,6 +16,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using Dark.Utility.Sound;
 
 public class OptionsMenu : MonoBehaviour
 {    
@@ -25,25 +27,51 @@ public class OptionsMenu : MonoBehaviour
     [Space(5)]
     [Header("Music")]
     public Slider MusicVolume;    
-    public TMP_Text MusicVol;    
+    public TMP_Text MusicVol;
+
+    private void Awake()
+    {
+        float soundSave = 1f;
+        float musicSave = 1f;
+        if (GameStorage.CheckExistingKey(AudioStorage.SoundVol))
+        {
+            soundSave = GameStorage.GetStorageFloat(AudioStorage.SoundVol);
+        }        
+        SoundVolume.value = soundSave;        
+        if(GameStorage.CheckExistingKey(AudioStorage.MusicVol))
+        {
+            musicSave = GameStorage.GetStorageFloat(AudioStorage.MusicVol);
+        }            
+        MusicVolume.value = musicSave;
+    }
 
     private void Start()
     {
-        
+        SoundVolume.onValueChanged.AddListener(SoundSliderChange);
+        MusicVolume.onValueChanged.AddListener(MusicSliderChange);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        SoundVol.text = "100";
-        MusicVol.text = "100";
-
+        int sVol = (int)(SoundVolume.value * 100);
+        int mVol = (int)(MusicVolume.value * 100);
+        SoundVol.text = sVol.ToString();
+        MusicVol.text = mVol.ToString();
     }
 
-    private void Slider()
+    private void SoundSliderChange(float change)
     {
-        GameStorage.SaveToStorage(AudioStorage.SoundVol, 100f);
-        GameStorage.SaveToStorage(AudioStorage.MusicVol, 100f);
+        GameStorage.SaveToStorage(AudioStorage.SoundVol, change);
+        SoundVolume.value = change;
+        SoundManager.Volume(change);
+    }
+
+    private void MusicSliderChange(float change)
+    {
+        GameStorage.SaveToStorage(AudioStorage.MusicVol, change);
+        MusicVolume.value = change;
+        MusicManager.Instance.Volume(change);
     }
     
 }

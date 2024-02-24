@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 8749512494697830701}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 928555fb1a8d36d47a8c158e25484b44, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -145,6 +145,7 @@ MonoBehaviour:
   MuzzelSpawn: {fileID: 2358226746452321406}
   EmptyClipSound: {fileID: 8300000, guid: 08250a5d2d3da8441a3df730022e402c, type: 3}
   Projectile: {fileID: 0}
+  AcidStreamPrefab: {fileID: 1000013355911406, guid: c03514cf60b9fcf40b0d63e6ffab4c4d, type: 3}
 --- !u!1001 &437815623198470014
 PrefabInstance:
   m_ObjectHideFlags: 0

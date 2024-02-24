@@ -13,6 +13,7 @@
 // ********************************************************************
 
 
+using Dark.Utility.Sound;
 using PampelGames.GoreSimulator;
 using System.Collections;
 using System.Collections.Generic;
@@ -94,6 +95,7 @@ public class Enemy : BaseEntity, IAttackable
     private float _interestedTimer = 30f; //come back later
     private bool _idleSounds = false;
     private EnemyLootDrop _enemyLootDrop;
+    private Collider[] _allColliders;
     
 
     protected virtual void Awake()
@@ -104,6 +106,7 @@ public class Enemy : BaseEntity, IAttackable
         _audioSource.playOnAwake = false;                
         _goreSimulator = GetComponent<GoreSimulator>();
         _enemyLootDrop = GetComponent<EnemyLootDrop>();
+        _allColliders = GetComponentsInChildren<Collider>();
     }
 
     protected override void Start()
@@ -197,6 +200,9 @@ public class Enemy : BaseEntity, IAttackable
         {
             _goreSimulator.ExecuteExplosion();
         }
+
+        //Sync the audio volume
+        _audioSource.volume = SoundManager.VolumeLevel;
 
     }
 
@@ -487,6 +493,13 @@ public class Enemy : BaseEntity, IAttackable
             //Just Random For Now
             _enemyLootDrop.DropRandom();
         }
+        
+        foreach(Collider col in _allColliders)
+        {
+            col.enabled = false;
+        }
+
+        
     }
 
     #endregion

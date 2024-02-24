@@ -28,7 +28,7 @@ namespace Dark.Utility.Sound
             get { return _audio.isPlaying; }
         }
 
-        public float VolumeLevel { get; set; }
+        public static float VolumeLevel { get; set; }
 
         private void Start()
         {
@@ -109,11 +109,10 @@ namespace Dark.Utility.Sound
             audio.loop = false;
         }
 
-        public void Volume(float percent)
+        public static void Volume(float percent)
         {
             _audio.volume = percent;
-            _audio2.volume = percent;
-            //GameState.SettingsData.SoundVolume = percent;
+            _audio2.volume = percent;            
             VolumeLevel = percent;
         }
 

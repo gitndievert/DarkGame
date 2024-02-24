@@ -24,9 +24,9 @@ public class MainMenu : MonoBehaviour
     public GameObject OptionsMenu;      
 
     private void OnEnable()
-    {
-        DeActivateAllSubMenus();
-        Cursor.lockState = CursorLockMode.None;        
+    {        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Time.timeScale = 0f;
         GameManager.Instance.GamePaused = true;
     }
@@ -34,7 +34,8 @@ public class MainMenu : MonoBehaviour
     private void OnDisable()
     {
         DeActivateAllSubMenus(); 
-        Cursor.lockState = CursorLockMode.Locked;        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Time.timeScale = 1f;
         GameManager.Instance.GamePaused = false;
     }

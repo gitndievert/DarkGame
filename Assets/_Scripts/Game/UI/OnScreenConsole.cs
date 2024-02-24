@@ -52,7 +52,7 @@ public class OnScreenConsole : MonoBehaviour
     {
         if (ShowConsole)
         {            
-            _scrollPosition = GUILayout.BeginScrollView(_scrollPosition, GUILayout.Width(Screen.width), GUILayout.Height(Screen.height / 4));
+            _scrollPosition = GUILayout.BeginScrollView(_scrollPosition, GUILayout.Width(Screen.width), GUILayout.Height(Screen.height / 2));
             GUILayout.Label(_logText);
             GUILayout.EndScrollView();
         }

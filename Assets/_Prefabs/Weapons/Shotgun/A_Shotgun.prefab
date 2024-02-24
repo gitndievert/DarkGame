@@ -273,11 +273,11 @@ MonoBehaviour:
   DisplayCrossHairs: 1
   DisableDefaultFireAnimation: 0
   MuzzelFlashPrefabs:
-  - {fileID: 199458, guid: 51b76f616384d4946bed4ecc9a6c2c3e, type: 3}
-  - {fileID: 199458, guid: 487eef9aff9d0f543836d5af5ab26430, type: 3}
-  - {fileID: 199458, guid: 7b6a7e40bd9ccc0489274923930761c7, type: 3}
-  - {fileID: 199458, guid: 29d86feb88bf925428f9d7de6d4b401f, type: 3}
-  - {fileID: 199458, guid: 4aa4c63f0f9d6a84dbaeed6b9caeca80, type: 3}
+  - {fileID: 199458, guid: 06fe0bab0028d0e41a8d3cae69d8ca41, type: 3}
+  - {fileID: 199458, guid: c03d634ed7639ab4982720dd9a1e5531, type: 3}
+  - {fileID: 199458, guid: 10a878bbe7af6ba44a6e11a7a0315d3e, type: 3}
+  - {fileID: 199458, guid: a9d054d4685b04644893f78d69c3103d, type: 3}
+  - {fileID: 199458, guid: a1e63f091f4d7214983e23b675a1a9da, type: 3}
   MuzzelSpawn: {fileID: 8227962297146660667}
   EmptyClipSound: {fileID: 8300000, guid: 08250a5d2d3da8441a3df730022e402c, type: 3}
   Projectile: {fileID: 0}

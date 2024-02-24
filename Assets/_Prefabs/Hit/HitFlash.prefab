@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2362062}
   - component: {fileID: 10854754}
   - component: {fileID: 114752713060590030}
-  - component: {fileID: 8642287184338416452}
   - component: {fileID: 3079712738945748346}
   m_Layer: 0
   m_Name: HitFlash
@@ -162,19 +161,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeToDestroy: 0.05
---- !u!114 &8642287184338416452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 012c97c62cfc90a42aae53dd2bb88c67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimeToDestroy: 0.5
 --- !u!114 &3079712738945748346
 MonoBehaviour:
   m_ObjectHideFlags: 0

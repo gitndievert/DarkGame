@@ -863,6 +863,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 2.762
       objectReference: {fileID: 0}
+    - target: {fileID: 7969096529832752478, guid: 325a0c74204b21d48b6f97681e9b2daf, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 928555fb1a8d36d47a8c158e25484b44, type: 2}
     - target: {fileID: 8749512494697830701, guid: 325a0c74204b21d48b6f97681e9b2daf, type: 3}
       propertyPath: m_Name
       value: A_AcidShot
