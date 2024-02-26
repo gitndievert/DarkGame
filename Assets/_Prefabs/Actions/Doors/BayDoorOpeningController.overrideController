@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BayDoorOpeningController
+  m_Controller: {fileID: 9100000, guid: 114c2a0d18b12b44c84b44989160a81b, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: b06aa8b1533418b46be1e3c548d78ff5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 14791358aca7b7241803649d60d17735, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5a8fbfd3eccfd4f41ba9083db9763453, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 76aa1f243d0e51f49a5dae747326ab08, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 31f1fecf6d97bb14492c1a71fb1a9bb2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8b9cec73236a66c4399416eed808c70e, type: 2}

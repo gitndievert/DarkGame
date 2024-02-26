@@ -42,7 +42,7 @@ public class OptionsMenu : MonoBehaviour
         {
             musicSave = GameStorage.GetStorageFloat(AudioStorage.MusicVol);
         }            
-        MusicVolume.value = musicSave;
+        MusicVolume.value = musicSave;        
     }
 
     private void Start()
@@ -57,7 +57,7 @@ public class OptionsMenu : MonoBehaviour
         int sVol = (int)(SoundVolume.value * 100);
         int mVol = (int)(MusicVolume.value * 100);
         SoundVol.text = sVol.ToString();
-        MusicVol.text = mVol.ToString();
+        MusicVol.text = mVol.ToString();        
     }
 
     private void SoundSliderChange(float change)

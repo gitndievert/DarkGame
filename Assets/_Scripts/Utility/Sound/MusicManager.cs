@@ -21,6 +21,7 @@ public class MusicManager : PSingle<MusicManager>
 {
     public AudioClip[] MusicTracks;
     public float MusicFadeDuration = 1.0f;
+    public float MaxSetVolume { get; set; }
 
     private AudioSource _audioSource;
 
@@ -29,28 +30,31 @@ public class MusicManager : PSingle<MusicManager>
     {
         base.PAwake();
         _audioSource = GetComponent<AudioSource>();
-    }
+        float storageVal = GameStorage.GetStorageFloat(AudioStorage.MusicVol);
+        _audioSource.volume = storageVal < 1f ? storageVal : 1f;
+    }    
 
     public void StartMusic(int trackIndex, bool loopmusic = true)
-    {
-        if (_audioSource.volume == 0) return;
+    {        
         StartCoroutine(FadeMusic(trackIndex, loopmusic));
     }
 
     public void StartMusic(AudioClip track, bool loopmusic = true)
-    {
-        if (_audioSource.volume == 0) return;
+    {        
         StartCoroutine(FadeMusic(track, loopmusic));
     }
 
     public void Volume(float percent)
     {
         _audioSource.volume = percent;
+        MaxSetVolume = percent;
+        if(SceneSwapper.Instance.LoadedMap.MapMusic != null)
+            StartMusic(SceneSwapper.Instance.LoadedMap.MapMusic);
     }
 
     private IEnumerator FadeMusic(int trackIndex, bool loopmusic)
     {        
-        float startVolume = _audioSource.volume;        
+        float startVolume = MaxSetVolume;        
         
         while (_audioSource.volume > 0)
         {
@@ -71,7 +75,7 @@ public class MusicManager : PSingle<MusicManager>
 
     private IEnumerator FadeMusic(AudioClip track, bool loopmusic)
     {
-        float startVolume = _audioSource.volume;
+        float startVolume = MaxSetVolume;
         
         while (_audioSource.volume > 0)
         {

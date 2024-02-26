@@ -18,8 +18,11 @@ using Dark.Utility;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
+[RequireComponent(typeof(SceneSaver))]
 public class SceneSwapper : PSingle<SceneSwapper>
 {
+    public string CurrentLoadedSceneName;
+    
     public bool IsMainMenu = false;
     public bool DoFadeToScene = true;
 
@@ -30,6 +33,8 @@ public class SceneSwapper : PSingle<SceneSwapper>
 
     [Tooltip("Currently Loaded Map")]
     public Map LoadedMap;
+
+    public SceneSaver SceneSaver;
 
     private List<Map> _campaign1 = null;
     private List<Map> _campaign2 = null;
@@ -53,7 +58,8 @@ public class SceneSwapper : PSingle<SceneSwapper>
         if(Campaign4 != null)
         {
             _campaign4 = Campaign4.GetComponentsInChildren<Map>().ToList();
-        }        
+        }
+        SceneSaver = GetComponent<SceneSaver>();
     }
 
     private void Start()
@@ -66,7 +72,7 @@ public class SceneSwapper : PSingle<SceneSwapper>
 
     public void Save()
     {
-
+        SceneSaver.SaveGame("This is my test save");
     }
 
     public void Load()
@@ -96,6 +102,7 @@ public class SceneSwapper : PSingle<SceneSwapper>
         {
             LoadedMap = maplist.Where(x => x.Mapid == mapId).FirstOrDefault();            
             string sceneName = LoadedMap.SceneName.Trim();
+            CurrentLoadedSceneName = sceneName;
             SceneManager.LoadScene(sceneName);
             //Reset the player to 0
             var player = FindSinglePlayer();
@@ -113,6 +120,7 @@ public class SceneSwapper : PSingle<SceneSwapper>
             {
                 SceneManager.LoadScene(sceneName);
             } */
+
         }
 
     }

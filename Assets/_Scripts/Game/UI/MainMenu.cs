@@ -21,10 +21,16 @@ public class MainMenu : MonoBehaviour
 {    
     public GameObject LoadMenu;
     public GameObject SaveMenu;
-    public GameObject OptionsMenu;      
+    public GameObject OptionsMenu;
+
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
 
     private void OnEnable()
-    {        
+    {
+        if (gameObject.activeSelf) return;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0f;
@@ -33,6 +39,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnDisable()
     {
+        if (!gameObject.activeSelf) return;
         DeActivateAllSubMenus(); 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

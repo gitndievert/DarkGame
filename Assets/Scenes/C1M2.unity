@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14185,6 +14185,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb1ebe04293ec854a8b497b3e13b0f6d, type: 3}
+--- !u!1001 &1286886342
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 292528774601134628, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: m_Name
+      value: SceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.9200563
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.702534
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -77.12657
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
 --- !u!1001 &1302826811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20084,57 +20141,6 @@ Transform:
   - {fileID: 1213290226}
   m_Father: {fileID: 1517067458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1936668297
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1936668299}
-  - component: {fileID: 1936668298}
-  m_Layer: 0
-  m_Name: SceneSwapper
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1936668298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936668297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b3f8f1c05f1e34b9180556f33d78ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsMainMenu: 0
-  DoFadeToScene: 1
-  Campaign1: {fileID: 0}
-  Campaign2: {fileID: 0}
-  Campaign3: {fileID: 0}
-  Campaign4: {fileID: 0}
-  LoadedMap: {fileID: 0}
---- !u!4 &1936668299
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936668297}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.899643, y: 5.512553, z: -48.25341}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1943142162 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7623195778715645435, guid: 811bf22db94faad418fb6fdfffe14569, type: 3}
@@ -22174,7 +22180,6 @@ SceneRoots:
   - {fileID: 360194461}
   - {fileID: 1469212399}
   - {fileID: 380877242}
-  - {fileID: 1936668299}
   - {fileID: 2103000695}
   - {fileID: 4207607433840213153}
   - {fileID: 496475286}
@@ -22189,3 +22194,4 @@ SceneRoots:
   - {fileID: 1225885548}
   - {fileID: 786216990}
   - {fileID: 415885601}
+  - {fileID: 1286886342}

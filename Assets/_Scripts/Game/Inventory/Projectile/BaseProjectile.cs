@@ -83,20 +83,9 @@ abstract public class BaseProjectile : BaseEntity, IProjectile
         {   
             if (hit.transform.root.CompareTag(Tags.ENEMY_TAG))
             {
-                enemyPool.Add(hit.transform.root.gameObject.GetComponent<Enemy>());                
+                enemyPool.Add(hit.transform.gameObject.GetComponentInParent<Enemy>());                
             }
-        }
-        //int hits = Physics.OverlapSphereNonAlloc(transform.position, DetectionRadius, enemyColliderBuffer, Tags.enemyLayer.value);
-        /*if (hits > 0)
-        {            
-            for (int i = 0; i < hits; i++)
-            {
-                if (enemyColliderBuffer[i].gameObject.CompareTag(Tags.ENEMY_TAG))
-                {
-                    enemyPool.Add(enemyColliderBuffer[i].gameObject.GetComponent<Enemy>());
-                }
-            }
-        }*/
+        }       
 
         return enemyPool.ToListPooled();
     }

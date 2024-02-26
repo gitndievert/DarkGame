@@ -147,11 +147,8 @@ public class Enemy : BaseEntity, IAttackable
 
         if (_isAggro)
         {            
-            //Keep enemy moving towards player
-            if (_idleSounds)
-            {
-                StopIdleSounds();
-            }
+            //Keep enemy moving towards player           
+            StopIdleSounds();           
 
             if (_distanceToPlayer >= FiringDistance && Projectile != null)
             {
@@ -180,7 +177,7 @@ public class Enemy : BaseEntity, IAttackable
         }
         else if (!_isAggro && ((_distanceToPlayer <= AggroRange && NearPlayer()) || (CanSeePlayer() && _distanceToPlayer <= (AggroRange * 2))))
         {   
-            if (AgroSounds != null && !_isAggro)
+            if (AgroSounds.Length > 0 && !_isAggro)
             {                
                 PlaySound(AgroSounds);
             }
@@ -303,10 +300,7 @@ public class Enemy : BaseEntity, IAttackable
             _player.TakeDamage(dmgRange);
             _animator.SetFloat("Speed",0);
             _animator.Play("Attack");            
-            if (AttackSounds != null)
-            {
-                PlaySound(AttackSounds);
-            }
+            PlaySound(AttackSounds);
             Debug.Log($"A {Name} is moving in for the attack for {dmgRange} damage!");
         }
     }
@@ -380,10 +374,7 @@ public class Enemy : BaseEntity, IAttackable
                 Dead();
                 return;
             }
-            if (PainSounds != null)
-            {
-                PlaySound(PainSounds);
-            }
+            PlaySound(PainSounds);
             Health -= amount;
             Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");
             _isAggro = true;           
@@ -438,10 +429,8 @@ public class Enemy : BaseEntity, IAttackable
                 goreObject.ExecuteCut(hitPoint, out GameObject gib);
                 _gibPool.Add(gib);
             }
-            if (PainSounds != null)
-            {
-                PlaySound(PainSounds);
-            }
+            
+            PlaySound(PainSounds);            
             Health -= amount;
             _isAggro = true;
             Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");
@@ -463,10 +452,7 @@ public class Enemy : BaseEntity, IAttackable
 
     protected void Dead()
     {
-        if (DeathSounds != null)
-        {
-            PlaySound(DeathSounds);
-        }
+        PlaySound(DeathSounds);
         _animator.SetFloat("Speed", 0);
         Health = 0;
         IsDead = true;
@@ -517,7 +503,8 @@ public class Enemy : BaseEntity, IAttackable
     }
 
     private void PlaySound(AudioClip[] clips)
-    {        
+    {
+        if (clips.Length == 0) return;
         if (clips.Length > 1)
         {
             int rand = Random.Range(0, clips.Length - 1);

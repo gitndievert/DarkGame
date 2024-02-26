@@ -35,6 +35,11 @@ public class PlayerInventory : BaseEntity
 
     public Weapon CurrentWeapon;
 
+    public int CurrentWeaponIndex
+    {
+        get {  return _currentWeaponIndex; }
+    }
+        
     private int _currentWeaponIndex;
     private Player _player;
     private const int _healRepeatLimit = 4;
