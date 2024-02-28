@@ -35,21 +35,17 @@ public class SceneSaver : MonoBehaviour
     public class LevelData
     {
         public string Level;
-        public SubPickupData[] SubPickupData;
-        public SubEnemyData[] SubEnemyData;
-        public ExistingEnemyData[] ExistingEnemyData;
+        public List<string> SavedPickupData;
+        public List<string> SavedEnemyData;
+        public List<ExistingEnemyData> ExistingEnemyData;
     }
 
-    [System.Serializable]
-    public class SubPickupData
-    {
-        public string ObjName;
-    }
 
     [System.Serializable]
-    public class SubEnemyData
+    public class AmmoData
     {
-        public string ObjName;
+        public string Ammo;
+        public int Amount;
     }
 
     [System.Serializable]
@@ -74,20 +70,16 @@ public class SceneSaver : MonoBehaviour
         public float Y_Rotation;
         public float Z_Rotation;
         //Inventory
-        //public Weapon[] Weapons;
-        //public Ammo[] Ammo;
+        public List<string> Weapons;
+        public List<AmmoData> Ammo;
         public int CurrentWeaponIndex;
     }
 
     public Transform EnemyCollection;
     public Transform PickupCollection;          
 
-    private readonly List<Enemy> _enemyCollection = new();
-    private readonly List<PickupAmmo> _pickupAmmoCollection = new();
-    private readonly List<PickupWeapon> _pickupWeaponCollection = new();
-    private readonly List<PickupHealth> _pickupHealthCollection = new();
-    private readonly List<PickupArmor> _pickupArmorCollection = new();
-    private readonly List<PickupPowerup> _pickupPowerupCollection = new();
+    private readonly List<string> _enemyCollection = new();
+    private readonly List<string> _pickupCollection = new();    
 
     private void Awake()
     {
@@ -102,41 +94,82 @@ public class SceneSaver : MonoBehaviour
     }
 
     public void SaveGame(string savename)
-    {
-        //General Data
-        var gameObjectData = CreateNewObjectData();
-        gameObjectData.SaveName = savename;
-        var dt = System.DateTime.Now;
-        gameObjectData.Date = dt.ToShortDateString();
-        gameObjectData.Time = dt.ToShortTimeString();
-        
-        //Player Data
-        Player player = GameManager.Instance.MyPlayer;
-        gameObjectData.PlayerData = new PlayerData
-        {
-            X_Position = player.transform.position.x,
-            Y_Position = player.transform.position.y,
-            Z_Position = player.transform.position.z,
-            X_Rotation = player.transform.rotation.x,
-            Y_Rotation = player.transform.rotation.y,
-            Z_Rotation = player.transform.rotation.z,
-            Health = player.Health,
-            CurrentWeaponIndex = player.PlayerInventory.CurrentWeaponIndex,
-            //Weapons = player.PlayerInventory.Weapons,
-            //Ammo = player.PlayerInventory.PlayerAmmo
-        };
-        gameObjectData.LevelData = new LevelData
-        {
-            Level = SceneSwapper.Instance.CurrentLoadedSceneName
-        };        
-        SaveGame(gameObjectData);        
+    {              
+        StartCoroutine(SaveRoutine(savename));        
     }
-
-    public void SaveGame(GameObjectData saveData)
-    {        
+       
+    private IEnumerator SaveRoutine(string savename)
+    {
         try
         {
-            string json = JsonConvert.SerializeObject(saveData);
+            //General Data
+            var gameObjectData = CreateNewObjectData();
+            gameObjectData.SaveName = savename;
+            var dt = System.DateTime.Now;
+            gameObjectData.Date = dt.ToShortDateString();
+            gameObjectData.Time = dt.ToShortTimeString();
+
+            //Player Data
+            Player player = GameManager.Instance.MyPlayer;
+            List<string> currentWeapons = new();
+            foreach (var weapon in player.PlayerInventory.Weapons)
+            {
+                if (!weapon.FoundPickup) continue;
+                currentWeapons.Add(weapon.WeaponType.ToString());
+            }
+            List<AmmoData> currentAmmo = new();
+            foreach(var ammo in player.PlayerInventory.PlayerAmmo)
+            {
+                currentAmmo.Add(new AmmoData
+                {
+                    Ammo = ammo.AmmoType.ToString(),
+                    Amount = ammo.Amount
+                });
+            }            
+            gameObjectData.PlayerData = new PlayerData
+            {
+                X_Position = player.transform.position.x,
+                Y_Position = player.transform.position.y,
+                Z_Position = player.transform.position.z,
+                X_Rotation = player.transform.rotation.x,
+                Y_Rotation = player.transform.rotation.y,
+                Z_Rotation = player.transform.rotation.z,
+                Health = player.Health,
+                CurrentWeaponIndex = player.PlayerInventory.CurrentWeaponIndex,
+                Weapons = currentWeapons,
+                Ammo = currentAmmo
+            };
+            /*List<ExistingEnemyData> eData = new();
+            foreach (Transform tEnemy in EnemyCollection)
+            {
+                eData.Add(new ExistingEnemyData
+                {
+                    ObjName = tEnemy.name,
+                    X_Position = tEnemy.transform.position.x,
+                    Y_Position = tEnemy.transform.position.y,
+                    Z_Position = tEnemy.transform.position.z,
+                    Health = tEnemy.GetComponent<Enemy>().Health              
+                });
+            }*/
+            List<string> currentEnemies = new();
+            foreach (Transform tEnemy in EnemyCollection)
+            {
+                currentEnemies.Add(tEnemy.gameObject.name);
+            }
+            List<string> currentPickups = new();
+            foreach (Transform tPickup in PickupCollection)
+            {
+                currentPickups.Add(tPickup.gameObject.name);
+            }
+            gameObjectData.LevelData = new LevelData
+            {
+                Level = SceneSwapper.Instance.CurrentLoadedSceneName,
+                SavedPickupData = currentPickups,
+                SavedEnemyData = currentEnemies
+                //ExistingEnemyData = eData
+            };
+
+            string json = JsonConvert.SerializeObject(gameObjectData);
             string path = FilePath;
             File.WriteAllText(path, json);
             Debug.Log("File written to: " + path);
@@ -145,11 +178,14 @@ public class SceneSaver : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError("Error writing file: " + e.Message);
-        }        
-    }    
+        }
+        
+        yield return null;
+
+    }
 
     //TODO: Okay so each level save need to be unique, so will need to put a unique id in there somewhere
-    public void LoadGame(int loadslot)
+    /*public void LoadGame(int loadslot)
     {        
         try
         {
@@ -163,7 +199,7 @@ public class SceneSaver : MonoBehaviour
         {
             Debug.LogError("Error loading file: " + e.Message);
         }
-    }
+    }*/
 
     private string FilePath => Path.Combine(Application.persistentDataPath, "savedata.json");
 
@@ -173,15 +209,27 @@ public class SceneSaver : MonoBehaviour
         if (EnemyCollection == null)
         {
             EnemyCollection = GameObject.Find("EnemyCollection").transform;            
-        }        
-        ClearEnemyCollection();
+        }
+        _enemyCollection.Clear();
         foreach (Transform tEnemy in EnemyCollection)
         {
-            _enemyCollection.Add(tEnemy.GetComponent<Enemy>());
+            _enemyCollection.Add(tEnemy.gameObject.name);
         }            
         
     }
-
+    
+    private void ProcessPickupCollection()
+    {
+        if (PickupCollection == null)
+        {
+            PickupCollection = GameObject.Find("PickupCollection").transform;
+        }
+        _pickupCollection.Clear();
+        foreach (Transform tPickup in PickupCollection)
+        {
+            _pickupCollection.Add(tPickup.gameObject.name);
+        }        
+    }
     private IEnumerator TextAlert(string text, float seconds)
     {
         UIManager.Instance.SecretText.text = text;
@@ -189,59 +237,4 @@ public class SceneSaver : MonoBehaviour
         UIManager.Instance.SecretText.text = "";
     }
 
-    private void ProcessPickupCollection()
-    {
-        if (PickupCollection == null)
-        {
-            PickupCollection = GameObject.Find("PickupCollection").transform;
-        }       
-        ClearPickupCollection();
-        foreach (Transform tPickup in PickupCollection)
-        {
-            tPickup.TryGetComponent(out PickupAmmo ammo);
-            if (ammo != null)
-            {
-                _pickupAmmoCollection.Add(ammo);
-                break;
-            }
-            tPickup.TryGetComponent(out PickupWeapon weapon);
-            if (weapon != null)
-            {
-                _pickupWeaponCollection.Add(weapon);
-                break;
-            }
-            tPickup.TryGetComponent(out PickupHealth health);
-            if (health != null)
-            {
-                _pickupHealthCollection.Add(health);
-                break;
-            }
-            tPickup.TryGetComponent(out PickupArmor armor);
-            if (armor != null)
-            {
-                _pickupArmorCollection.Add(armor);
-                break;
-            }
-            tPickup.TryGetComponent(out PickupPowerup powerup);
-            if (powerup != null)
-            {
-                _pickupPowerupCollection.Add(powerup);
-                break;
-            }
-        }        
-    }
-
-    private void ClearEnemyCollection()
-    {
-        _enemyCollection.Clear();
-    }
-
-    private void ClearPickupCollection()
-    {
-        _pickupAmmoCollection.Clear();
-        _pickupWeaponCollection.Clear();
-        _pickupHealthCollection.Clear();
-        _pickupArmorCollection.Clear();
-        _pickupPowerupCollection.Clear();
-    }
 }

@@ -82,8 +82,33 @@ public class UIManager : DSingle<UIManager>
     {
         if (Input.GetKeyDown(KeyCode.Escape))        
         {
-            MainMenu.SetActive(!MainMenu.activeSelf);
+            bool menuactive = !MainMenu.activeSelf;
+            MainMenu.SetActive(menuactive);
+            if(menuactive)
+            {
+                LockGame();
+            }
+            else
+            {
+                UnlockGame();
+            }
         }
+    }
+
+    public void LockGame()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
+        GameManager.Instance.GamePaused = true;
+    }
+
+    public void UnlockGame()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+        GameManager.Instance.GamePaused = false;
     }
 
 

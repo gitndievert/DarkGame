@@ -33,7 +33,7 @@ public class SceneSwapper : PSingle<SceneSwapper>
 
     [Tooltip("Currently Loaded Map")]
     public Map LoadedMap;
-
+    [HideInInspector]
     public SceneSaver SceneSaver;
 
     private List<Map> _campaign1 = null;

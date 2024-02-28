@@ -30,21 +30,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        if (gameObject.activeSelf) return;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        Time.timeScale = 0f;
-        GameManager.Instance.GamePaused = true;
-    }
-
-    private void OnDisable()
-    {
-        if (!gameObject.activeSelf) return;
-        DeActivateAllSubMenus(); 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        Time.timeScale = 1f;
-        GameManager.Instance.GamePaused = false;
+        DeActivateAllSubMenus();
     }
 
     public void ActivateMenu(string menuName)
@@ -67,6 +53,7 @@ public class MainMenu : MonoBehaviour
     public void CloseMenu()
     {
         DeActivateAllSubMenus();
+        UIManager.Instance.UnlockGame();
         gameObject.SetActive(false);
     }
 

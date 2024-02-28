@@ -23,6 +23,7 @@ public class DoorAnimated : BaseAction
 
     public float DoorDelay = 3f;
     public float DoorSpeed = 0.5f;
+    public float CloseSpeed = 0.2f;
     public bool StayOpen = false;
 
     private Animator _animator;
@@ -48,6 +49,8 @@ public class DoorAnimated : BaseAction
         }
         yield return new WaitForSeconds(DoorDelay);
         if (StayOpen) yield break;
+        //Close
+        _animator.SetFloat("speed", CloseSpeed);
         _animator.SetBool("activate", false);
         if (DoorCloseSound != null)
         {
