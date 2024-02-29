@@ -78,8 +78,9 @@ public class Enemy : BaseEntity, IAttackable
     [Header("Projectiles")]    
     public GameObject Projectile;
     public float FiringDistance = 30f;
-    public GameObject ProjectileFiringPoint;    
+    public GameObject ProjectileFiringPoint;
 
+    private float _actionDetectionRadius = 5f;
     private Player _player;
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
@@ -96,7 +97,8 @@ public class Enemy : BaseEntity, IAttackable
     private bool _idleSounds = false;
     private EnemyLootDrop _enemyLootDrop;
     private Collider[] _allColliders;
-    
+    private Collider[] _actionBuffer;
+
 
     protected virtual void Awake()
     {
@@ -201,6 +203,9 @@ public class Enemy : BaseEntity, IAttackable
         //Sync the audio volume
         _audioSource.volume = SoundManager.VolumeLevel;
 
+        //Action scans for doors
+        ActionScan();
+
     }
 
     protected void Wander()
@@ -218,6 +223,33 @@ public class Enemy : BaseEntity, IAttackable
         randDirection += origin;
         NavMesh.SamplePosition(randDirection, out NavMeshHit navHit, dist, layermask);
         return navHit.position;
+    }
+
+    protected void ActionScan()
+    {
+        //int actionLayer = LayerMask.NameToLayer(BaseItem.ACTION_TAG); MIGHT USE LAYERS LATER        
+        bool spaceHit = Input.GetKeyDown(KeyCode.Space);
+        int actions = Physics.OverlapSphereNonAlloc(transform.position, _actionDetectionRadius, _actionBuffer);
+        // Check for colliders within the specified radius around the player        
+        for (int i = 0; i < actions; i++)
+        {
+            if (_actionBuffer[i].gameObject.CompareTag(Tags.ACTION_TAG))
+            {
+                var action = _actionBuffer[i].gameObject.GetComponent<BaseAction>();
+                if (action.RequiresPlayerOpen)
+                {
+                    if (spaceHit && !action.SwitchOnly)
+                    {
+                        action.DoAction();
+                    }
+                }
+                else
+                {
+                    action.DoAction();
+                }                
+                break;
+            }
+        }
     }
 
     protected bool CanSeePlayer()
@@ -243,6 +275,7 @@ public class Enemy : BaseEntity, IAttackable
 
         return false;
     }
+
 
     private bool NearPlayer()
     {

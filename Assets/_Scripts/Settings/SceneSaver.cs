@@ -14,21 +14,24 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-using Newtonsoft.Json;
 using System.IO;
 using System.Collections;
 using System;
+using System.Runtime.Serialization.Formatters.Binary;
+
 
 public class SceneSaver : MonoBehaviour
 {
     [System.Serializable]
     public class GameObjectData
-    {        
+    {
+        public string Id;
         public string SaveName;
         public string Date;
         public string Time;
         public PlayerData PlayerData;
-        public LevelData LevelData;
+        public LevelData LevelData;        
+        public byte[] RawImage;
     }
 
     [System.Serializable]
@@ -36,26 +39,14 @@ public class SceneSaver : MonoBehaviour
     {
         public string Level;
         public List<string> SavedPickupData;
-        public List<string> SavedEnemyData;
-        public List<ExistingEnemyData> ExistingEnemyData;
+        public List<string> SavedEnemyData;        
     }
-
 
     [System.Serializable]
     public class AmmoData
     {
         public string Ammo;
         public int Amount;
-    }
-
-    [System.Serializable]
-    public class ExistingEnemyData
-    {
-        public string ObjName;
-        public float X_Position;
-        public float Y_Position;
-        public float Z_Position;
-        public int Health;
     }
 
     [System.Serializable]
@@ -102,12 +93,17 @@ public class SceneSaver : MonoBehaviour
     {
         try
         {
+            string saveId = Guid.NewGuid().ToString();
+
             //General Data
             var gameObjectData = CreateNewObjectData();
             gameObjectData.SaveName = savename;
             var dt = System.DateTime.Now;
             gameObjectData.Date = dt.ToShortDateString();
             gameObjectData.Time = dt.ToShortTimeString();
+            gameObjectData.Id = saveId;
+            var screenshot = ScreenCapture.CaptureScreenshotAsTexture();
+            gameObjectData.RawImage = screenshot.EncodeToPNG();
 
             //Player Data
             Player player = GameManager.Instance.MyPlayer;
@@ -138,19 +134,7 @@ public class SceneSaver : MonoBehaviour
                 CurrentWeaponIndex = player.PlayerInventory.CurrentWeaponIndex,
                 Weapons = currentWeapons,
                 Ammo = currentAmmo
-            };
-            /*List<ExistingEnemyData> eData = new();
-            foreach (Transform tEnemy in EnemyCollection)
-            {
-                eData.Add(new ExistingEnemyData
-                {
-                    ObjName = tEnemy.name,
-                    X_Position = tEnemy.transform.position.x,
-                    Y_Position = tEnemy.transform.position.y,
-                    Z_Position = tEnemy.transform.position.z,
-                    Health = tEnemy.GetComponent<Enemy>().Health              
-                });
-            }*/
+            };           
             List<string> currentEnemies = new();
             foreach (Transform tEnemy in EnemyCollection)
             {
@@ -165,13 +149,11 @@ public class SceneSaver : MonoBehaviour
             {
                 Level = SceneSwapper.Instance.CurrentLoadedSceneName,
                 SavedPickupData = currentPickups,
-                SavedEnemyData = currentEnemies
-                //ExistingEnemyData = eData
-            };
-
-            string json = JsonConvert.SerializeObject(gameObjectData);
-            string path = FilePath;
-            File.WriteAllText(path, json);
+                SavedEnemyData = currentEnemies              
+            };           
+                       
+            string path = GetSaveFilePath(saveId);
+            SerializeData(gameObjectData, path);            
             Debug.Log("File written to: " + path);
             StartCoroutine(TextAlert("Saved ...", 2f));
         }
@@ -184,24 +166,75 @@ public class SceneSaver : MonoBehaviour
 
     }
 
+    public string GetSaveFilePath(string saveId) => Path.Combine(Application.persistentDataPath, $"{saveId}.sav");
+    public string GetSaveImageFilePath(string saveId) => Path.Combine(Application.persistentDataPath, $"{saveId}.png");
+
+    public Texture2D GetImageFromSave(GameObjectData data)
+    {        
+        Texture2D deserializedTexture = new(2, 2);
+        deserializedTexture.LoadImage(data.RawImage);
+        return deserializedTexture;
+    }
+
+    public List<GameObjectData> ReturnSaveGames()
+    {
+        List<GameObjectData> data = new();
+        foreach (string filePath in Directory.GetFiles(Application.persistentDataPath, "*.sav"))
+        {
+            string saveId = Path.GetFileNameWithoutExtension(filePath);
+            //string image = GetSaveImageFilePath(saveId);
+            string gameData = GetSaveFilePath(saveId);
+            if (File.Exists(gameData))
+            {               
+                // Deserialize data
+                GameObjectData gameObjectData = DeserializeData<GameObjectData>(gameData);                
+                //Conver the texture into a RawImage.texture
+                data.Add(new GameObjectData
+                {
+                    RawImage = gameObjectData.RawImage,
+                    Id = gameObjectData.Id,
+                    Date = gameObjectData.Date,
+                    Time = gameObjectData.Time,
+                    SaveName= gameObjectData.SaveName                   
+                });                
+            }
+        }
+
+        return data;
+    }
+
     //TODO: Okay so each level save need to be unique, so will need to put a unique id in there somewhere
-    /*public void LoadGame(int loadslot)
+    public void LoadGame(string loadId)
     {        
         try
         {
-            string path = FilePath;
-            string json = File.ReadAllText(path);
-            var loadData = JsonConvert.DeserializeObject<GameObjectData>(json);
-            Debug.Log("File loaded: " + path);
-            StartCoroutine(TextAlert("Loading ...", 2f));
+            string path = Application.persistentDataPath;
+            GameObjectData gameObjectData = null;
+            foreach (string filePath in Directory.GetFiles(path, "*.sav"))
+            {
+                string file = Path.GetFileNameWithoutExtension(filePath);                
+                if (file == loadId)
+                {
+                    gameObjectData = DeserializeData<GameObjectData>(filePath);                    
+                    Debug.Log("File loaded: " + path);
+                    StartCoroutine(TextAlert("Loading ...", 2f));
+                    break;
+                }
+            }
+            if(gameObjectData != null)
+            {
+                var blah = gameObjectData;
+            }
+            else
+            {
+                Debug.LogError("ERROR: Could not load file " + loadId);
+            }            
         }
         catch(Exception e)
         {
             Debug.LogError("Error loading file: " + e.Message);
         }
-    }*/
-
-    private string FilePath => Path.Combine(Application.persistentDataPath, "savedata.json");
+    } 
 
     private void ProcessEnemyCollection()
     {
@@ -235,6 +268,31 @@ public class SceneSaver : MonoBehaviour
         UIManager.Instance.SecretText.text = text;
         yield return new WaitForSeconds(seconds);
         UIManager.Instance.SecretText.text = "";
+    }
+   
+    private void SerializeData<T>(T data, string filePath)
+    {
+        BinaryFormatter formatter = new();
+        FileStream stream = new(filePath, FileMode.Create);
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    private T DeserializeData<T>(string filePath)
+    {
+        if (File.Exists(filePath))
+        {
+            BinaryFormatter formatter = new();
+            FileStream stream = new(filePath, FileMode.Open);
+            T data = (T)formatter.Deserialize(stream);
+            stream.Close();
+            return data;
+        }
+        else
+        {
+            Debug.LogError("File not found: " + filePath);
+            return default(T);
+        }
     }
 
 }

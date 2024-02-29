@@ -15,20 +15,17 @@
 using Dark.Utility;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : DSingle<UIManager>
 {   
-    public Canvas Canvas;
+    public Canvas Canvas;    
 
     public TMP_Text HealthLabel;
     public TMP_Text ArmorLabel;
     public TMP_Text AmmoLabel;    
     public TMP_Text PowerupLabel;
     public TMP_Text LevelNameLabel;
-    public TMP_Text SecretText;
-
-    public GameObject MainMenu;
+    public TMP_Text SecretText;    
 
     public ScreenEffects ScreenEffects { get; private set; }    
 
@@ -42,11 +39,6 @@ public class UIManager : DSingle<UIManager>
 
     private void Start()
     {
-        if (MainMenu == null)
-            MainMenu = GameObject.Find("MainMenu");
-
-        MainMenu.SetActive(false);
-
         ScreenEffects = GetComponent<ScreenEffects>();             
         var labels = Canvas.GetComponentsInChildren<TMP_Text>();
         if (labels.Length > 0)
@@ -82,8 +74,8 @@ public class UIManager : DSingle<UIManager>
     {
         if (Input.GetKeyDown(KeyCode.Escape))        
         {
-            bool menuactive = !MainMenu.activeSelf;
-            MainMenu.SetActive(menuactive);
+            /*bool menuactive = !MainMenu.gameObject.activeSelf;
+            MainMenu.gameObject.SetActive(menuactive);
             if(menuactive)
             {
                 LockGame();
@@ -91,7 +83,7 @@ public class UIManager : DSingle<UIManager>
             else
             {
                 UnlockGame();
-            }
+            }*/
         }
     }
 
