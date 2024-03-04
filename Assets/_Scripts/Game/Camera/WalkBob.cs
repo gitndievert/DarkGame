@@ -25,6 +25,7 @@ public class WalkBob : MonoBehaviour
     private void Update()
     {
         if (GameManager.Instance.GamePaused) return;
+        if (GameManager.Instance.MyPlayer.IsFiringWweapon) return;
         float waveslice = 0.0f;
 
         if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0 && Mathf.Abs(Input.GetAxis("Vertical")) == 0)

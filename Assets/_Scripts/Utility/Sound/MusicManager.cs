@@ -15,13 +15,14 @@
 using UnityEngine;
 using Dark.Utility;
 using System.Collections;
+using UnityEditor;
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicManager : PSingle<MusicManager>
 {
+    //[MenuItem("EMM/Add/Main Menu Canvas  &#M", false)]
     public AudioClip[] MusicTracks;
-    public float MusicFadeDuration = 1.0f;
-    public float MaxSetVolume { get; set; }
+    public float MusicFadeDuration = 1.0f;    
 
     private AudioSource _audioSource;
 
@@ -29,10 +30,20 @@ public class MusicManager : PSingle<MusicManager>
     protected override void PAwake()
     {
         base.PAwake();
-        _audioSource = GetComponent<AudioSource>();
-        float storageVal = GameStorage.GetStorageFloat(AudioStorage.MusicVol);
-        _audioSource.volume = storageVal < 1f ? storageVal : 1f;
-    }    
+        _audioSource = GetComponent<AudioSource>();         
+    }
+
+    private void Start()
+    {
+        if (GameStorage.CheckExistingKey(AudioStorage.MusicVol))
+        {
+            Volume(GameStorage.GetStorageFloat(AudioStorage.MusicVol));
+        }
+        if (SceneSwapper.Instance.LoadedMap != null && SceneSwapper.Instance.LoadedMap.MapMusic != null)
+        {
+            StartMusic(SceneSwapper.Instance.LoadedMap.MapMusic);
+        }
+    }
 
     public void StartMusic(int trackIndex, bool loopmusic = true)
     {        
@@ -46,15 +57,13 @@ public class MusicManager : PSingle<MusicManager>
 
     public void Volume(float percent)
     {
+        percent = Mathf.Clamp01(percent);
         _audioSource.volume = percent;
-        MaxSetVolume = percent;
-        if(SceneSwapper.Instance.LoadedMap.MapMusic != null)
-            StartMusic(SceneSwapper.Instance.LoadedMap.MapMusic);
     }
 
     private IEnumerator FadeMusic(int trackIndex, bool loopmusic)
     {        
-        float startVolume = MaxSetVolume;        
+        float startVolume = _audioSource.volume;        
         
         while (_audioSource.volume > 0)
         {
@@ -75,7 +84,7 @@ public class MusicManager : PSingle<MusicManager>
 
     private IEnumerator FadeMusic(AudioClip track, bool loopmusic)
     {
-        float startVolume = MaxSetVolume;
+        float startVolume = _audioSource.volume;
         
         while (_audioSource.volume > 0)
         {

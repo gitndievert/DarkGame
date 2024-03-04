@@ -15,32 +15,44 @@
 using Dark.Utility;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : DSingle<UIManager>
 {   
-    public Canvas Canvas;    
+    public GameObject HUDCanvas;
+    public GameObject MainMenu;
 
+    [Header("Game GUI")]
     public TMP_Text HealthLabel;
     public TMP_Text ArmorLabel;
     public TMP_Text AmmoLabel;    
     public TMP_Text PowerupLabel;
     public TMP_Text LevelNameLabel;
-    public TMP_Text SecretText;    
+    public TMP_Text SecretText;
 
-    public ScreenEffects ScreenEffects { get; private set; }    
+    [Header("Menu Panels")]
+    public GameObject MainOptionsPanel;
+    public GameObject StartGameOptionsPanel;
+    public GameObject GamePanel;
+    public GameObject ControlsPanel;
+    public GameObject GfxPanel;
+    public GameObject LoadGamePanel;
+
+    public ScreenEffects ScreenEffects { get; private set; }  
 
     protected override void DAwake()
     {
-        if (Canvas == null)
+        if (HUDCanvas == null)
             throw new System.Exception("Missing canvas in this scene");
 
-        Canvas.gameObject.SetActive(true);        
+        HUDCanvas.SetActive(true);
+        MainMenu.SetActive(false);
     }
 
     private void Start()
     {
         ScreenEffects = GetComponent<ScreenEffects>();             
-        var labels = Canvas.GetComponentsInChildren<TMP_Text>();
+        var labels = HUDCanvas.GetComponentsInChildren<TMP_Text>();
         if (labels.Length > 0)
         {
             foreach (TMP_Text label in labels)
@@ -74,17 +86,77 @@ public class UIManager : DSingle<UIManager>
     {
         if (Input.GetKeyDown(KeyCode.Escape))        
         {
-            /*bool menuactive = !MainMenu.gameObject.activeSelf;
-            MainMenu.gameObject.SetActive(menuactive);
-            if(menuactive)
-            {
-                LockGame();
-            }
-            else
-            {
-                UnlockGame();
-            }*/
+            bool menuactive = !MainMenu.activeSelf;
+            DeActivateMainMenu(menuactive);
         }
+    }
+
+    public void CloseMainMenu()
+    {
+        DeActivateMainMenu(false);
+    }
+
+    public void CloseOptionsMenu()
+    {
+        DeActivateAllSubMenus();
+        StartGameOptionsPanel.SetActive(true);
+        MainOptionsPanel.SetActive(false);
+    }
+
+    public void TestMessage()
+    {
+        Debug.Log("Test Test test");
+    }
+
+    public void ActivateMenu(string menuName)
+    {
+        DeActivateAllSubMenus();
+        switch (menuName.ToLower())
+        {
+            case "mainoptionpanel":
+                MainOptionsPanel.SetActive(true);
+                break;
+            case "startgameoptionspanel":
+                StartGameOptionsPanel.SetActive(true);
+                break;
+            case "gamepanel":
+                GamePanel.SetActive(true);
+                break;
+            case "controlspanel":
+                ControlsPanel.SetActive(true);
+                break;
+            case "gfxpanel":
+                GfxPanel.SetActive(true);
+                break;
+            case "loadgamepanel":
+                LoadGamePanel.SetActive(true);
+                break;
+
+        }
+    }
+
+    private void DeActivateMainMenu(bool menuactive)
+    {
+        MainMenu.SetActive(menuactive);
+        StartGameOptionsPanel.SetActive(menuactive);
+        HUDCanvas.SetActive(!menuactive);
+        if (menuactive)
+        {
+            LockGame();
+        }
+        else
+        {
+            UnlockGame();
+        }
+    }    
+
+    private void DeActivateAllSubMenus()
+    {
+        StartGameOptionsPanel.SetActive(false);
+        GamePanel.SetActive(false);
+        ControlsPanel.SetActive(false);
+        GfxPanel.SetActive(false);
+        LoadGamePanel.SetActive(false);
     }
 
     public void LockGame()

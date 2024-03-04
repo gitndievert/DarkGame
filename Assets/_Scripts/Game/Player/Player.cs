@@ -37,6 +37,8 @@ public class Player : BaseEntity, IAttackable
 
     public Transform AttackTarget { get { return transform; } }
 
+    public bool IsFiringWweapon { get { return PlayerInventory.CurrentWeapon.IsFiring; } }
+
 
     public AudioClip[] TakingDamageSounds;
     public AudioClip[] DeathSounds;
