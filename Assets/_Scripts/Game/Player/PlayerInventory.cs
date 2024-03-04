@@ -71,7 +71,7 @@ public class PlayerInventory : BaseEntity
         _ammoIconImage = GameObject.Find("AmmoIcon").GetComponent<UnityEngine.UI.Image>();
         _ammoIconImage.enabled = false;
         UIManager.Instance.AmmoLabel.text = "";
-        UIManager.Instance.PowerupLabel.text = "";
+        UIManager.Instance.PowerupLabel.text = ""; 
         //Refresh UI Gunslots        
         LoadGunSlotManager();
         for (int i = 0; i < CountWeapons; i++)
@@ -84,6 +84,11 @@ public class PlayerInventory : BaseEntity
         if(CurrentWeapon != null)
         {
             GunSlotManager.SelectGunSlot(_currentWeaponIndex + 1);
+        }
+        //God Mode
+        if (_player.GodMode)
+        {
+            ActivateGodMode();
         }
     }
 
@@ -183,6 +188,26 @@ public class PlayerInventory : BaseEntity
         if (GunSlotManager == null)
         {
             GunSlotManager = FindFirstObjectByType<GunSlotManager>();
+        }
+    }
+
+    private void ActivateGodMode()
+    {
+        //Get All Weapons
+        for (int i = 0; i < CountWeapons; i++)
+        {
+            Weapon item = Weapons[i];
+            if (!item.gameObject.activeSelf)
+            {
+                item.FoundPickup = true;
+                item.WeaponSlot = i + 1;
+                GunSlotManager.ActivateGunSlot(item.WeaponSlot);
+            }
+        }
+        //Get All Ammo
+        foreach (Ammo item in PlayerAmmo)
+        {
+            item.Amount = item.AmmoType.GetAmmoLimit();
         }
     }
 

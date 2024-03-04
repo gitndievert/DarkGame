@@ -2363,6 +2363,7 @@ MonoBehaviour:
   Description: 
   Health: 60
   EnemyType: 0
+  TargetLimbs: 0
   MinAttackDamage: 15
   MaxAtackDamage: 20
   FieldOfView: 120
@@ -2385,7 +2386,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3a8d4d789e839a84cac268cfe83124e2, type: 3}
   - {fileID: 8300000, guid: a122b4ff209022a42845b00f7b5e507c, type: 3}
   BloodEffects:
-  - {fileID: 1000013355911406, guid: 532c8be46e6660e49a9e48ce60e82441, type: 3}
+  - {fileID: 2656253210798625995, guid: a78e9ef18b366424b84e0c7410d2fe72, type: 3}
+  - {fileID: 5865290276592450837, guid: 42a28376f729c864a81abf66add7a418, type: 3}
+  - {fileID: 4288107571095694937, guid: c3f8938673a07704e93ac52eee18f410, type: 3}
+  - {fileID: 1165703760847671896, guid: bb596cd440832554089a7125852e836f, type: 3}
+  - {fileID: 4152240900433254336, guid: 6d3629f845b40e24fb51d381e84bbc77, type: 3}
   IsDead: 0
   Projectile: {fileID: 0}
   FiringDistance: 0
@@ -2681,10 +2686,10 @@ MonoBehaviour:
       data:
         _goreSimulator: {fileID: 1103291250657827093}
         particleClasses:
-        - spawnType: 0
-          effect: {fileID: 0}
+        - spawnType: 1
+          effect: {fileID: 2656253210798625995, guid: a78e9ef18b366424b84e0c7410d2fe72, type: 3}
           particle: {fileID: 8011423754157429858, guid: efab0b442d4609f41adf28422d83fc4e, type: 3}
-          autoDespawn: 1
+          autoDespawn: 0
           autoDespawnTimer: 5
           positionExpl: 0
           maxPosition: 5

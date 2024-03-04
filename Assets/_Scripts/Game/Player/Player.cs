@@ -23,7 +23,9 @@ using PampelGames.GoreSimulator;
 [RequireComponent(typeof(PlayerInventory))]
 [RequireComponent(typeof(PlayerController))]
 public class Player : BaseEntity, IAttackable
-{   
+{
+    public bool GodMode = false;    
+    
     public int Health = 0;
     public int Armor = 0;
     public float CriticalStrikeChance = 0.15f;
@@ -54,7 +56,7 @@ public class Player : BaseEntity, IAttackable
         PlayerInventory = GetComponent<PlayerInventory>();
         PlayerController = GetComponent<PlayerController>();
         Health = InventoryLimits.MaxHealth;
-        Armor = InventoryLimits.MaxArmor;
+        Armor = InventoryLimits.MaxArmor;        
         gameObject.tag = Tags.PLAYER_TAG;
         DontDestroyOnLoad(gameObject);
         _entryPoint = Vector3.zero;
@@ -157,6 +159,7 @@ public class Player : BaseEntity, IAttackable
 
     public void TakeDamage(int amount) 
     {
+        if (GodMode) return;
         int calcDmg = amount;
         if(Armor > 0)
         {

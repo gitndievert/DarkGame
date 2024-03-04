@@ -1144,7 +1144,11 @@ MonoBehaviour:
   DeathSounds:
   - {fileID: 8300000, guid: 4249de8a4425e0646be64f4fdbe776a1, type: 3}
   BloodEffects:
-  - {fileID: 4090399532340782980, guid: 190e77813fb5df14086acfe63eb6d458, type: 3}
+  - {fileID: 2656253210798625995, guid: a78e9ef18b366424b84e0c7410d2fe72, type: 3}
+  - {fileID: 5865290276592450837, guid: 42a28376f729c864a81abf66add7a418, type: 3}
+  - {fileID: 4288107571095694937, guid: c3f8938673a07704e93ac52eee18f410, type: 3}
+  - {fileID: 1165703760847671896, guid: bb596cd440832554089a7125852e836f, type: 3}
+  - {fileID: 4152240900433254336, guid: 6d3629f845b40e24fb51d381e84bbc77, type: 3}
   IsDead: 0
   Projectile: {fileID: 0}
   FiringDistance: 30
@@ -1727,10 +1731,10 @@ MonoBehaviour:
       data:
         _goreSimulator: {fileID: 6156122238969553879}
         particleClasses:
-        - spawnType: 0
-          effect: {fileID: 0}
+        - spawnType: 1
+          effect: {fileID: 2656253210798625995, guid: a78e9ef18b366424b84e0c7410d2fe72, type: 3}
           particle: {fileID: 686832329092492159, guid: 50e706ce4d3bd6448842c164eb8a89bc, type: 3}
-          autoDespawn: 1
+          autoDespawn: 0
           autoDespawnTimer: 5
           positionExpl: 0
           maxPosition: 5
