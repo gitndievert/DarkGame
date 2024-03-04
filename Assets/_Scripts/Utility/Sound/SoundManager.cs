@@ -39,6 +39,10 @@ namespace Dark.Utility.Sound
             _audio2 = audioSources[1];
             _audio.playOnAwake = false;
             _audio2.playOnAwake = false;
+            if(GameStorage.CheckExistingKey(AudioStorage.SoundVol))
+            {
+               Volume(GameStorage.GetStorageFloat(AudioStorage.SoundVol));               
+            }
         }      
               
         public static void PlaySound(AudioClip clip, int channel = 1)

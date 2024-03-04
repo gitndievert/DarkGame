@@ -102,31 +102,9 @@ abstract public class Weapon : BaseEntity
     }
 
     protected virtual void Update()
-    {
-        // Check if the player is moving        
-        // Get input for horizontal and vertical movement
-        float moveX = -Input.GetAxis("Horizontal");
-        float moveY = -Input.GetAxis("Vertical");       
-
-        if (moveX != 0 || moveY != 0)
-        {
-            float calcSway = GameManager.Instance.MyPlayer.PlayerController.IsRunning ? SwayAmount * 2 : SwayAmount;
-            float offsetX = Mathf.Sin(Time.time * SwaySmoothness) * calcSway * moveX;
-            float offsetY = Mathf.Sin(Time.time * SwaySmoothness) * calcSway * moveY;
-            offsetX = offsetY != 0 ? offsetY : offsetX;            
-            Vector3 targetPosition = initialPosition + new Vector3(offsetX, 0f, 0f);
-            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * 10f);
-        }
-        else
-        {
-            //transform.localPosition = _initialPosition;
-            transform.localPosition = Vector3.Lerp(transform.localPosition, initialPosition, Time.deltaTime * RecoilSmoothness);
-        }
-
+    {   
         IsFiring = Input.GetMouseButton(LEFT_MOUSE) | Input.GetMouseButtonDown(LEFT_MOUSE);
-
-        //transform.localPosition = Vector3.Lerp(transform.localPosition, _initialPosition, Time.deltaTime * RecoilSmoothness);
-
+        if (!IsFiring) SwayWeapon();
     }
 
     protected virtual void OnEnable()
@@ -169,6 +147,29 @@ abstract public class Weapon : BaseEntity
     public virtual void PlaySecondaryFireSound()
     {
         SoundManager.PlaySound(SecondaryFireSound);
+    }
+
+    private void SwayWeapon()
+    {
+        // Check if the player is moving        
+        // Get input for horizontal and vertical movement
+        float moveX = -Input.GetAxis("Horizontal");
+        float moveY = -Input.GetAxis("Vertical");
+
+        if (moveX != 0 || moveY != 0)
+        {
+            float calcSway = GameManager.Instance.MyPlayer.PlayerController.IsRunning ? SwayAmount * 2 : SwayAmount;
+            float offsetX = Mathf.Sin(Time.time * SwaySmoothness) * calcSway * moveX;
+            float offsetY = Mathf.Sin(Time.time * SwaySmoothness) * calcSway * moveY;
+            offsetX = offsetY != 0 ? offsetY : offsetX;
+            Vector3 targetPosition = initialPosition + new Vector3(offsetX, 0f, 0f);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * 10f);
+        }
+        else
+        {
+            //transform.localPosition = _initialPosition;
+            transform.localPosition = Vector3.Lerp(transform.localPosition, initialPosition, Time.deltaTime * RecoilSmoothness);
+        }
     }
 
 }

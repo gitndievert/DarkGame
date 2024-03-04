@@ -35,9 +35,7 @@ public class Player : BaseEntity, IAttackable
     public float FallDistance = -25f;    
     public PlayerController PlayerController { get; private set; }
 
-    public Transform AttackTarget { get { return transform; } }
-
-    public bool IsFiringWweapon { get { return PlayerInventory.CurrentWeapon.IsFiring; } }
+    public Transform AttackTarget { get { return transform; } }    
 
 
     public AudioClip[] TakingDamageSounds;

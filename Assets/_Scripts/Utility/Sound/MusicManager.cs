@@ -22,7 +22,8 @@ public class MusicManager : PSingle<MusicManager>
 {
     //[MenuItem("EMM/Add/Main Menu Canvas  &#M", false)]
     public AudioClip[] MusicTracks;
-    public float MusicFadeDuration = 1.0f;    
+    public float MusicFadeDuration = 1.0f;
+    public float VolumeLevel { get; set; }
 
     private AudioSource _audioSource;
 
@@ -59,6 +60,7 @@ public class MusicManager : PSingle<MusicManager>
     {
         percent = Mathf.Clamp01(percent);
         _audioSource.volume = percent;
+        VolumeLevel = percent;
     }
 
     private IEnumerator FadeMusic(int trackIndex, bool loopmusic)

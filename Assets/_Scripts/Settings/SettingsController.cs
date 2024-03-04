@@ -25,41 +25,43 @@ public class SettingsController : MonoBehaviour
     public Slider BrightnessSlider;
 
     private void Start()
-    {   
-        if(!GameStorage.CheckExistingKey(AudioStorage.SoundVol))
-        {
-            SetSoundVolume(1f);
-        }
-        if (!GameStorage.CheckExistingKey(AudioStorage.MusicVol))
-        {
-            SetMusicVolume(1f);
-        }
-        if (!GameStorage.CheckExistingKey(VisualStorage.Brightness))
+    {
+        /*if (!GameStorage.CheckExistingKey(VisualStorage.Brightness))
         {
             SetBrightness(1f); //change value later
         }
         if (!GameStorage.CheckExistingKey(AudioStorage.MusicVol))
         {
             SetContrast(1f); //change value later
-        }
+        }*/
+
+        SoundVolumeSlider.value = SoundManager.VolumeLevel;
+        MusicVolumeSlider.value = MusicManager.Instance.VolumeLevel;
 
         SoundVolumeSlider.onValueChanged.AddListener(SetSoundVolume);
         MusicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
         ContrastSlider.onValueChanged.AddListener(SetContrast);
         BrightnessSlider.onValueChanged.AddListener(SetBrightness);
     }
-
-    private void Update()
+        
+    public void SetSoundVolume(float percentage)
     {
-        SoundManager.Volume(GameStorage.GetStorageFloat(AudioStorage.SoundVol));
-        MusicManager.Instance.Volume(GameStorage.GetStorageFloat(AudioStorage.MusicVol));       
+        GameStorage.SaveValue(AudioStorage.SoundVol, percentage);
+        SoundManager.Volume(percentage);
     }
-
-    #region UI Variables
-    public void SetSoundVolume(float percentage) => GameStorage.SaveValue(AudioStorage.SoundVol, percentage);
-    public void SetMusicVolume(float percentage) => GameStorage.SaveValue(AudioStorage.MusicVol, percentage);
-    public void SetBrightness(float percentage) => GameStorage.SaveValue(VisualStorage.Brightness, percentage);
-    public void SetContrast(float percentage) => GameStorage.SaveValue(VisualStorage.Contrast, percentage);
-    #endregion
+    public void SetMusicVolume(float percentage)
+    {
+        GameStorage.SaveValue(AudioStorage.MusicVol, percentage);
+        MusicManager.Instance.Volume(percentage);
+    }
+    public void SetBrightness(float percentage)
+    {
+        GameStorage.SaveValue(VisualStorage.Brightness, percentage);
+    }
+    public void SetContrast(float percentage)
+    {
+        GameStorage.SaveValue(VisualStorage.Contrast, percentage);
+    }
+    
 
 }

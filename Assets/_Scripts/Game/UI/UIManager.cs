@@ -94,6 +94,7 @@ public class UIManager : DSingle<UIManager>
     public void CloseMainMenu()
     {
         DeActivateMainMenu(false);
+        DeActivateAllSubMenus();
     }
 
     public void CloseOptionsMenu()
@@ -101,12 +102,7 @@ public class UIManager : DSingle<UIManager>
         DeActivateAllSubMenus();
         StartGameOptionsPanel.SetActive(true);
         MainOptionsPanel.SetActive(false);
-    }
-
-    public void TestMessage()
-    {
-        Debug.Log("Test Test test");
-    }
+    }    
 
     public void ActivateMenu(string menuName)
     {
@@ -142,11 +138,11 @@ public class UIManager : DSingle<UIManager>
         HUDCanvas.SetActive(!menuactive);
         if (menuactive)
         {
-            LockGame();
+            PauseGame();            
         }
         else
         {
-            UnlockGame();
+            UnPauseGame();
         }
     }    
 
@@ -159,7 +155,7 @@ public class UIManager : DSingle<UIManager>
         LoadGamePanel.SetActive(false);
     }
 
-    public void LockGame()
+    public static void PauseGame()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -167,7 +163,7 @@ public class UIManager : DSingle<UIManager>
         GameManager.Instance.GamePaused = true;
     }
 
-    public void UnlockGame()
+    public static void UnPauseGame()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
