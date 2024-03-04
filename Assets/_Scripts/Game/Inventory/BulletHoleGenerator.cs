@@ -59,6 +59,7 @@ public class BulletHoleGenerator : MonoBehaviour
                     if(BulletHolePrefab != null) 
                     {
                         GameObject hitPrefab = null;
+                        bool isBlood = false;
                         if (hit.transform.root.CompareTag(Tags.ENEMY_TAG))
                         {
                             if (hit.collider.TryGetComponent<IGoreObject>(out var goreObject))
@@ -68,6 +69,7 @@ public class BulletHoleGenerator : MonoBehaviour
                                 {
                                     int hitIndex = Random.Range(0, enemy.BloodEffects.Length - 1);
                                     hitPrefab = enemy.BloodEffects[hitIndex];
+                                    isBlood = true;
                                 }                                
                             }
                         }
@@ -82,8 +84,22 @@ public class BulletHoleGenerator : MonoBehaviour
 
                         if (hitPrefab != null)
                         {
-                            var hitEffect = Instantiate(hitPrefab, hit.point + hit.normal * FloatInfrontOfWall, Quaternion.LookRotation(hit.normal));
-                            Destroy(hitEffect, 1f);
+                            if(isBlood)
+                            {                                
+                                var direction = hit.normal;
+                                float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + 180;
+                                var hitEffect = Instantiate(hitPrefab, hit.point, Quaternion.Euler(0, angle + 90, 0));                                
+                                if (Physics.Raycast(new Vector3(10, 100, 10), Vector3.down, out RaycastHit gHit, 200f))
+                                {
+                                    float groundHeight = gHit.point.y;                                    
+                                    hitEffect.GetComponent<BFX_BloodSettings>().GroundHeight = groundHeight;
+                                }                                
+                            }
+                            else
+                            {
+                                var hitEffect = Instantiate(hitPrefab, hit.point + hit.normal * FloatInfrontOfWall, Quaternion.LookRotation(hit.normal));
+                                Destroy(hitEffect, 1f);
+                            }                            
                         }
                     }
                     break;
