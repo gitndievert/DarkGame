@@ -12,7 +12,6 @@
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
 
-using Dark.Utility.Sound;
 using UnityEngine;
 
 public class AcidShot : FiringWeapon

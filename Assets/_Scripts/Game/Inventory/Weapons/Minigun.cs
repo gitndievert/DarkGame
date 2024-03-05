@@ -12,11 +12,6 @@
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
 
-using Dark.Utility.Sound;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Minigun : FiringWeapon
 {
     public override WeaponType WeaponType => WeaponType.Minigun;

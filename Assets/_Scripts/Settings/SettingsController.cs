@@ -12,7 +12,6 @@
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
 
-using Dark.Utility.Sound;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +23,15 @@ public class SettingsController : MonoBehaviour
     public Slider ContrastSlider;
     public Slider BrightnessSlider;
 
+    private void Awake()
+    {
+        SoundVolumeSlider.onValueChanged.AddListener(SetSoundVolume);
+        MusicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
+        ContrastSlider.onValueChanged.AddListener(SetContrast);
+        BrightnessSlider.onValueChanged.AddListener(SetBrightness);
+    }
+
+
     private void Start()
     {
         /*if (!GameStorage.CheckExistingKey(VisualStorage.Brightness))
@@ -34,25 +42,17 @@ public class SettingsController : MonoBehaviour
         {
             SetContrast(1f); //change value later
         }*/
-
-        SoundVolumeSlider.value = SoundManager.VolumeLevel;
-        MusicVolumeSlider.value = MusicManager.Instance.VolumeLevel;
-
-        SoundVolumeSlider.onValueChanged.AddListener(SetSoundVolume);
-        MusicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
-        ContrastSlider.onValueChanged.AddListener(SetContrast);
-        BrightnessSlider.onValueChanged.AddListener(SetBrightness);
     }
-        
+
     public void SetSoundVolume(float percentage)
     {
-        GameStorage.SaveValue(AudioStorage.SoundVol, percentage);
         SoundManager.Volume(percentage);
+        GameStorage.SaveValue(AudioStorage.SoundVol, percentage);        
     }
     public void SetMusicVolume(float percentage)
     {
-        GameStorage.SaveValue(AudioStorage.MusicVol, percentage);
-        MusicManager.Instance.Volume(percentage);
+        MusicManager.Volume(percentage);
+        GameStorage.SaveValue(AudioStorage.MusicVol, percentage);        
     }
     public void SetBrightness(float percentage)
     {

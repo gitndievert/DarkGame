@@ -14,7 +14,7 @@
 
 using UnityEngine;
 
-public class GameStorage : MonoBehaviour
+public static class GameStorage
 {    
     /// <summary>
     /// Saves value to PlayerPrefs by type

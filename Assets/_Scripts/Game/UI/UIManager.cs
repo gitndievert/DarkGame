@@ -39,6 +39,7 @@ public class UIManager : DSingle<UIManager>
     public GameObject LoadGamePanel;
 
     public ScreenEffects ScreenEffects { get; private set; }  
+    public SettingsController SettingsController { get; private set; }
 
     protected override void DAwake()
     {
@@ -47,6 +48,7 @@ public class UIManager : DSingle<UIManager>
 
         HUDCanvas.SetActive(true);
         MainMenu.SetActive(false);
+        SettingsController = GetComponent<SettingsController>();
     }
 
     private void Start()
@@ -142,6 +144,7 @@ public class UIManager : DSingle<UIManager>
         }
         else
         {
+            CloseOptionsMenu();
             UnPauseGame();
         }
     }    

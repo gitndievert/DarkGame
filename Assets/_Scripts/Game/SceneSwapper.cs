@@ -60,15 +60,7 @@ public class SceneSwapper : PSingle<SceneSwapper>
             _campaign4 = Campaign4.GetComponentsInChildren<Map>().ToList();
         }
         SceneSaver = GetComponent<SceneSaver>();
-    }
-
-    private void Start()
-    {
-        if(IsMainMenu && MusicManager.Instance.MusicTracks != null)
-        {
-            MusicManager.Instance.StartMusic(0);
-        }
-    }
+    }   
 
     public void Save()
     {
@@ -110,7 +102,7 @@ public class SceneSwapper : PSingle<SceneSwapper>
             {
                 player.transform.position = Vector3.zero;
             }
-            MusicManager.Instance.StartMusic(LoadedMap.MapMusic);
+            MusicManager.StartMusic(LoadedMap.MapMusic);
             //Come back later
             /*if (DoFadeToScene && !IsMainMenu)
             {                

@@ -11,7 +11,6 @@
 // proprietary and are protected by trade secret and/or copyright law.
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
-using Dark.Utility.Sound;
 using GAP_LaserSystem;
 using UnityEngine;
 

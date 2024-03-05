@@ -14,7 +14,6 @@
 
 using UnityEngine;
 using Dark.Utility;
-using Dark.Utility.Sound;
 using Dark.Settings;
 using UnityEngine.SceneManagement;
 
@@ -27,10 +26,7 @@ public class GameManager : PSingle<GameManager>
 
     protected override void PAwake()
     {
-        base.PAwake();
-        var soundManager = new GameObject("SoundManager");
-        soundManager.AddComponent<SoundManager>();
-        soundManager.AddComponent<AudioSource>();
+        base.PAwake();       
         var player = Instantiate(CurrentPlayer);
         //Add spawn and save logic here       
         MyPlayer = player.GetComponent<Player>();

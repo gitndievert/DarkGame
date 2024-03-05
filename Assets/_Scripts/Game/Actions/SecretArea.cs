@@ -13,7 +13,6 @@
 // ********************************************************************
 
 using UnityEngine;
-using Dark.Utility.Sound;
 
 public class SecretArea : BaseAction
 {

@@ -13,78 +13,72 @@
 // ********************************************************************
 
 using UnityEngine;
-using Dark.Utility;
 using System.Collections;
-using UnityEditor;
 
 [RequireComponent(typeof(AudioSource))]
-public class MusicManager : PSingle<MusicManager>
+public class MusicManager : MonoBehaviour
 {
-    //[MenuItem("EMM/Add/Main Menu Canvas  &#M", false)]
-    public AudioClip[] MusicTracks;
-    public float MusicFadeDuration = 1.0f;
-    public float VolumeLevel { get; set; }
+    //[MenuItem("EMM/Add/Main Menu Canvas  &#M", false)]    
+    public static float MusicFadeDuration = 1.0f;    
 
-    private AudioSource _audioSource;
+    private static AudioSource _audioSource;
+    private static MusicManager _instance;
+    
+    public static MusicManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<MusicManager>();
+                if (_instance == null)
+                {
+                    GameObject obj = new GameObject();
+                    obj.name = typeof(MusicManager).Name;
+                    _instance = obj.AddComponent<MusicManager>();
+                }
+            }
+            return _instance;
+        }
+    }
 
     // Start is called before the first frame update
-    protected override void PAwake()
-    {
-        base.PAwake();
-        _audioSource = GetComponent<AudioSource>();         
+    private void Awake()
+    {        
+        _audioSource = GetComponent<AudioSource>();        
     }
 
     private void Start()
     {
+        //Preset Music Value
         if (GameStorage.CheckExistingKey(AudioStorage.MusicVol))
         {
-            Volume(GameStorage.GetStorageFloat(AudioStorage.MusicVol));
+            float savedVol = GameStorage.GetStorageFloat(AudioStorage.MusicVol);
+            UIManager.Instance.SettingsController.MusicVolumeSlider.value = savedVol;
         }
+
         if (SceneSwapper.Instance.LoadedMap != null && SceneSwapper.Instance.LoadedMap.MapMusic != null)
         {
             StartMusic(SceneSwapper.Instance.LoadedMap.MapMusic);
         }
-    }
-
-    public void StartMusic(int trackIndex, bool loopmusic = true)
+        else if(_audioSource.clip != null)
+        {
+            StartMusic(_audioSource.clip);
+        }
+    }    
+   
+    public static void StartMusic(AudioClip track, bool loopmusic = true)
     {        
-        StartCoroutine(FadeMusic(trackIndex, loopmusic));
+        Instance.StartCoroutine(FadeMusic(track, loopmusic));
     }
 
-    public void StartMusic(AudioClip track, bool loopmusic = true)
-    {        
-        StartCoroutine(FadeMusic(track, loopmusic));
-    }
-
-    public void Volume(float percent)
+    public static void Volume(float percent)
     {
         percent = Mathf.Clamp01(percent);
         _audioSource.volume = percent;
-        VolumeLevel = percent;
-    }
+    }    
 
-    private IEnumerator FadeMusic(int trackIndex, bool loopmusic)
-    {        
-        float startVolume = _audioSource.volume;        
-        
-        while (_audioSource.volume > 0)
-        {
-            _audioSource.volume -= startVolume * Time.deltaTime / MusicFadeDuration;
-            yield return null;
-        }
-                
-        _audioSource.clip = MusicTracks[trackIndex];
-        _audioSource.loop = loopmusic;
-        _audioSource.Play();
-        
-        while (_audioSource.volume < startVolume)
-        {
-            _audioSource.volume += startVolume * Time.deltaTime / MusicFadeDuration;
-            yield return null;
-        }
-    }
-
-    private IEnumerator FadeMusic(AudioClip track, bool loopmusic)
+    private static IEnumerator FadeMusic(AudioClip track, bool loopmusic)
     {
         float startVolume = _audioSource.volume;
         
@@ -105,7 +99,7 @@ public class MusicManager : PSingle<MusicManager>
         }
     }
 
-    public void StopMusic()
+    public static void StopMusic()
     {
         _audioSource.Stop();
     }    

@@ -13,8 +13,6 @@
 // ********************************************************************
 
 using UnityEngine;
-using Dark.Utility.Sound;
-using System.ComponentModel;
 
 public enum WeaponType
 {    

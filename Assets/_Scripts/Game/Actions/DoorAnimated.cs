@@ -14,7 +14,6 @@
 
 using UnityEngine;
 using System.Collections;
-using Dark.Utility.Sound;
 
 public class DoorAnimated : BaseAction
 {
