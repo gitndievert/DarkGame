@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GamePaused: 0
-  CurrentPlayer: {fileID: 4085209783222569685, guid: 2350c147420f68746a35142a26cbb154, type: 3}
+  CurrentPlayer: {fileID: 4085209783222569685, guid: 12b05717a878fad4eba256f715f14ff1, type: 3}
   MyPlayer: {fileID: 0}

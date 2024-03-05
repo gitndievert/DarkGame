@@ -72,11 +72,14 @@ public class SceneSaver : MonoBehaviour
     private readonly List<string> _enemyCollection = new();
     private readonly List<string> _pickupCollection = new();    
 
-    private void Awake()
+    private void Start()
     {
         //Initialize Collections for level
-        ProcessEnemyCollection();
-        ProcessPickupCollection();
+        if (!SceneSwapper.Instance.IsMainMenu)
+        {
+            ProcessEnemyCollection();
+            ProcessPickupCollection();
+        }
     }
 
     public GameObjectData CreateNewObjectData()

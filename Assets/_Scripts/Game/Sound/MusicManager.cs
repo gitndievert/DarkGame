@@ -14,49 +14,25 @@
 
 using UnityEngine;
 using System.Collections;
+using Dark.Utility;
 
 [RequireComponent(typeof(AudioSource))]
-public class MusicManager : MonoBehaviour
+public class MusicManager : PSingle<MusicManager>
 {
     //[MenuItem("EMM/Add/Main Menu Canvas  &#M", false)]    
     public static float MusicFadeDuration = 1.0f;    
 
     private static AudioSource _audioSource;
-    private static MusicManager _instance;
     
-    public static MusicManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<MusicManager>();
-                if (_instance == null)
-                {
-                    GameObject obj = new GameObject();
-                    obj.name = typeof(MusicManager).Name;
-                    _instance = obj.AddComponent<MusicManager>();
-                }
-            }
-            return _instance;
-        }
-    }
 
     // Start is called before the first frame update
-    private void Awake()
+    protected override void PAwake()
     {        
-        _audioSource = GetComponent<AudioSource>();        
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
-        //Preset Music Value
-        if (GameStorage.CheckExistingKey(AudioStorage.MusicVol))
-        {
-            float savedVol = GameStorage.GetStorageFloat(AudioStorage.MusicVol);
-            UIManager.Instance.SettingsController.MusicVolumeSlider.value = savedVol;
-        }
-
         if (SceneSwapper.Instance.LoadedMap != null && SceneSwapper.Instance.LoadedMap.MapMusic != null)
         {
             StartMusic(SceneSwapper.Instance.LoadedMap.MapMusic);

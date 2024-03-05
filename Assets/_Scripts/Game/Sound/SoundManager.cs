@@ -14,10 +14,10 @@
 
 using UnityEngine;
 using System.Collections;
-
+using Dark.Utility;
 
 [RequireComponent(typeof(AudioSource))]
-public class SoundManager : MonoBehaviour
+public class SoundManager : PSingle<SoundManager>
 {
     private static AudioSource _audio;
     private static AudioSource _audio2;
@@ -28,27 +28,8 @@ public class SoundManager : MonoBehaviour
     }
 
     public static float VolumeLevel { get; set; }
-
-    private static SoundManager _instance;
-
-    public static SoundManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<SoundManager>();
-                if (_instance == null)
-                {
-                    GameObject obj = new GameObject();
-                    obj.name = typeof(SoundManager).Name;
-                    _instance = obj.AddComponent<SoundManager>();
-                }
-            }
-            return _instance;
-        }
-    }
-    private void Awake()
+   
+    protected override void PAwake()
     {
         var audioSources = GetComponents<AudioSource>();
         if (audioSources.Length != 2)
@@ -57,16 +38,6 @@ public class SoundManager : MonoBehaviour
         _audio2 = audioSources[1];
         _audio.playOnAwake = false;
         _audio2.playOnAwake = false;
-    }
-
-    private void Start()
-    {
-        //Load preset values
-        if (GameStorage.CheckExistingKey(AudioStorage.SoundVol))
-        {
-            float savedVol = GameStorage.GetStorageFloat(AudioStorage.SoundVol);
-            UIManager.Instance.SettingsController.SoundVolumeSlider.value = savedVol;
-        }
     }
 
     public static void PlaySound(AudioClip clip, int channel = 1)

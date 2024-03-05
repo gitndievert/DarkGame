@@ -42,6 +42,19 @@ public class SettingsController : MonoBehaviour
         {
             SetContrast(1f); //change value later
         }*/
+        //Load preset values
+        if (GameStorage.CheckExistingKey(AudioStorage.SoundVol))
+        {
+            float savedVol = GameStorage.GetStorageFloat(AudioStorage.SoundVol);
+            SoundVolumeSlider.value = savedVol;
+        }
+        //Preset Music Value
+        if (GameStorage.CheckExistingKey(AudioStorage.MusicVol))
+        {
+            float savedVol = GameStorage.GetStorageFloat(AudioStorage.MusicVol);
+            MusicVolumeSlider.value = savedVol;
+        }        
+
     }
 
     public void SetSoundVolume(float percentage)
