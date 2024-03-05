@@ -64,7 +64,7 @@ public class SoundManager : PSingle<SoundManager>
 
     public static void PlaySoundWithDelay(AudioClip[] clips, float delaySec, int channel = 1)
     {
-        int rand = Random.Range(0, clips.Length);
+        int rand = Random.Range(0, clips.Length - 1);
         PlaySoundWithDelay(clips[rand], delaySec, channel);
     }
 
