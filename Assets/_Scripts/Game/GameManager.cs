@@ -50,10 +50,15 @@ public class GameManager : PSingle<GameManager>
         }*/
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            Application.Quit();
+            QuitGame();
         }
     }
-    
 
-    
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+
+
 }

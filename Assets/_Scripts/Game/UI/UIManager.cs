@@ -22,7 +22,7 @@ public class UIManager : DSingle<UIManager>
     public GameObject HUDCanvas;
     public GameObject MainMenu;
 
-    [Header("Game GUI")]
+    [Header("Game HUD")]
     public TMP_Text HealthLabel;
     public TMP_Text ArmorLabel;
     public TMP_Text AmmoLabel;    
@@ -37,6 +37,7 @@ public class UIManager : DSingle<UIManager>
     public GameObject ControlsPanel;
     public GameObject GfxPanel;
     public GameObject LoadGamePanel;
+    public GameObject SaveGamePanel;
 
     public ScreenEffects ScreenEffects { get; private set; }  
     public SettingsController SettingsController { get; private set; }
@@ -129,8 +130,16 @@ public class UIManager : DSingle<UIManager>
             case "loadgamepanel":
                 LoadGamePanel.SetActive(true);
                 break;
+            case "savegamepanel":
+                SaveGamePanel.SetActive(true);
+                break;
 
         }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     private void DeActivateMainMenu(bool menuactive)
@@ -156,6 +165,7 @@ public class UIManager : DSingle<UIManager>
         ControlsPanel.SetActive(false);
         GfxPanel.SetActive(false);
         LoadGamePanel.SetActive(false);
+        SaveGamePanel.SetActive(false);
     }
 
     public static void PauseGame()

@@ -81,11 +81,11 @@ MonoBehaviour:
   SecondaryFireSound: {fileID: 0}
   PrimaryFireDamage: 10
   SecondaryFireDamage: 0
-  RecoilForce: 0.2
+  RecoilForce: 0.1
   RecoilSmoothness: 6
   SwayAmount: 0.02
   SwaySmoothness: 4
-  ShakeIntensity: 5
+  ShakeIntensity: 2.5
   ShakeDuration: 0.2
   DisplayCrossHairs: 1
   DisableDefaultFireAnimation: 0

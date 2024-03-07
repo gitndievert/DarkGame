@@ -91,6 +91,13 @@ public class SceneSaver : MonoBehaviour
     {              
         StartCoroutine(SaveRoutine(savename));        
     }
+
+    public void QuickSave()
+    {
+        var dt = DateTime.Now;
+        string saveName = "QuickSave " + dt.ToShortTimeString();
+        StartCoroutine(SaveRoutine(saveName));
+    }
        
     private IEnumerator SaveRoutine(string savename)
     {
@@ -100,8 +107,8 @@ public class SceneSaver : MonoBehaviour
 
             //General Data
             var gameObjectData = CreateNewObjectData();
-            gameObjectData.SaveName = savename;
-            var dt = System.DateTime.Now;
+            gameObjectData.SaveName = savename.Trim();
+            var dt = DateTime.Now;
             gameObjectData.Date = dt.ToShortDateString();
             gameObjectData.Time = dt.ToShortTimeString();
             gameObjectData.Id = saveId;
