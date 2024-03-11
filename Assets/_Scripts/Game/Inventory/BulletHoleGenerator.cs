@@ -32,8 +32,7 @@ public class BulletHoleGenerator : MonoBehaviour
         _playerCamera = Camera.main;
     }
 
-
-    public void Generate(WeaponFireType fireType,WeaponType weaponType)
+    public void Generate(WeaponFireType fireType,WeaponType weaponType, float spreadDistance = 0f)
     {
         if (weaponType == WeaponType.SynthathBlade) return;
 
@@ -60,6 +59,17 @@ public class BulletHoleGenerator : MonoBehaviour
                     {
                         GameObject hitPrefab = null;
                         bool isBlood = false;
+                        bool hasSpread = spreadDistance > 0;
+
+                        Vector3[] randomOffset = new Vector3[6];
+                        if (hasSpread)
+                        {
+                            for (int i = 0; i < 6; i++)
+                            {
+                                randomOffset[i] = RandomOffset(spreadDistance);
+                            }
+                        }
+
                         if (hit.transform.root.CompareTag(Tags.ENEMY_TAG))
                         {
                             if (hit.collider.TryGetComponent<IGoreObject>(out var goreObject))
@@ -77,8 +87,15 @@ public class BulletHoleGenerator : MonoBehaviour
                         {
                             hitPrefab = BulletHolePrefab;
                             if (WallContactPrefab != null)
-                            {                                
+                            {   
                                 Instantiate(WallContactPrefab, hit.point + hit.normal * (FloatInfrontOfWall + 0.1f), Quaternion.LookRotation(hit.normal));
+                                if(hasSpread)
+                                {
+                                    foreach (Vector3 offset in randomOffset)
+                                    {
+                                        Instantiate(WallContactPrefab, hit.point + hit.normal * (FloatInfrontOfWall + 0.1f) + offset, Quaternion.LookRotation(hit.normal));
+                                    }
+                                }
                             }
                         }
 
@@ -88,17 +105,37 @@ public class BulletHoleGenerator : MonoBehaviour
                             {                                
                                 var direction = hit.normal;
                                 float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + 180;
-                                var hitEffect = Instantiate(hitPrefab, hit.point, Quaternion.Euler(0, angle + 90, 0));                                
+                                var hitEffect = Instantiate(hitPrefab, hit.point, Quaternion.Euler(0, angle + 90, 0));  
                                 if (Physics.Raycast(new Vector3(10, 100, 10), Vector3.down, out RaycastHit gHit, 200f))
                                 {
-                                    float groundHeight = gHit.point.y;                                    
+                                    float groundHeight = gHit.point.y;
+                                    hitEffect.GetComponent<BFX_BloodSettings>().AnimationSpeed = 10f;
                                     hitEffect.GetComponent<BFX_BloodSettings>().GroundHeight = groundHeight;
-                                }                                
+                                }
+                                if(hasSpread)
+                                {
+                                    foreach(Vector3 offset in randomOffset)
+                                    {
+                                        var rHitEffect = Instantiate(hitPrefab, hit.point + offset, Quaternion.Euler(0, angle + 90, 0));
+                                        if (Physics.Raycast(new Vector3(10, 100, 10), Vector3.down, out RaycastHit rgHit, 200f))
+                                        {
+                                            float groundHeight = rgHit.point.y;
+                                            hitEffect.GetComponent<BFX_BloodSettings>().AnimationSpeed = 10f;
+                                            rHitEffect.GetComponent<BFX_BloodSettings>().GroundHeight = groundHeight;
+                                        }
+                                    }
+                                }
+
                             }
                             else
-                            {
+                            {                                
                                 var hitEffect = Instantiate(hitPrefab, hit.point + hit.normal * FloatInfrontOfWall, Quaternion.LookRotation(hit.normal));
                                 Destroy(hitEffect, 1f);
+                                foreach(Vector3 offset in randomOffset)
+                                {
+                                    var rHitEffect = Instantiate(hitPrefab, hit.point + hit.normal * FloatInfrontOfWall + offset, Quaternion.LookRotation(hit.normal));
+                                    Destroy(rHitEffect, 1f);
+                                }
                             }                            
                         }
                     }
@@ -108,5 +145,12 @@ public class BulletHoleGenerator : MonoBehaviour
             }           
 
         }
+    }
+
+    private Vector3 RandomOffset(float spreadDistance)
+    {
+        return new Vector3(Random.Range(-spreadDistance, spreadDistance),
+                                Random.Range(-spreadDistance, spreadDistance),
+                                Random.Range(-spreadDistance, spreadDistance));
     }
 }

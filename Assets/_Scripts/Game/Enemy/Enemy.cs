@@ -406,7 +406,16 @@ public class Enemy : BaseEntity, IAttackable
                 Dead();
                 return;
             }
+            
             PlaySound(PainSounds);
+
+            //Random change to play hit animation
+            int randomHit = Random.Range(0, 100);
+            if(randomHit > 25 && randomHit <= 75)
+            {
+                _animator.Play("Hit");
+            }
+
             Health -= amount;
             Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");
             _isAggro = true;           
@@ -462,7 +471,15 @@ public class Enemy : BaseEntity, IAttackable
                 _gibPool.Add(gib);
             }
             
-            PlaySound(PainSounds);            
+            PlaySound(PainSounds);
+
+            //Random change to play hit animation
+            int randomHit = Random.Range(0, 100);
+            if (randomHit > 25 && randomHit <= 75)
+            {
+                _animator.Play("Hit");
+            }
+
             Health -= amount;
             _isAggro = true;
             Debug.Log($"A {Name} took {amount} damage and is at {Health} Health!");

@@ -18,6 +18,9 @@ using System.IO;
 using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 
 public class SceneSaver : MonoBehaviour
@@ -38,8 +41,8 @@ public class SceneSaver : MonoBehaviour
     public class LevelData
     {
         public string Level;
-        public List<string> SavedPickupData;
-        public List<string> SavedEnemyData;        
+        public List<PickupSceneData> SavedPickupData;
+        public List<EnemySceneData> SavedEnemyData;        
     }
 
     [System.Serializable]
@@ -47,6 +50,24 @@ public class SceneSaver : MonoBehaviour
     {
         public string Ammo;
         public int Amount;
+    }
+
+    [System.Serializable]
+    public class EnemySceneData
+    {
+        public string EnemyType;
+        public float X_Position;
+        public float Y_Position;
+        public float Z_Position;
+    }
+
+    [System.Serializable]
+    public class PickupSceneData
+    {
+        public string PickupType;
+        public float X_Position;
+        public float Y_Position;
+        public float Z_Position;
     }
 
     [System.Serializable]
@@ -145,15 +166,29 @@ public class SceneSaver : MonoBehaviour
                 Weapons = currentWeapons,
                 Ammo = currentAmmo
             };           
-            List<string> currentEnemies = new();
+            List<EnemySceneData> currentEnemies = new();
             foreach (Transform tEnemy in EnemyCollection)
             {
-                currentEnemies.Add(tEnemy.gameObject.name);
+                var enemy = tEnemy.GetComponent<Enemy>();
+                currentEnemies.Add(new EnemySceneData
+                {
+                    EnemyType = enemy.EnemyType.ToString(),
+                    X_Position = transform.position.x,
+                    Y_Position = transform.position.y,
+                    Z_Position = transform.position.z
+                });
             }
-            List<string> currentPickups = new();
+            List<PickupSceneData> currentPickups = new();
             foreach (Transform tPickup in PickupCollection)
             {
-                currentPickups.Add(tPickup.gameObject.name);
+                var pickup = tPickup.GetComponent<IPickupable>();
+                currentPickups.Add(new PickupSceneData
+                {
+                    PickupType = pickup.GetType().ToString(),
+                    X_Position = transform.position.x,
+                    Y_Position = transform.position.y,
+                    Z_Position = transform.position.z
+                });
             }
             gameObjectData.LevelData = new LevelData
             {
@@ -205,7 +240,7 @@ public class SceneSaver : MonoBehaviour
                     Id = gameObjectData.Id,
                     Date = gameObjectData.Date,
                     Time = gameObjectData.Time,
-                    SaveName= gameObjectData.SaveName                   
+                    SaveName = gameObjectData.SaveName                   
                 });                
             }
         }
@@ -225,20 +260,23 @@ public class SceneSaver : MonoBehaviour
                 string file = Path.GetFileNameWithoutExtension(filePath);                
                 if (file == loadId)
                 {
-                    gameObjectData = DeserializeData<GameObjectData>(filePath);                    
+                    SceneManager.LoadSceneAsync(gameObjectData.LevelData.Level);
+                    
+                    gameObjectData = DeserializeData<GameObjectData>(filePath);
+                    var player = GameManager.Instance.MyPlayer;
+                    player.Health = gameObjectData.PlayerData.Health;
+                    player.Armor = gameObjectData.PlayerData.Armor;
+                    player.transform.position = new Vector3(gameObjectData.PlayerData.X_Position,
+                        gameObjectData.PlayerData.Y_Position,
+                        gameObjectData.PlayerData.Z_Position);
+
+
                     Debug.Log("File loaded: " + path);
                     StartCoroutine(TextAlert("Loading ...", 2f));
                     break;
                 }
             }
-            if(gameObjectData != null)
-            {
-                var blah = gameObjectData;
-            }
-            else
-            {
-                Debug.LogError("ERROR: Could not load file " + loadId);
-            }            
+            
         }
         catch(Exception e)
         {

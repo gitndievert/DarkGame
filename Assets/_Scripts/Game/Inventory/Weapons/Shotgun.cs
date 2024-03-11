@@ -14,6 +14,7 @@
 
 public class Shotgun : FiringWeapon
 {
+    const float SPREAD_DISTANCE = 3f;
     public override WeaponType WeaponType => WeaponType.Shotgun;
     public override AmmoType AmmoType => AmmoType.Shell;
 
@@ -22,7 +23,11 @@ public class Shotgun : FiringWeapon
 
     public override void PrimaryAttack()
     {
-        base.PrimaryAttack();
+        PlayPrimaryFireSound();
+        DoMuzzleFlash();
+        if (!DisableDefaultFireAnimation) Recoil();
+        CamShake.Instance.Shake(ShakeIntensity, ShakeDuration);
+        bulletHoleGenerator.Generate(WeaponFireType.Primary, WeaponType, SPREAD_DISTANCE);
         animator.Play("Cock");
     }
 

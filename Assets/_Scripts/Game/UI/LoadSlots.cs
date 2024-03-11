@@ -28,15 +28,20 @@ public class LoadSlots : MonoBehaviour
         RefreshList();
     }
 
+    public void OnEnable()
+    {
+        RefreshList();
+    }
+
     public void RefreshList()
     {
         ClearList();
         var savedGames = SceneSwapper.Instance.SceneSaver.ReturnSaveGames();
         if(savedGames.Count > 0)
         {
-            int selectIndex = savedGames.Count > MAX_LOAD_SLOTS ? 6 : savedGames.Count;
+            int selectIndex = LoadSlotList.Length > MAX_LOAD_SLOTS ? 6 : LoadSlotList.Length;
             var lastSaved = savedGames.OrderBy(game => game.Date)
-                .OrderBy(game => game.Time).Take(selectIndex).ToArray();
+                .OrderByDescending(game => game.Time).Take(selectIndex).ToArray();
 
             for(int i = 0; i < LoadSlotList.Length; i++)
             {

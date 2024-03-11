@@ -21,4 +21,26 @@ public class LoadSlotItem : MonoBehaviour
     public RawImage Image;
     public Text DateTimeStamp;
     public Text SaveName;
+
+    private Button _button;
+
+    private void Start()
+    {
+        _button = GetComponentInChildren<Button>();
+        _button.onClick.AddListener(LoadMap);
+    }
+
+    public void Refresh()
+    {
+        if (_button != null)
+        {
+            _button.onClick.RemoveAllListeners();
+            _button.onClick.AddListener(LoadMap);
+        }
+    }
+
+    public void LoadMap()
+    {
+        SceneSwapper.Instance.SceneSaver.LoadGame(Id.text);
+    }
 }

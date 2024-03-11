@@ -15,9 +15,6 @@
 public class Shattercaster : FiringWeapon
 {
     public override WeaponType WeaponType => WeaponType.Shattercaster;
-    public override AmmoType AmmoType => AmmoType.Rocket;    
-
-
-    //Any special properties here
+    public override AmmoType AmmoType => AmmoType.Rocket;        
 
 }
