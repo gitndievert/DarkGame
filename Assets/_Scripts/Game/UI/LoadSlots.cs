@@ -43,7 +43,7 @@ public class LoadSlots : MonoBehaviour
             var lastSaved = savedGames.OrderBy(game => game.Date)
                 .OrderByDescending(game => game.Time).Take(selectIndex).ToArray();
 
-            for(int i = 0; i < LoadSlotList.Length; i++)
+            for(int i = 0; i < lastSaved.Length; i++)
             {
                 var slot = LoadSlotList[i];
                 slot.gameObject.SetActive(true);

@@ -259,16 +259,21 @@ public class SceneSaver : MonoBehaviour
             {
                 string file = Path.GetFileNameWithoutExtension(filePath);                
                 if (file == loadId)
-                {
-                    SceneManager.LoadSceneAsync(gameObjectData.LevelData.Level);
-                    
+                {   
                     gameObjectData = DeserializeData<GameObjectData>(filePath);
+                    SceneManager.LoadSceneAsync(gameObjectData.LevelData.Level);
                     var player = GameManager.Instance.MyPlayer;
                     player.Health = gameObjectData.PlayerData.Health;
                     player.Armor = gameObjectData.PlayerData.Armor;
                     player.transform.position = new Vector3(gameObjectData.PlayerData.X_Position,
                         gameObjectData.PlayerData.Y_Position,
                         gameObjectData.PlayerData.Z_Position);
+
+
+                    //Set Enemy Instances
+                    var enemyList = gameObjectData.LevelData.SavedEnemyData;
+                    //Set Pickup Instances
+                    var pickupList = gameObjectData.LevelData.SavedPickupData;
 
 
                     Debug.Log("File loaded: " + path);
