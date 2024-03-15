@@ -90,19 +90,6 @@ public class SceneSaver : MonoBehaviour
     public Transform EnemyCollection;
     public Transform PickupCollection;          
 
-    private readonly List<string> _enemyCollection = new();
-    private readonly List<string> _pickupCollection = new();    
-
-    private void Start()
-    {
-        //Initialize Collections for level
-        if (!SceneSwapper.Instance.IsMainMenu)
-        {
-            ProcessEnemyCollection();
-            ProcessPickupCollection();
-        }
-    }
-
     public GameObjectData CreateNewObjectData()
     {
         return new GameObjectData();
@@ -125,6 +112,15 @@ public class SceneSaver : MonoBehaviour
         try
         {
             string saveId = Guid.NewGuid().ToString();
+            
+            if (EnemyCollection == null)
+            {
+                EnemyCollection = GameObject.Find("EnemyCollection").transform;
+            }
+            if (PickupCollection == null)
+            {
+                PickupCollection = GameObject.Find("PickupCollection").transform;
+            }
 
             //General Data
             var gameObjectData = CreateNewObjectData();
@@ -133,7 +129,8 @@ public class SceneSaver : MonoBehaviour
             gameObjectData.Date = dt.ToShortDateString();
             gameObjectData.Time = dt.ToShortTimeString();
             gameObjectData.Id = saveId;
-            var screenshot = ScreenCapture.CaptureScreenshotAsTexture();
+
+            var screenshot = GameScreenshot();            
             gameObjectData.RawImage = screenshot.EncodeToPNG();
 
             //Player Data
@@ -162,14 +159,16 @@ public class SceneSaver : MonoBehaviour
                 Y_Rotation = player.transform.rotation.y,
                 Z_Rotation = player.transform.rotation.z,
                 Health = player.Health,
+                Armor = player.Armor,
                 CurrentWeaponIndex = player.PlayerInventory.CurrentWeaponIndex,
                 Weapons = currentWeapons,
                 Ammo = currentAmmo
             };           
             List<EnemySceneData> currentEnemies = new();
             foreach (Transform tEnemy in EnemyCollection)
-            {
+            {                
                 var enemy = tEnemy.GetComponent<Enemy>();
+                if(enemy == null) continue;
                 currentEnemies.Add(new EnemySceneData
                 {
                     EnemyType = enemy.EnemyType.ToString(),
@@ -180,8 +179,9 @@ public class SceneSaver : MonoBehaviour
             }
             List<PickupSceneData> currentPickups = new();
             foreach (Transform tPickup in PickupCollection)
-            {
+            {                
                 var pickup = tPickup.GetComponent<IPickupable>();
+                if(pickup == null) continue;
                 currentPickups.Add(new PickupSceneData
                 {
                     PickupType = pickup.GetType().ToString(),
@@ -205,6 +205,7 @@ public class SceneSaver : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError("Error writing file: " + e.Message);
+            Debug.LogError("Error writing file: " + e.StackTrace);
         }
         
         yield return null;
@@ -261,7 +262,7 @@ public class SceneSaver : MonoBehaviour
                 if (file == loadId)
                 {   
                     gameObjectData = DeserializeData<GameObjectData>(filePath);
-                    SceneManager.LoadSceneAsync(gameObjectData.LevelData.Level);
+                    //SceneManager.LoadSceneAsync(gameObjectData.LevelData.Level);
                     var player = GameManager.Instance.MyPlayer;
                     player.Health = gameObjectData.PlayerData.Health;
                     player.Armor = gameObjectData.PlayerData.Armor;
@@ -275,7 +276,6 @@ public class SceneSaver : MonoBehaviour
                     //Set Pickup Instances
                     var pickupList = gameObjectData.LevelData.SavedPickupData;
 
-
                     Debug.Log("File loaded: " + path);
                     StartCoroutine(TextAlert("Loading ...", 2f));
                     break;
@@ -288,34 +288,7 @@ public class SceneSaver : MonoBehaviour
             Debug.LogError("Error loading file: " + e.Message);
         }
     } 
-
-    private void ProcessEnemyCollection()
-    {
-        //async?
-        if (EnemyCollection == null)
-        {
-            EnemyCollection = GameObject.Find("EnemyCollection").transform;            
-        }
-        _enemyCollection.Clear();
-        foreach (Transform tEnemy in EnemyCollection)
-        {
-            _enemyCollection.Add(tEnemy.gameObject.name);
-        }            
-        
-    }
     
-    private void ProcessPickupCollection()
-    {
-        if (PickupCollection == null)
-        {
-            PickupCollection = GameObject.Find("PickupCollection").transform;
-        }
-        _pickupCollection.Clear();
-        foreach (Transform tPickup in PickupCollection)
-        {
-            _pickupCollection.Add(tPickup.gameObject.name);
-        }        
-    }
     private IEnumerator TextAlert(string text, float seconds)
     {
         UIManager.Instance.SecretText.text = text;
@@ -346,6 +319,28 @@ public class SceneSaver : MonoBehaviour
             Debug.LogError("File not found: " + filePath);
             return default(T);
         }
+    }
+
+    private Texture2D GameScreenshot()
+    {        
+        UIManager.Instance.HideMainMenu();     
+        
+        RenderTexture currentRT = RenderTexture.active;
+        RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        Camera.main.targetTexture = renderTexture;
+        Camera.main.Render();
+        
+        Texture2D texture = new (Screen.width, Screen.height, TextureFormat.RGB24, false);
+        RenderTexture.active = renderTexture;
+        texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        texture.Apply();
+        
+        Camera.main.targetTexture = null;
+        RenderTexture.active = currentRT;
+        Destroy(renderTexture);
+        UIManager.Instance.ShowMainMenu();
+
+        return texture;
     }
 
 }

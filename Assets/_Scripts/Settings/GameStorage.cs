@@ -52,26 +52,37 @@ public static class GameStorage
     public static float GetStorageFloat(string storageKey) => PlayerPrefs.GetFloat(storageKey);
     public static int GetStorageInt(string storageKey) => PlayerPrefs.GetInt(storageKey);
     public static string GetStorageString(string storageKey) => PlayerPrefs.GetString(storageKey);
-    public static bool CheckExistingKey(string storageKey) => PlayerPrefs.HasKey(storageKey);
-
+    public static bool CheckExistingKey(string storageKey) => PlayerPrefs.HasKey(storageKey);    
 
 }
 
-public class GameSettingsStorage
+public static class GameSettingsStorage
 {
     public const string HudActive = "HudActive";
 }
 
 
-public class VisualStorage
+public static class VisualStorage
 {
     public const string GraphicsQuality = "GraphicsQuality";
     public const string Brightness = "Brightness";
     public const string Contrast = "Contrast";
 }
 
-public class AudioStorage
+public static class AudioStorage
 {
     public const string SoundVol = "SoundVolume";
     public const string MusicVol = "MusicVolume";
+}
+
+public static class MouseStorage
+{
+    public const string MouseSpeed = "MouseSpeed";    
+}
+
+public static class KeyBinds
+{    
+    public const string KeyForward = "KeyForward";
+
+
 }

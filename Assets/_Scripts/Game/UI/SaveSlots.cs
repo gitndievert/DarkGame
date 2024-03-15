@@ -19,5 +19,6 @@ public class SaveSlots : MonoBehaviour
    public void QuickSave()
    {
         SceneSwapper.Instance.SceneSaver.QuickSave();
+        UIManager.Instance.CloseMainMenu();
    }
 }

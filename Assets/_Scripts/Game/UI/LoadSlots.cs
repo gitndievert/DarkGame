@@ -63,7 +63,7 @@ public class LoadSlots : MonoBehaviour
 
     public void LoadMap(string id)
     {
-        SceneSwapper.Instance.SceneSaver.LoadGame(id);
+        SceneSwapper.Instance.SceneSaver.LoadGame(id);        
     }
 
     private void ClearList()

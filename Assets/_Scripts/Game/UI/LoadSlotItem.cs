@@ -42,5 +42,6 @@ public class LoadSlotItem : MonoBehaviour
     public void LoadMap()
     {
         SceneSwapper.Instance.SceneSaver.LoadGame(Id.text);
+        UIManager.Instance.CloseMainMenu();
     }
 }

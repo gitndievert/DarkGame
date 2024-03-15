@@ -37,7 +37,7 @@ public class GameManager : PSingle<GameManager>
     {
         //TODO: Replace all the actions below in another component
 
-        if(Input.GetKeyDown(KeyBinds.RELOAD_SCENE))
+        if(Input.GetKeyDown(KeyCode.R))
         {
             Scene currentScene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(currentScene.name);

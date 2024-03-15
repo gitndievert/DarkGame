@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1170,6 +1170,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4645560555736779080, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: EnemyCollection
+      value: 
+      objectReference: {fileID: 999465186}
+    - target: {fileID: 4645560555736779080, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: PickupCollection
+      value: 
+      objectReference: {fileID: 1970586044}
     - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.9200563
@@ -1224,33 +1232,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 130728581441671675, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 130728581441671675, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 971720170}
-    - target: {fileID: 130728581441671675, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 130728581441671675, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwapper, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 130728581441671675, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Start
-      objectReference: {fileID: 0}
-    - target: {fileID: 668666375464925362, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -38.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1785521050759128333, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -87.600006
-      objectReference: {fileID: 0}
     - target: {fileID: 2090085335809610315, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 44.493965
@@ -1291,29 +1275,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2545724498539968405, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3507282363738657706, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4676084732220841746, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
       propertyPath: m_Name
       value: UIManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520083249590563253, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
-      propertyPath: m_Text
-      value: Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 7791974617356260441, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
-      propertyPath: m_Name
-      value: Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8402767890543226419, guid: f3cfa557f3a453f468a46aa04ccd6e34, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -135.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

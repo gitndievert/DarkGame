@@ -93,6 +93,17 @@ public class UIManager : DSingle<UIManager>
             DeActivateMainMenu(menuactive);
         }
     }
+        
+
+    public void HideMainMenu()
+    {
+        MainMenu.SetActive(false);
+    }
+
+    public void ShowMainMenu()
+    {
+        MainMenu.SetActive(true);
+    }
 
     public void CloseMainMenu()
     {

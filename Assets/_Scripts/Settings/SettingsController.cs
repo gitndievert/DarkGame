@@ -12,6 +12,8 @@
 // Dissemination or reproduction of this material is forbidden.
 // ********************************************************************
 
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +24,8 @@ public class SettingsController : MonoBehaviour
     public Slider MusicVolumeSlider;
     public Slider ContrastSlider;
     public Slider BrightnessSlider;
+    [Header("Settings Labels")]
+    public TMP_Text HudToggleLabel;
 
     private void Awake()
     {
@@ -53,8 +57,16 @@ public class SettingsController : MonoBehaviour
         {
             float savedVol = GameStorage.GetStorageFloat(AudioStorage.MusicVol);
             MusicVolumeSlider.value = savedVol;
-        }        
-
+        }
+        /*if(GameStorage.CheckExistingKey(GameSettingsStorage.HudActive))
+        {
+            HudToggleLabel.text = GameStorage.GetStorageInt(GameSettingsStorage.HudActive) == 1 ? "On" : "Off";
+        }
+        else
+        {            
+            GameStorage.SaveValue(GameSettingsStorage.HudActive, 1);
+            HudToggleLabel.text = "On";
+        }*/
     }
 
     public void SetSoundVolume(float percentage)
@@ -75,6 +87,11 @@ public class SettingsController : MonoBehaviour
     {
         GameStorage.SaveValue(VisualStorage.Contrast, percentage);
     }
+    /*public void SetGameHud(bool hudStatus)
+    {
+        UIManager.Instance.ToggleHud(hudStatus);        
+        GameStorage.SaveValue(GameSettingsStorage.HudActive, Convert.ToInt32(UIManager.Instance.HUDCanvas.activeSelf));
+    }*/
     
 
 }
