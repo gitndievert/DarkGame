@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -593,6 +593,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4645560555736779080, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: EnemyCollection
+      value: 
+      objectReference: {fileID: 999465186}
+    - target: {fileID: 4645560555736779080, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
+      propertyPath: PickupCollection
+      value: 
+      objectReference: {fileID: 1970586044}
     - target: {fileID: 5496625708977605744, guid: 519bd7b917ad81f44a2863806c85c130, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.9200563
@@ -810,6 +818,10 @@ PrefabInstance:
     - target: {fileID: 8518624085463814246, guid: d95072c0010eabe4db44060e0c86d7aa, type: 3}
       propertyPath: m_Name
       value: PlayerModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518624085463814246, guid: d95072c0010eabe4db44060e0c86d7aa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

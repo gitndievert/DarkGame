@@ -144,8 +144,8 @@ MonoBehaviour:
   DisableDefaultFireAnimation: 0
   MuzzelFlashPrefabs: []
   MuzzelSpawn: {fileID: 6114233531189627636}
-  EmptyClipSound: {fileID: 0}
-  Projectile: {fileID: 7845818295167384877, guid: 9596ec0f421084c449c6da63e5a4e5ad, type: 3}
+  EmptyClipSound: {fileID: 8300000, guid: 08250a5d2d3da8441a3df730022e402c, type: 3}
+  Projectile: {fileID: -3483134518300161978, guid: bef97d3ce0918e747b45b38603bb4aa7, type: 3}
 --- !u!1001 &1844135033071171521
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -112,12 +112,12 @@ MonoBehaviour:
   SecondaryFireSound: {fileID: 0}
   PrimaryFireDamage: 60
   SecondaryFireDamage: 0
-  RecoilForce: 0.2
-  RecoilSmoothness: 6
+  RecoilForce: 0.3
+  RecoilSmoothness: 5
   SwayAmount: 0.02
   SwaySmoothness: 4
-  ShakeIntensity: 8
-  ShakeDuration: 0.2
+  ShakeIntensity: 7
+  ShakeDuration: 2
   DisplayCrossHairs: 1
   DisableDefaultFireAnimation: 0
   MuzzelFlashPrefabs:

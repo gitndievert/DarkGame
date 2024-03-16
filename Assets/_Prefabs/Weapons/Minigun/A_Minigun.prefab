@@ -83,8 +83,8 @@ MonoBehaviour:
   SecondaryFireDamage: 0
   RecoilForce: 0.1
   RecoilSmoothness: 6
-  SwayAmount: 0.02
-  SwaySmoothness: 4
+  SwayAmount: 0.015
+  SwaySmoothness: 2
   ShakeIntensity: 2.5
   ShakeDuration: 0.2
   DisplayCrossHairs: 1
